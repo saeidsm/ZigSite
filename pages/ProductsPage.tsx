@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Layers, Zap, Building, Factory, Settings, Play } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
@@ -22,6 +22,19 @@ const ProductsPage = () => {
       "availability": "https://schema.org/InStock"
     }
   };
+
+  // Load Aparat Script
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.aparat.com/embed/jtm59e0?data[rnddiv]=62142016814&data[responsive]=yes&muted=true";
+    script.type = "text/JavaScript";
+    script.async = true;
+    
+    const container = document.getElementById("62142016814");
+    if (container && !container.querySelector('script')) {
+        container.appendChild(script);
+    }
+  }, []);
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20">
@@ -214,16 +227,8 @@ const ProductsPage = () => {
                     
                     <div className="bg-black/50 rounded-2xl overflow-hidden border border-white/10 shadow-xl">
                         <div className="relative aspect-video">
-                            <video 
-                                controls 
-                                className="w-full h-full object-cover"
-                                width="1280"
-                                height="720"
-                                poster="/pic/202.jpg"
-                            >
-                                <source src="/pic/Mashin.mp4" type="video/mp4" />
-                                مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
-                            </video>
+                            {/* Aparat Embed Container */}
+                            <div id="62142016814" className="w-full h-full"></div>
                         </div>
                         <div className="p-4 bg-white/5 backdrop-blur-sm text-center">
                             <span className="text-sm text-slate-400">خط تولید SENREN</span>

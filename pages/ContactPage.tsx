@@ -195,7 +195,7 @@ ${formData.message}
             <div className="bg-slate-100 p-6 rounded-2xl mt-8 border border-slate-200">
               <h3 className="font-bold text-brand-navy mb-2">فرصت‌های همکاری (B2B)</h3>
               <p className="text-sm text-slate-600">
-                اگر کارخانه شیشه دارید یا تیم اجرایی نما هستید، برای اخذ نمایندگی یا خرید خط تولید SENREN درخواست خود را ثبت کنید.
+                اگر کارخانه شیشه دارید یا تیم اجرایی نما هستید، برای اخذ نمایندگی یا خرید خط تولید SENREN و تامین نانو پوشش درخواست خود را ثبت کنید.
               </p>
             </div>
           </div>

@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { TrendingUp, Wallet, Zap, Calculator, RotateCcw, Building2, Globe, Leaf, Info, Factory } from 'lucide-react';
@@ -353,7 +352,13 @@ const RoiPage = () => {
                 <h2 className="text-2xl font-bold text-brand-navy">نمودار تجمعی جریان نقدینگی (۱۰ ساله)</h2>
                 <p className="text-sm text-slate-500 mt-1">مقایسه روند سودآوری برای مالک (آبی) و دولت (سبز)</p>
              </div>
-             <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">واحد عمودی: میلیون تومان</span>
+             <div className="flex flex-col items-end gap-2 text-right">
+                <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full whitespace-nowrap">واحد عمودی: میلیون تومان</span>
+                <span className="text-xs text-slate-400 flex items-center gap-1">
+                  <Info size={12} />
+                  نمودار نشان‌دهنده تراز مالی تجمعی است (نه سود سالانه)
+                </span>
+             </div>
           </div>
          
           <div className="h-[400px] w-full" dir="ltr">
