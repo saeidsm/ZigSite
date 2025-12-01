@@ -1,16 +1,22 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { HashRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { Menu, X, Linkedin, Phone, Mail, MapPin, ArrowUp, Instagram } from 'lucide-react';
 
-// Pages
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ProductsPage from './pages/ProductsPage';
-import TechnologyPage from './pages/TechnologyPage';
-import RoiPage from './pages/RoiPage';
-import ContactPage from './pages/ContactPage';
-import ArticlesPage from './pages/ArticlesPage';
+// Lazy Load Pages
+const HomePage = lazy(() => import('./pages/HomePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const TechnologyPage = lazy(() => import('./pages/TechnologyPage'));
+const RoiPage = lazy(() => import('./pages/RoiPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const ArticlesPage = lazy(() => import('./pages/ArticlesPage'));
+
+// Loading Component
+const PageLoader = () => (
+  <div className="flex items-center justify-center min-h-screen bg-slate-50">
+    <div className="w-16 h-16 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -81,7 +87,7 @@ const Navigation = () => {
             <Link to="/" className="flex-shrink-0 flex items-center gap-2">
               {!imageError ? (
                 <img 
-                  src="logo.png" 
+                  src="/pic/100.png" 
                   alt="Ziggurat Sustainable Solutions" 
                   className="h-12 w-auto object-contain transition-opacity duration-300"
                   onError={() => setImageError(true)}
@@ -177,7 +183,7 @@ const Footer = () => (
              <span className="font-bold text-2xl text-brand-cyan tracking-wider">ZIGGURAT</span>
           </div>
           <p className="text-slate-300 leading-relaxed max-w-md text-sm text-justify">
-            زیگورات با بهره‌گیری از فناوری نانو و ۳۰ سال تجربه مهندسی، راهکاری پایدار برای کاهش مصرف انرژی و افزایش آسایش در ساختمان‌ها ارائه می‌دهد. ما متعهد به ساخت آینده‌ای سبزتر برای ایران هستیم.
+            زیگورات یک استارتاپ زایشی از آلومینیوم شیشه تهران مشاور تخصصی نما با 30 سال تجربه مهندسی نما ، فیزیک ساختمان و مدیریت مصرف انرژی در پوسته ساختمان میباشد. ما متعهد به ساخت آینده‌ای سبزتر برای ایران هستیم.
           </p>
         </div>
         
@@ -197,11 +203,11 @@ const Footer = () => (
           <ul className="space-y-3 text-sm text-slate-300">
             <li className="flex items-center gap-2 group cursor-pointer">
               <MapPin size={16} className="text-brand-cyan group-hover:scale-110 transition-transform" />
-              <a href="https://goo.gl/maps/placeholder" target="_blank" rel="noopener noreferrer" className="hover:text-white">تهران، شهرک غرب</a>
+              <a href="https://www.google.com/maps/search/?api=1&query=مجتمع+اداری+تجاری+ونوس+اشرفی+اصفهانی" target="_blank" rel="noopener noreferrer" className="hover:text-white">تهران، اشرفی اصفهانی، مجتمع اداری تجاری ونوس، طبقه 12 واحد 12</a>
             </li>
             <li className="flex items-center gap-2 group">
               <Phone size={16} className="text-brand-cyan group-hover:scale-110 transition-transform" />
-              <a href="tel:+982188888888" dir="ltr" className="hover:text-white">+98 21 8888 8888</a>
+              <a href="tel:+989120901530" dir="ltr" className="hover:text-white">+98 912 090 1530</a>
             </li>
             <li className="flex items-center gap-2 group">
               <Mail size={16} className="text-brand-cyan group-hover:scale-110 transition-transform" />
@@ -209,13 +215,13 @@ const Footer = () => (
             </li>
           </ul>
           <div className="flex gap-4 mt-6">
-            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-brand-cyan hover:text-brand-navy transition-all duration-300 transform hover:scale-110" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/zigguratss/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-brand-cyan hover:text-brand-navy transition-all duration-300 transform hover:scale-110" aria-label="LinkedIn">
               <Linkedin size={20} />
             </a>
-            <a href="#" className="p-2 bg-white/10 rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="Instagram">
+            <a href="https://www.instagram.com/zigguratsolutions" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/10 rounded-full hover:bg-pink-600 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="Instagram">
               <Instagram size={20} />
             </a>
-            <a href="tel:+982188888888" className="p-2 bg-white/10 rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="Call Us">
+            <a href="tel:+989120901530" className="p-2 bg-white/10 rounded-full hover:bg-green-500 hover:text-white transition-all duration-300 transform hover:scale-110" aria-label="Call Us">
               <Phone size={20} />
             </a>
           </div>
@@ -236,15 +242,17 @@ const App = () => {
         <ScrollToTop />
         <Navigation />
         <main className="flex-grow">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/technology" element={<TechnologyPage />} />
-            <Route path="/roi" element={<RoiPage />} />
-            <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-          </Routes>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/products" element={<ProductsPage />} />
+              <Route path="/technology" element={<TechnologyPage />} />
+              <Route path="/roi" element={<RoiPage />} />
+              <Route path="/articles" element={<ArticlesPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+            </Routes>
+          </Suspense>
         </main>
         <Footer />
         <BackToTopButton />
