@@ -13,7 +13,7 @@ const SEO: React.FC<SEOProps> = ({
   title, 
   description, 
   keywords = [], 
-  image = '/pic/900.jpg', // Default OG Image
+  image = '/assets/logo.png', // Default OG Image
   schema 
 }) => {
   const location = useLocation();

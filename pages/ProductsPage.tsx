@@ -1,246 +1,101 @@
-
-import React, { useEffect } from 'react';
-import { Layers, Zap, Building, Factory, Settings, Play } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import SEO from '../components/SEO';
+import { Label, Btn } from '../components/ui';
 
-const ProductsPage = () => {
-  // Product Schema for Google Shopping/Search
-  const productSchema = {
-    "@context": "https://schema.org/", 
-    "@type": "Product", 
-    "name": "پوشش نانو محافظ شیشه زیگورات",
-    "image": "https://zigguratsolutions.com/pic/201.jpg",
-    "description": "پوشش نانو تکنولوژی دوجزئی جهت کاهش عبور گرما (IR) و UV تا 95 درصد، قابل اجرا روی شیشه‌های نصب شده و خط تولید.",
-    "brand": {
-      "@type": "Brand",
-      "name": "Ziggurat"
-    },
-    "offers": {
-      "@type": "AggregateOffer",
-      "priceCurrency": "IRR",
-      "availability": "https://schema.org/InStock"
-    }
-  };
+const S: React.CSSProperties = { maxWidth: 1200, marginInline: 'auto' };
 
-  // Load Aparat Script
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://www.aparat.com/embed/jtm59e0?data[rnddiv]=62142016814&data[responsive]=yes&muted=true";
-    script.type = "text/JavaScript";
-    script.async = true;
-    
-    const container = document.getElementById("62142016814");
-    if (container && !container.querySelector('script')) {
-        container.appendChild(script);
-    }
-  }, []);
+const SPECS: [string, string][] = [
+  ['عبور نور مرئی (VLT)', '۵۰٪ تا ۷۵٪ (قابل تنظیم)'],
+  ['دفع مادون‌قرمز (IRR)', 'تا ۹۹٪'],
+  ['دفع فرابنفش (UVR)', 'تا ۱۰۰٪'],
+  ['سختی سطح', '۶H'],
+  ['صرفه‌جویی انرژی', 'تا ۳۰٪ در بار سرمایشی'],
+];
 
-  return (
-    <div className="bg-slate-50 min-h-screen pb-20">
-      <SEO 
-        title="محصولات - جایگزین شیشه Low-e و Sunergy"
-        description="مقایسه و خرید پوشش نانو زیگورات (IGU و Retrofit). بهترین جایگزین برای شیشه Low-e و شیشه سانرژی با قیمت کمتر و کارایی بالاتر در دفع گرما."
-        keywords={['شیشه Low-e', 'شیشه سانرژی', 'شیشه Sunergy', 'شیشه دوجداره صنعتی', 'پوشش نانو شیشه', 'قیمت شیشه رفلکس']}
-        schema={productSchema}
-      />
+const ProductsPage = () => (
+  <>
+    <SEO
+      title="محصولات — نانوپوشش و شیشهٔ طیف‌گزین"
+      description="خط محصولات طیف‌گزین زیگورات؛ نانوشیلد سوپرکلیر دوجزئی، شیشهٔ طیف‌گزین آمادهٔ نصب و خدمات اجرای در محل. جایگزین داخلی شیشه‌های Low-E و Sunergy."
+      keywords={['شیشهٔ طیف‌گزین زیگورات', 'نانوشیلد سوپرکلیر', 'نانوپوشش دوجزئی', 'شیشه های‌پرفورمنس']}
+      image="/assets/formula-jar.jpg"
+    />
 
-      <div className="bg-brand-navy py-16 mb-12">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">خانواده محصولات زیگورات</h1>
-          <p className="text-slate-300">دو راهکار تخصصی برای نیازهای متفاوت ساختمانی</p>
+    <section style={{ ...S, padding: '72px 24px 44px' }}>
+      <Label>خط محصولات</Label>
+      <h1 className="zz-h1" style={{ fontSize: 'clamp(34px,4.2vw,58px)', margin: '0 0 20px', maxWidth: '20ch' }}>نانوپوشش و شیشهٔ <span className="em">طیف‌گزین</span></h1>
+      <p style={{ fontSize: 18, lineHeight: 2, color: 'var(--muted)', margin: 0, maxWidth: '60ch', textAlign: 'justify' }}>خانوادهٔ محصولات طیف‌گزین زیگورات؛ از نانوپوشش دوجزئیِ قابل اجرا روی شیشهٔ موجود تا شیشهٔ های‌پرفورمنس آمادهٔ نصب. جایگزینی داخلی برای شیشه‌های وارداتی Low-E و Sunergy، با کنترل هوشمند طیف نور و گرما.</p>
+    </section>
+
+    {/* FLAGSHIP */}
+    <section className="zz-grid-2" style={{ ...S, padding: '0 24px 40px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 44, alignItems: 'center' }}>
+      <div style={{ aspectRatio: '1 / 1', borderRadius: 48, overflow: 'hidden', border: '1px solid var(--rule)' }}>
+        <img src="/assets/formula-jar.jpg" alt="فرمول نانوپوشش طیف‌گزین زیگورات" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      </div>
+      <div>
+        <span style={{ display: 'inline-block', fontSize: 12, fontWeight: 700, color: 'var(--accent)', background: 'var(--accent-soft)', padding: '6px 14px', borderRadius: 100, marginBottom: 16 }}>محصول پرچم‌دار</span>
+        <h2 className="zz-h2" style={{ fontSize: 'clamp(26px,3vw,38px)', lineHeight: 1.25, margin: '0 0 18px' }}>شیشهٔ طیف‌گزین زیگورات</h2>
+        <p style={{ fontSize: 16, lineHeight: 2.05, color: 'var(--muted)', margin: '0 0 26px', textAlign: 'justify' }}>نانوذرات فلزات کمیاب با پدیدهٔ رزونانس پلاسمون سطحی (LSPR)، طیف مادون‌قرمز را جذب و بازتاب می‌کنند و اجازهٔ عبور نور مرئی را می‌دهند. نتیجه: خنکیِ محسوس، بدون تیرگی.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }}>
+          {[['۷۵٪', 'عبور نور مرئی'], ['۹۹٪', 'دفع مادون‌قرمز'], ['۱۰۰٪', 'دفع فرابنفش']].map(([v, l]) => (
+            <div key={l} className="zz-card" style={{ borderRadius: 18, padding: 18 }}>
+              <div style={{ fontSize: 28, fontWeight: 300, color: 'var(--ink)' }}>{v}</div>
+              <div style={{ fontSize: 12, color: 'var(--muted)' }}>{l}</div>
+            </div>
+          ))}
         </div>
       </div>
+    </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
-        {/* Product 1: Retrofit */}
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
-          <div className="grid md:grid-cols-2">
-            <div className="p-10 flex flex-col justify-center">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-blue-100 rounded-lg text-brand-blue">
-                  <Building size={32} />
-                </div>
-                <h1 className="text-3xl font-bold text-brand-navy">زیگورات رتروفیت (Outdoor)</h1>
+    {/* THREE PRODUCTS */}
+    <section style={{ background: 'var(--bg2)', borderBlock: '1px solid var(--rule)' }}>
+      <div style={{ ...S, padding: '88px 24px' }}>
+        <h2 className="zz-h2" style={{ fontSize: 'clamp(26px,3vw,40px)', margin: '0 0 40px' }}>سه محصول، یک فناوری</h2>
+        <div className="zz-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+          {[
+            { img: '/assets/product-line.jpg', alt: 'نانوشیلد سوپرکلیر دوجزئی', t: 'نانوشیلد سوپرکلیر', d: 'پوشش دوجزئی (A و B)، پخت ۱۲۰ درجه؛ برای اجرا روی شیشهٔ موجود بدون تعویض جداره.' },
+            { img: '/assets/clarity.jpg', alt: 'شیشه طیف‌گزین آماده نصب', t: 'شیشهٔ طیف‌گزین آماده', d: 'شیشهٔ های‌پرفورمنس پوشش‌داده‌شده در کارخانه؛ آمادهٔ نصب در پروژه‌های نوساز و کرتین‌وال.' },
+            { img: '/assets/application.jpg', alt: 'اجرای پوشش طیف‌گزین در محل', t: 'خدمات اجرای در محل', d: 'اجرای تخصصی پوشش روی نمای ساختمان‌های موجود، توسط تیم آموزش‌دیدهٔ زیگورات.' },
+          ].map((c) => (
+            <div key={c.t} className="zz-card" style={{ overflow: 'hidden' }}>
+              <div style={{ aspectRatio: '5 / 4', overflow: 'hidden' }}><img src={c.img} alt={c.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+              <div style={{ padding: 24 }}>
+                <h3 style={{ fontSize: 19, fontWeight: 700, margin: '0 0 8px', color: 'var(--ink)' }}>{c.t}</h3>
+                <p style={{ fontSize: 14, lineHeight: 1.95, color: 'var(--muted)', margin: 0 }}>{c.d}</p>
               </div>
-              <p className="text-slate-600 mb-6 text-justify leading-relaxed">
-                این پوشش نانو دوجزئی، مخصوص اجرا روی ساختمان‌های موجود است. با تم رنگی زیبا (Navi Blue) و شفافیت بالا، پوسته‌ای محافظ روی شیشه ایجاد می‌کند که بدون نیاز به تعویض پنجره‌ها، عملکرد انرژی ساختمان را متحول می‌کند.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">محل اجرا</span>
-                  <span className="text-brand-navy font-bold">نمای بیرونی ساختمان‌های ساخته شده</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">میزان دفع گرما (IR)</span>
-                  <span className="text-green-600 font-bold">۸۵٪ تا ۹۵٪</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">سختی سطح</span>
-                  <span className="text-brand-navy font-bold">6H (بسیار مقاوم)</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">مقاومت جوی</span>
-                  <span className="text-brand-navy font-bold">ضد باران اسیدی و گرد و غبار</span>
-                </div>
-              </div>
-
-              <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 text-sm text-blue-900 mb-6">
-                <strong>مزیت رقابتی:</strong> برخلاف ویندو فیلم‌ها (برچسب)، این پوشش پوسته نمی‌شود، حباب نمی‌زند و به طور یکپارچه با شیشه پیوند می‌خورد.
-              </div>
-
-              <Link to="/contact" className="w-full text-center bg-brand-blue text-white py-3 rounded-lg font-bold hover:bg-brand-navy transition-colors">
-                استعلام قیمت رتروفیت
-              </Link>
             </div>
-            <div className="relative bg-slate-200 min-h-[400px]">
-              <img 
-                src="/pic/201.jpg" 
-                alt="نانو پوشش عایق" 
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                width="800"
-                height="800"
-              />
-              <div className="absolute inset-0 bg-brand-navy/20"></div>
-            </div>
-          </div>
+          ))}
         </div>
-
-        {/* Product 2: Sunergy Ziggurat */}
-        <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
-          <div className="grid md:grid-cols-2">
-            <div className="relative bg-slate-200 min-h-[400px] order-2 md:order-1">
-              <img 
-                src="/pic/202.jpg" 
-                alt="شیشه هارد کوت" 
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                width="800"
-                height="800"
-              />
-              <div className="absolute inset-0 bg-brand-navy/20"></div>
-            </div>
-            <div className="p-10 flex flex-col justify-center order-1 md:order-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-cyan-100 rounded-lg text-brand-cyan">
-                  <Factory size={32} />
-                </div>
-                <h2 className="text-3xl font-bold text-brand-navy">سانرژی زیگورات (Hard coated)</h2>
-              </div>
-              <p className="text-slate-600 mb-6 text-justify leading-relaxed">
-                مخصوص کارخانجات پروسس شیشه. این پوشش پس از برش و سکوریت شدن شیشه اعمال شده و در دمای ۲۰۰ درجه سانتیگراد پخت می‌شود. این فرآیند شیشه معمولی را به یک شیشه Super Performance تبدیل می‌کند.
-              </p>
-              
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">محل اجرا</span>
-                  <span className="text-brand-navy font-bold">خط تولید کارخانه (کوره ای)</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">میزان دفع گرما (IR) و UV</span>
-                  <span className="text-green-600 font-bold">۸۵٪ تا ۹۵٪</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">ماندگاری</span>
-                  <span className="text-green-600 font-bold">دائمی (پخت شده در ساختار شیشه)</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">سختی سطح</span>
-                  <span className="text-brand-navy font-bold">3H+</span>
-                </div>
-                <div className="flex items-center justify-between border-b border-slate-100 pb-2">
-                  <span className="text-slate-500 font-medium">قابلیت انبارش</span>
-                  <span className="text-brand-navy font-bold">امکان انبارش تک‌لایه به مدت طولانی</span>
-                </div>
-              </div>
-
-              <div className="bg-cyan-50 p-4 rounded-xl border border-cyan-100 text-sm text-cyan-900 mb-6">
-                <strong>مزیت رقابتی:</strong> برخلاف شیشه‌های Soft-Coated که سریع اکسید می‌شوند، این محصول پایداری بسیار بالایی قبل از دوجداره شدن دارد.
-              </div>
-
-              <Link to="/contact" className="w-full text-center bg-brand-navy text-white py-3 rounded-lg font-bold hover:bg-slate-800 transition-colors">
-                درخواست همکاری صنعتی
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* Comparison Section (Optimized for SEO Keywords) */}
-        <div className="mt-20">
-          <h2 className="text-3xl font-bold text-brand-navy text-center mb-10">چرا زیگورات بهتر از رقباست؟</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-red-100">
-              <h3 className="text-xl font-bold text-red-600 mb-4 flex items-center gap-2">
-                <Zap size={20}/>
-                مشکلات شیشه‌های Low-E
-              </h3>
-              <ul className="list-disc list-inside text-slate-600 space-y-2">
-                <li>مسدود کردن امواج موبایل و رادیویی (ایجاد نقطه کور).</li>
-                <li>بازتاب شدید گرما به بیرون و ایجاد "جزیره گرمایی" برای همسایگان.</li>
-                <li>قیمت بسیار بالا و وارداتی بودن تکنولوژی.</li>
-              </ul>
-            </div>
-            <div className="bg-white p-6 rounded-2xl shadow-sm border border-orange-100">
-              <h3 className="text-xl font-bold text-orange-600 mb-4 flex items-center gap-2">
-                <Layers size={20}/>
-                مشکلات شیشه‌های Sunergy
-              </h3>
-              <ul className="list-disc list-inside text-slate-600 space-y-2">
-                <li>عملکرد حرارتی محدود (نهایتا ۸۵٪ دفع گرما).</li>
-                <li>پرت و ضایعات بالا در هنگام برش و سکوریت.</li>
-                <li>نیاز به خرید شیشه پایه گران‌قیمت.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        {/* Production Line Section (New) */}
-        <div className="mt-20 bg-gradient-to-br from-slate-900 to-brand-navy rounded-3xl p-8 md:p-12 text-white overflow-hidden relative border border-slate-700 shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
-            <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-6 justify-center md:justify-start">
-                    <div className="p-3 bg-brand-cyan/20 rounded-xl">
-                        <Settings size={32} className="text-brand-cyan animate-spin-slow" />
-                    </div>
-                    <h2 className="text-2xl md:text-3xl font-bold">خط تولید شیشه سانرژی زیگورات</h2>
-                </div>
-                
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-6">
-                        <p className="text-slate-300 leading-relaxed text-justify text-lg">
-                            این خط تولید متشکل از بخش شستشو، کلین روم، دستگاه پوشش غلطکی نانو ذرات تولید شرکت SENREN چین، خط پخت حرارتی و نهایتا کاهش دما و دوجداره سازی است.
-                        </p>
-                        <p className="text-slate-300 leading-relaxed text-justify">
-                            این خط قابل اجرا در همه کارخانه های پروسس شیشه بوده و مناسب نانوپوشش "سانرژی زیگورات (Hard coated)" میباشد.
-                        </p>
-                        
-                        <div className="pt-4">
-                             <Link to="/contact" className="inline-flex items-center gap-2 bg-brand-cyan text-brand-navy px-8 py-4 rounded-xl font-bold hover:bg-white transition-all shadow-lg hover:shadow-cyan-500/50">
-                                مشاوره تامین خط تولید
-                                <Factory size={20} />
-                             </Link>
-                        </div>
-                    </div>
-                    
-                    <div className="bg-black/50 rounded-2xl overflow-hidden border border-white/10 shadow-xl">
-                        <div className="relative aspect-video">
-                            {/* Aparat Embed Container */}
-                            <div id="62142016814" className="w-full h-full"></div>
-                        </div>
-                        <div className="p-4 bg-white/5 backdrop-blur-sm text-center">
-                            <span className="text-sm text-slate-400">خط تولید SENREN</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
       </div>
-    </div>
-  );
-};
+    </section>
+
+    {/* TECH SPECS */}
+    <section style={{ ...S, padding: '88px 24px' }}>
+      <Label>مشخصات فنی</Label>
+      <div className="zz-card" style={{ overflow: 'hidden' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
+          {SPECS.map(([k, v], idx) => (
+            <React.Fragment key={k}>
+              <div style={{ padding: '22px 26px', borderBottom: idx < SPECS.length - 1 ? '1px solid var(--rule)' : 'none', borderInlineStart: '1px solid var(--rule)' }}>
+                <span style={{ fontSize: 13.5, color: 'var(--muted)' }}>{k}</span>
+              </div>
+              <div style={{ padding: '22px 26px', borderBottom: idx < SPECS.length - 1 ? '1px solid var(--rule)' : 'none' }}>
+                <b style={{ fontSize: 15, color: 'var(--ink)' }}>{v}</b>
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* CTA */}
+    <section style={{ background: 'var(--onyx)', color: '#f0efe9' }}>
+      <div style={{ ...S, padding: '80px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
+        <h2 className="zz-h2" style={{ fontSize: 'clamp(26px,3.2vw,40px)', margin: 0, maxWidth: '22ch', color: '#f0efe9' }}>محصول مناسب پروژهٔ خود را انتخاب کنیم.</h2>
+        <Btn to="/contact" variant="onyx" style={{ fontSize: 16, padding: '17px 34px', flexShrink: 0 }}>درخواست مشاوره</Btn>
+      </div>
+    </section>
+  </>
+);
 
 export default ProductsPage;

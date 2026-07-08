@@ -1,116 +1,91 @@
-
 import React from 'react';
-import { Microscope, Sun, Thermometer, Shield } from 'lucide-react';
 import SEO from '../components/SEO';
+import { Label } from '../components/ui';
 
-const TechnologyPage = () => {
-  return (
-    <div className="bg-white pb-20">
-      <SEO 
-        title="تکنولوژی طیف‌گزین (Spectrally Selective) - فناوری نانو"
-        description="آشنایی با فناوری نانو ذرات در پوشش‌های شیشه زیگورات. تکنولوژی Spectrally Selective چگونه گرما (IR) را حذف می‌کند اما نور مرئی را عبور می‌دهد؟ تفاوت SHGC و U-Value."
-        keywords={['تکنولوژی نانو شیشه', 'Spectrally Selective', 'ضریب بهره خورشیدی SHGC', 'رزونانس پلاسمون سطحی', 'فیلتر اشعه UV']}
-      />
+const S: React.CSSProperties = { maxWidth: 1200, marginInline: 'auto' };
 
-      <div className="bg-brand-navy py-16 text-white overflow-hidden relative">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-brand-cyan opacity-10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-brand-blue opacity-10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <h1 className="text-4xl font-bold mb-6">فناوری طیف‌گزین (Spectrally Selective)</h1>
-          <p className="text-xl text-slate-300 max-w-3xl">
-            جادوی ذرات نانو: چگونه گرما را متوقف می‌کنیم اما نور را دعوت می‌کنیم؟
-          </p>
+const COMPARE_ROWS: [string, string, string, string][] = [
+  ['اجرا بدون تعویض شیشه', '✓', '✕', '✕'],
+  ['دفع مادون‌قرمز', 'تا ۹۹٪', 'بالا', 'کم'],
+  ['تولید داخل / ارز‌بری', 'داخلی', 'وارداتی', '—'],
+  ['مناسب بهسازی بنای موجود', '✓', 'محدود', '✕'],
+];
+
+const TechnologyPage = () => (
+  <>
+    <SEO
+      title="تکنولوژی — فیزیکِ پشتِ طیف‌گزینی"
+      description="مکانیزم نانوپوشش طیف‌گزین زیگورات: عبور نور مرئی، شکار گرمای مادون‌قرمز نزدیک با رزونانس پلاسمون سطحی (LSPR)، و سد اشعهٔ فرابنفش تا ۱۰۰٪."
+      keywords={['رزونانس پلاسمون سطحی', 'LSPR', 'نانوذرات', 'طیف‌گزینی', 'Low-E', 'فیزیک ساختمان']}
+      image="/assets/nano-mechanism.png"
+    />
+
+    <section style={{ ...S, padding: '72px 24px 44px' }}>
+      <Label>دانش فنی</Label>
+      <h1 className="zz-h1" style={{ fontSize: 'clamp(34px,4.2vw,58px)', margin: '0 0 20px', maxWidth: '22ch' }}>فیزیکِ پشتِ <span className="em">طیف‌گزینی</span></h1>
+      <p style={{ fontSize: 18, lineHeight: 2, color: 'var(--muted)', margin: 0, maxWidth: '62ch', textAlign: 'justify' }}>نور خورشید طیف گسترده‌ای دارد: نور مرئی که آن را می‌بینیم، مادون‌قرمز که گرمای آن را حس می‌کنیم، و فرابنفش که به پوست و مبلمان آسیب می‌زند. نانوپوشش طیف‌گزین این طیف‌ها را از هم تفکیک می‌کند.</p>
+    </section>
+
+    <section style={{ ...S, padding: '0 24px 40px' }}>
+      <div style={{ borderRadius: 40, overflow: 'hidden', border: '1px solid var(--rule)', background: '#fff' }}>
+        <img src="/assets/nano-mechanism.png" alt="مکانیزم عملکرد نانوذرات در نانوپوشش طیف‌گزین زیگورات: عبور نور مرئی، شکار گرمای مادون‌قرمز، و سد اشعه فرابنفش" style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+      </div>
+    </section>
+
+    <section style={{ ...S, padding: '72px 24px' }}>
+      <div className="zz-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+        {[
+          { n: '۰۱', t: 'عبور نور مرئی', d: 'طیف مرئی آزادانه عبور می‌کند؛ فضا روشن و منظره شفاف می‌ماند و به نور مصنوعی کمتری نیاز است.' },
+          { n: '۰۲', t: 'شکار گرما (NIR)', d: 'نانوذرات فلزات کمیاب با رزونانس پلاسمون سطحی (LSPR)، مادون‌قرمز نزدیک را جذب و بازتاب می‌کنند.' },
+          { n: '۰۳', t: 'سد اشعهٔ UV', d: 'تا ۱۰۰٪ از اشعهٔ فرابنفش مسدود می‌شود؛ محافظت از سلامت ساکنان و جلوگیری از رنگ‌پریدگی مبلمان.' },
+        ].map((c) => (
+          <div key={c.n} className="zz-card" style={{ padding: 30 }}>
+            <div style={{ fontWeight: 300, fontSize: 34, color: 'var(--accent)', marginBottom: 18 }}>{c.n}</div>
+            <h3 style={{ fontSize: 19, fontWeight: 700, margin: '0 0 10px', color: 'var(--ink)' }}>{c.t}</h3>
+            <p style={{ fontSize: 14, lineHeight: 1.95, color: 'var(--muted)', margin: 0 }}>{c.d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* PRODUCTION */}
+    <section style={{ background: 'var(--bg2)', borderBlock: '1px solid var(--rule)' }}>
+      <div className="zz-grid-2" style={{ ...S, padding: '88px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, alignItems: 'center' }}>
+        <div style={{ aspectRatio: '4 / 3', borderRadius: 40, overflow: 'hidden', border: '1px solid var(--rule)' }}>
+          <img src="/assets/factory.jpg" alt="خط تولید نانوپوشش طیف‌گزین در اتاق تمیز" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        <div>
+          <Label>تولید صادرات‌محور</Label>
+          <h2 className="zz-h2" style={{ fontSize: 'clamp(26px,3vw,38px)', lineHeight: 1.25, margin: '0 0 20px' }}>از آزمایشگاه تا خط تولید</h2>
+          <p style={{ fontSize: 16, lineHeight: 2.05, color: 'var(--muted)', margin: '0 0 16px', textAlign: 'justify' }}>فرمولاسیون نانوپوشش در اتاق تمیز و تحت کنترل دقیق کیفیت تولید می‌شود. هر بچ پیش از عرضه با طیف‌سنج LS182 آزمون می‌شود تا مقادیر عبور نور، دفع گرما و دفع UV مطابق استاندارد باشد.</p>
+          <p style={{ fontSize: 16, lineHeight: 2.05, color: 'var(--muted)', margin: 0, textAlign: 'justify' }}>این ظرفیت، وابستگی کشور به واردات شیشه‌های های‌پرفورمنس گران‌قیمت را کاهش می‌دهد.</p>
         </div>
       </div>
+    </section>
 
-      <div className="max-w-7xl mx-auto px-4 mt-16 sm:px-6 lg:px-8">
-        
-        {/* Core Mechanism */}
-        <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
-          <div>
-            <h2 className="text-3xl font-bold text-brand-navy mb-6">مکانیزم عملکرد نانو ذرات</h2>
-            <p className="text-slate-600 leading-relaxed mb-6 text-justify">
-              راز کارایی نانو شیلد زیگورات در ذرات نانوی فلزات کمیاب (Rare Metal Nano Particles) نهفته است. این ذرات هوشمند که بر اساس پدیده فیزیکی <strong>رزونانس پلاسمون سطحی (LSPR)</strong> عمل می‌کنند، مانند یک الک بسیار دقیق رفتار می‌کنند.
-            </p>
-            <div className="space-y-6">
-              <div className="flex gap-4">
-                <div className="bg-yellow-100 p-3 rounded-lg h-fit">
-                  <Sun className="text-yellow-600" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-bold text-brand-navy">۱. عبور نور مرئی</h3>
-                  <p className="text-sm text-slate-600">به امواج نور مرئی (۴۰۰ تا ۷۰۰ نانومتر) اجازه عبور می‌دهد تا روشنایی طبیعی خانه تامین شود.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="bg-red-100 p-3 rounded-lg h-fit">
-                  <Thermometer className="text-red-600" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-bold text-brand-navy">۲. شکار گرما (NIR)</h3>
-                  <p className="text-sm text-slate-600">امواج فروسرخ نزدیک (۷۰۰ تا ۲۵۰۰ نانومتر) که عامل اصلی گرما هستند را جذب و مسدود می‌کند.</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="bg-purple-100 p-3 rounded-lg h-fit">
-                  <Shield className="text-purple-600" size={24} />
-                </div>
-                <div>
-                  <h3 className="font-bold text-brand-navy">۳. سد کردن اشعه UV</h3>
-                  <p className="text-sm text-slate-600">تا ۹۹٪ از اشعه فرابنفش جلوگیری کرده و مانع از پوسیدگی و تغییر رنگ وسایل داخلی می‌شود.</p>
-                </div>
-              </div>
-            </div>
+    {/* COMPARISON */}
+    <section style={{ ...S, padding: '88px 24px' }}>
+      <Label>مقایسهٔ فناوری‌ها</Label>
+      <div className="zz-scroll" style={{ overflowX: 'auto' }}>
+        <div className="zz-card" style={{ minWidth: 640, overflow: 'hidden' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr', background: 'var(--accent-soft)' }}>
+            <div style={{ padding: '18px 22px', fontWeight: 700, fontSize: 14, color: 'var(--ink)' }}>ویژگی</div>
+            <div style={{ padding: '18px 22px', fontWeight: 700, fontSize: 14, color: 'var(--accent)' }}>طیف‌گزین زیگورات</div>
+            <div style={{ padding: '18px 22px', fontWeight: 700, fontSize: 14, color: 'var(--muted)' }}>Low-E وارداتی</div>
+            <div style={{ padding: '18px 22px', fontWeight: 700, fontSize: 14, color: 'var(--muted)' }}>شیشهٔ معمولی</div>
           </div>
-          
-          <div className="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-inner">
-             {/* Schematic Illustration placeholder */}
-             <div className="aspect-square bg-white rounded-2xl flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-y-0 left-1/2 w-4 bg-blue-200/50 backdrop-blur-sm z-10"></div> {/* The Glass */}
-                
-                {/* Sun Rays */}
-                <div className="absolute top-1/4 right-0 w-1/2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                <div className="absolute top-1/4 left-0 w-1/2 h-2 bg-yellow-400/80 rounded-full"></div> {/* Visible Light Passes */}
-                
-                {/* Heat Rays */}
-                <div className="absolute top-1/2 right-0 w-1/2 h-2 bg-red-500 rounded-full"></div>
-                <div className="absolute top-1/2 right-1/2 w-2 h-8 bg-red-500/50 rounded-full transform rotate-45"></div> {/* Heat Blocked/Absorbed */}
-
-                {/* UV Rays */}
-                <div className="absolute top-3/4 right-0 w-1/2 h-2 bg-purple-500 rounded-full"></div>
-                <div className="absolute top-3/4 right-1/2 w-2 h-8 bg-purple-500/50 rounded-full transform -rotate-45"></div> {/* UV Blocked */}
-
-                <div className="absolute bottom-4 text-center w-full text-xs text-slate-400">شماتیک عملکرد فیلتراسیون انتخابی</div>
-             </div>
-          </div>
-        </div>
-
-        {/* Technical Data Comparison */}
-        <div className="bg-slate-100 rounded-3xl p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-brand-navy mb-8 text-center">چرا SHGC مهم‌تر از U-Value است؟</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                    <h3 className="text-lg font-bold text-slate-700 mb-2">U-Value (عایق حرارتی)</h3>
-                    <p className="text-slate-500 text-sm mb-4">نشان‌دهنده میزان انتقال حرارت ناشی از اختلاف دمای بیرون و داخل.</p>
-                    <div className="text-sm text-slate-600 bg-slate-50 p-3 rounded">
-                        کاربرد اصلی: <span className="font-bold text-blue-600">اقلیم‌های سرد</span> (حفظ گرمای بخاری در زمستان)
-                    </div>
-                </div>
-                <div className="bg-white p-6 rounded-xl shadow-sm ring-2 ring-brand-cyan/20">
-                    <h3 className="text-lg font-bold text-brand-navy mb-2">SHGC (ضریب بهره خورشیدی)</h3>
-                    <p className="text-slate-500 text-sm mb-4">نشان‌دهنده میزان ورود گرمای خورشید به داخل ساختمان.</p>
-                    <div className="text-sm text-slate-600 bg-brand-light p-3 rounded">
-                        کاربرد اصلی: <span className="font-bold text-red-600">اقلیم‌های گرم و آفتابی ایران</span> (جلوگیری از ورود گرمای خورشید)
-                    </div>
-                </div>
+          {COMPARE_ROWS.map(([feat, zig, lowe, plain]) => (
+            <div key={feat} style={{ display: 'grid', gridTemplateColumns: '1.4fr 1fr 1fr 1fr', borderTop: '1px solid var(--rule)' }}>
+              <div style={{ padding: '16px 22px', fontSize: 13.5, color: 'var(--muted)' }}>{feat}</div>
+              <div style={{ padding: '16px 22px', fontSize: 14, fontWeight: 700, color: 'var(--ink)' }}>{zig}</div>
+              <div style={{ padding: '16px 22px', fontSize: 14, color: 'var(--muted)' }}>{lowe}</div>
+              <div style={{ padding: '16px 22px', fontSize: 14, color: 'var(--muted)' }}>{plain}</div>
             </div>
-            <p className="mt-8 text-center text-slate-600 max-w-2xl mx-auto">
-                در ایران، بیشترین هزینه انرژی صرف <strong>سرمایش</strong> می‌شود. تکنولوژی زیگورات مستقیماً SHGC را هدف قرار می‌دهد و دمای داخل را تا ۱۰ درجه خنک‌تر می‌کند.
-            </p>
+          ))}
         </div>
       </div>
-    </div>
-  );
-};
+    </section>
+  </>
+);
 
 export default TechnologyPage;

@@ -1,245 +1,202 @@
-
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ShieldCheck, Sun, DollarSign, Droplets, ChevronLeft, ArrowRight, Star, Quote } from 'lucide-react';
 import SEO from '../components/SEO';
+import { Label, Btn } from '../components/ui';
 
-const HomePage = () => {
-  // Structured Data for Organization (AI Optimization)
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Ziggurat Sustainable Solutions",
-    "alternateName": "راهکارهای پایدار زیگورات",
-    "url": "https://zigguratsolutions.com",
-    "logo": "https://zigguratsolutions.com/pic/100.png",
-    "description": "ارائه دهنده پوشش‌های نانو تکنولوژی برای شیشه‌های ساختمانی، جایگزین هوشمند شیشه Low-e و Sunergy جهت کاهش مصرف انرژی.",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+98-912-090-1530",
-      "contactType": "sales",
-      "areaServed": "IR",
-      "availableLanguage": "Persian"
+const homeSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'راهکارهای پایدار زیگورات',
+      alternateName: 'Ziggurat Sustainable Solutions',
+      url: 'https://zigguratsolutions.com',
+      logo: 'https://zigguratsolutions.com/assets/logo.png',
+      description: 'استارتاپ زایشی از آلومینیوم شیشهٔ تهران؛ توسعه‌دهندهٔ نانوپوشش طیف‌گزین برای عایق حرارتی شیشهٔ ساختمان.',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'اشرفی اصفهانی، مجتمع اداری تجاری ونوس، طبقه ۱۲، واحد ۱۲',
+        addressLocality: 'تهران',
+        addressCountry: 'IR',
+      },
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: '+98-912-090-1530',
+        email: 'info@zigguratsolutions.com',
+        contactType: 'sales',
+      },
     },
-    "sameAs": [
-      "https://www.instagram.com/zigguratsolutions",
-      "https://www.linkedin.com/company/zigguratss/"
-    ]
-  };
-
-  return (
-    <div className="flex flex-col">
-      <SEO 
-        title="خانه - نانو پوشش و عایق حرارتی شیشه"
-        description="زیگورات؛ سپر نامرئی ساختمان در برابر گرما. با فناوری نانو پوشش شیشه، بدون تعویض پنجره، مصرف انرژی را تا ۳۰٪ کاهش دهید. جایگزین برتر شیشه Low-e و Sunergy."
-        keywords={['نانو پوشش شیشه', 'عایق حرارتی پنجره', 'شیشه هوشمند', 'شیشه کنترل کننده انرژی', 'بهینه سازی مصرف انرژی', 'مبحث ۱۹ مقررات ملی']}
-        schema={organizationSchema}
-      />
-      
-      {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center overflow-hidden bg-brand-navy">
-        <div className="absolute inset-0">
-          <img 
-            src="/pic/101.jpg" 
-            alt="صنعت ساختمان ایران" 
-            className="w-full h-full object-cover opacity-30 animate-pulse-slow"
-            loading="eager" // Load immediately for LCP
-            width="1920"
-            height="1080"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/80 to-transparent"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center sm:px-6 lg:px-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
-            سپر <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-cyan to-blue-400">نامرئی</span> ساختمان<br/>
-            در برابر هجوم گرما
-          </h1>
-          <p className="mt-4 max-w-2xl mx-auto text-xl text-slate-300 drop-shadow-md">
-            تکنولوژی نانو برای مدیریت هوشمند نور و انرژی. بدون تعویض شیشه، ۳۰٪ در مصرف انرژی صرفه‌جویی کنید و از نور طبیعی لذت ببرید.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              to="/contact" 
-              className="px-8 py-4 bg-brand-cyan hover:bg-cyan-500 text-brand-navy font-bold rounded-full transition-all shadow-lg hover:shadow-cyan-500/50 flex items-center justify-center gap-2 transform hover:-translate-y-1"
-            >
-              مشاوره رایگان دریافت کنید
-              <ChevronLeft size={20} />
-            </Link>
-            <Link 
-              to="/products" 
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 text-white font-medium rounded-full transition-all flex items-center justify-center hover:shadow-lg"
-            >
-              آشنایی با محصولات
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Value Proposition */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-brand-navy">چرا نانو شیلد زیگورات؟</h2>
-            <p className="mt-4 text-slate-600">راهکاری جامع برای چالش‌های انرژی و آسایش در ساختمان‌های مدرن</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <FeatureCard 
-              icon={<ShieldCheck size={40} className="text-brand-blue" />}
-              title="فیلتراسیون قدرتمند"
-              description="حذف ۹۵٪ اشعه مادون قرمز (گرما) و ۹۰٪ اشعه فرابنفش (UV) بدون تاریک کردن فضا."
-            />
-            <FeatureCard 
-              icon={<Sun size={40} className="text-brand-blue" />}
-              title="حفظ شفافیت"
-              description="عبور نور مرئی بین ۶۰ تا ۷۵ درصد، برخلاف شیشه‌های رنگی قدیمی و تیره."
-            />
-            <FeatureCard 
-              icon={<DollarSign size={40} className="text-brand-blue" />}
-              title="بازگشت سرمایه"
-              description="بازگشت هزینه اجرا در کمتر از ۳ سال از محل صرفه‌جویی چشمگیر در قبض برق."
-            />
-            <FeatureCard 
-              icon={<Droplets size={40} className="text-brand-blue" />}
-              title="مقاوم و بادوام"
-              description="مقاومت بالا در برابر باران‌های اسیدی و آلودگی با سختی 6H و ماندگاری طولانی."
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Crisis Section */}
-      <section className="py-20 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold text-brand-navy mb-6">راهکاری ملی برای بحران ناترازی انرژی</h2>
-              <p className="text-slate-600 leading-relaxed mb-6 text-justify">
-                ساختمان‌ها مسئول ۴۰٪ از مصرف انرژی کشور هستند. بخش عظیمی از این انرژی از طریق پنجره‌های غیراستاندارد هدر می‌رود. 
-                <br/><br/>
-                با نانو شیلد زیگورات، ما نه تنها آسایش حرارتی ساکنین را تامین می‌کنیم، بلکه گامی بزرگ در جهت کاهش فشار بر شبکه برق کشور در ساعات پیک تابستان و رعایت مبحث ۱۹ مقررات ملی ساختمان برمی‌داریم.
-              </p>
-              <Link to="/roi" className="text-brand-blue font-bold flex items-center gap-2 hover:gap-4 transition-all">
-                مشاهده تحلیل اقتصادی و ملی <ArrowRight size={20} className="rotate-180" />
-              </Link>
-            </div>
-            <div className="relative group">
-              <div className="absolute -inset-4 bg-brand-cyan/20 rounded-2xl blur-lg group-hover:bg-brand-cyan/30 transition-all"></div>
-              <img 
-                src="/pic/102.jpg" 
-                alt="مبحث 19 مقررات ملی" 
-                className="relative rounded-2xl shadow-2xl w-full transform transition-transform group-hover:scale-[1.02]"
-                loading="lazy" // Lazy load for off-screen image
-                width="600"
-                height="400"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* New Section: Sunergy Ziggurat (Import Substitution) */}
-      <section className="py-20 bg-white border-t border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="order-2 md:order-1 relative">
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-blue/5 rounded-full z-0"></div>
-                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-cyan/5 rounded-full z-0"></div>
-                <img 
-                    src="/pic/103.jpg" 
-                    alt="شیشه سانرژی" 
-                    className="relative z-10 rounded-2xl shadow-xl w-full max-w-md mx-auto md:mr-auto md:ml-0 border border-slate-100"
-                    loading="lazy"
-                    width="700"
-                    height="700"
-                />
-            </div>
-            <div className="order-1 md:order-2">
-              <h2 className="text-3xl font-bold text-brand-navy mb-6 leading-tight">شیشه سانرژی زیگورات</h2>
-              <p className="text-slate-600 leading-relaxed mb-6 text-justify text-lg">
-                پوشش زیگورات در کنار بازار ساختمان های قدیمی و نیازمند بهسازی با استفاده از خط پوشش نانو کوتینگ میتواند پاسخگوی نیاز کشور به شیشه های های پرفرمنس بوده و نیاز کشور به واردات این محصولات گرانقیمت را کاهش دهد.
-              </p>
-              <Link to="/products" className="inline-flex items-center gap-2 bg-brand-navy text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-800 transition-colors shadow-md hover:shadow-lg">
-                آشنایی با خط تولید سانرژی
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial Section */}
-      <section className="py-24 bg-brand-navy relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-brand-cyan/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-blue/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white">صدای مشتریان ما</h2>
-            <p className="mt-4 text-slate-300">تجربه مدیران و متخصصین صنعت ساختمان از زیگورات</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <TestimonialCard 
-              name="مهندس اکبریان"
-              role="سازه های پایدار رهام"
-              text="اجرای پوشش نانو شیلد زیگورات تاثیر چشمگیری در کاهش دمای سقف شیشه ای ما داشت. اجرای آن ساده بود و تیم ما پس از آموزش به خوبی از عهده اجرای ان برآمدند."
-              rating={5}
-            />
-            <TestimonialCard 
-              name="دکتر تاجدار"
-              role="مهندسی مشاور شارآباد بوم"
-              text="ما در پروژه وزارت اقتصاد و دارایی بدنبال اهدافی نظیر کنترل و امکان تنظیم بهینه دمای بنا، شفافیت مطلوب جداره و ایجاد بنایی مدرن بودیم که به همه موارد رسیدیم."
-              rating={5}
-            />
-            <TestimonialCard 
-              name="مهندس مرتضی سلیمانی"
-              role="دفتر مرکزی پروژه دانشگاه خاتم"
-              text="دفتر ما جنوبی است و تابش آفتاب در تابستان و زمستان آزار دهنده بود، با پوشش انجام شده فشار بر تاسیسات کاهش و آسایش ما بهبود یافت."
-              rating={5}
-            />
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+    {
+      '@type': 'Product',
+      name: 'شیشهٔ طیف‌گزین زیگورات',
+      description: 'نانوپوشش طیف‌گزین با فناوری رزونانس پلاسمون سطحی؛ سد مادون‌قرمز و فرابنفش با حفظ عبور نور مرئی و کاهش تا ۳۰٪ مصرف انرژی.',
+      brand: { '@type': 'Brand', name: 'زیگورات' },
+      image: 'https://zigguratsolutions.com/assets/clarity.jpg',
+    },
+  ],
 };
 
-const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => (
-  <div className="bg-slate-50 p-8 rounded-2xl hover:shadow-xl transition-all duration-300 border border-slate-100 transform hover:-translate-y-1">
-    <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center shadow-sm mb-6 text-brand-blue">
-      {icon}
-    </div>
-    <h3 className="text-xl font-bold text-brand-navy mb-3">{title}</h3>
-    <p className="text-slate-600 text-sm leading-relaxed">{description}</p>
-  </div>
-);
+const S: React.CSSProperties = { maxWidth: 1200, marginInline: 'auto' };
 
-const TestimonialCard = ({ name, role, text, rating }: { name: string, role: string, text: string, rating: number }) => (
-  <div className="bg-white/5 backdrop-blur-md p-8 rounded-2xl border border-white/10 relative">
-    <Quote className="absolute top-6 left-6 text-brand-cyan/20" size={40} />
-    <div className="flex gap-1 mb-4">
-      {[...Array(5)].map((_, i) => (
-        <Star 
-          key={i} 
-          size={16} 
-          className={i < rating ? "text-yellow-400 fill-yellow-400" : "text-slate-600"} 
-        />
-      ))}
-    </div>
-    <p className="text-slate-300 text-sm leading-relaxed mb-6 min-h-[80px]">
-      "{text}"
-    </p>
-    <div className="flex items-center gap-4">
-      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-cyan to-brand-blue flex items-center justify-center text-brand-navy font-bold text-sm">
-        {name.charAt(0)}
+const HomePage = () => (
+  <>
+    <SEO
+      title="نانوپوشش طیف‌گزین زیگورات"
+      description="نانوپوشش طیف‌گزین زیگورات؛ سپر نامرئی ساختمان در برابر گرما. سد مادون‌قرمز و اشعه فرابنفش، عبور نور مرئی، و کاهش تا ۳۰٪ در مصرف انرژی بدون تعویض شیشه."
+      keywords={['نانوپوشش طیف‌گزین', 'شیشهٔ طیف‌گزین زیگورات', 'عایق حرارتی شیشه', 'کاهش مصرف انرژی', 'Low-E', 'نانو پوشش شیشه']}
+      image="/assets/hero-comparison.jpg"
+      schema={homeSchema}
+    />
+
+    {/* HERO */}
+    <section className="zz-hero" style={{ ...S, padding: '72px 24px 40px', display: 'grid', gridTemplateColumns: '1.05fr .95fr', gap: 56, alignItems: 'center' }}>
+      <div style={{ animation: 'zzUp .7s ease both' }}>
+        <Label>نانوپوشش طیف‌گزین زیگورات</Label>
+        <h1 className="zz-h1" style={{ fontSize: 'clamp(38px,4.6vw,62px)', lineHeight: 1.12, margin: '0 0 22px' }}>
+          گرما بیرون می‌مانَد،<br /><span className="em">نور</span> داخل می‌آید.
+        </h1>
+        <p style={{ fontSize: 18, lineHeight: 2, color: 'var(--muted)', margin: '0 0 30px', maxWidth: '36ch' }}>
+          با فناوری نانوی <b style={{ color: 'var(--ink)', fontWeight: 700 }}>طیف‌گزین</b>، بدون تعویض شیشه، اشعهٔ مادون‌قرمز و فرابنفش را سد کنید، نور طبیعی را نگه دارید و تا <b style={{ color: 'var(--ink)', fontWeight: 700 }}>۳۰٪</b> در مصرف انرژی صرفه‌جویی کنید.
+        </p>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+          <Btn to="/contact" style={{ fontSize: 15, padding: '15px 28px' }}>دریافت مشاوره رایگان</Btn>
+          <Btn to="/products" variant="outline" style={{ fontSize: 15, padding: '14px 27px' }}>آشنایی با محصولات</Btn>
+        </div>
+        <div style={{ display: 'flex', gap: 30, marginTop: 38, flexWrap: 'wrap' }}>
+          <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۹۹٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>دفع مادون‌قرمز (IR)</div></div>
+          <div style={{ width: 1, background: 'var(--rule)' }} />
+          <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۱۰۰٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>دفع فرابنفش (UV)</div></div>
+          <div style={{ width: 1, background: 'var(--rule)' }} />
+          <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۷۵٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>عبور نور مرئی</div></div>
+        </div>
+      </div>
+      <div style={{ position: 'relative', animation: 'zzUp .9s ease both' }}>
+        <div style={{ aspectRatio: '4 / 3', borderRadius: 40, overflow: 'hidden', border: '1px solid var(--rule)' }}>
+          <img src="/assets/hero-comparison.jpg" alt="مقایسه پنجره با و بدون نانوپوشش طیف‌گزین؛ کاهش دما از ۴۰ به ۳۰ درجه" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+        <div style={{ position: 'absolute', bottom: -18, insetInlineStart: -18, background: 'var(--onyx)', color: '#f0efe9', borderRadius: 18, padding: '16px 20px', maxWidth: 210 }}>
+          <div style={{ fontSize: 11, letterSpacing: '.12em', color: '#64c23f', fontWeight: 700, marginBottom: 6 }}>اندازه‌گیری میدانی</div>
+          <div style={{ fontSize: 14, lineHeight: 1.7, fontWeight: 300 }}>اختلاف دمای سطح تا <b style={{ fontWeight: 700 }}>۱۰ درجه</b> پشت شیشهٔ پوشش‌دار</div>
+        </div>
+      </div>
+    </section>
+
+    {/* SPEC STRIP */}
+    <section style={{ borderBlock: '1px solid var(--rule)', background: 'var(--bg2)' }}>
+      <div style={{ ...S, padding: '26px 24px', display: 'flex', flexWrap: 'wrap', gap: '16px 40px', alignItems: 'center', justifyContent: 'space-between' }}>
+        <span style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>داده‌های واقعی، اندازه‌گیری‌شده روی پروژه‌ها با دستگاه Iran Facade Testing:</span>
+        <div style={{ display: 'flex', gap: 34, flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>VLT ۷۴٪</b> عبور نور</span>
+          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>IRR ۹۹٪</b> دفع گرما</span>
+          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>UVR ۱۰۰٪</b> دفع UV</span>
+          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>۶H</b> سختی سطح</span>
+        </div>
+      </div>
+    </section>
+
+    {/* VALUE PROPS */}
+    <section style={{ ...S, padding: '96px 24px' }}>
+      <Label>چرا طیف‌گزین؟</Label>
+      <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,44px)', margin: '0 0 8px', maxWidth: '20ch' }}>راهکاری جامع برای انرژی و آسایش در پوستهٔ ساختمان</h2>
+      <div className="zz-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 20, marginTop: 48 }}>
+        {[
+          { n: '۰۱', t: 'فیلتراسیون طیفی', d: 'حذف تا ۹۹٪ گرمای مادون‌قرمز و ۱۰۰٪ اشعهٔ فرابنفش، بدون تیره‌کردن فضا.' },
+          { n: '۰۲', t: 'حفظ شفافیت', d: 'عبور نور مرئی تا ۷۵٪؛ منظرهٔ شفاف و روشن، برخلاف شیشه‌های رنگی و تیرهٔ قدیمی.' },
+          { n: '۰۳', t: 'بازگشت سرمایه', d: 'بازگشت هزینهٔ اجرا در کمتر از ۳ سال، از محل صرفه‌جویی چشمگیر در قبض برق و سرمایش.' },
+          { n: '۰۴', t: 'دوام بالا', d: 'سختی سطح ۶H و مقاومت در برابر باران اسیدی و آلودگی؛ ماندگاری چندین‌ساله.' },
+        ].map((c) => (
+          <div key={c.n} className="zz-card" style={{ padding: 28 }}>
+            <div style={{ fontWeight: 300, fontSize: 34, color: 'var(--accent)', marginBottom: 22 }}>{c.n}</div>
+            <h3 style={{ fontSize: 19, fontWeight: 700, margin: '0 0 10px', color: 'var(--ink)' }}>{c.t}</h3>
+            <p style={{ fontSize: 14, lineHeight: 1.95, color: 'var(--muted)', margin: 0 }}>{c.d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {/* NATIONAL CRISIS */}
+    <section style={{ background: 'var(--bg2)', borderBlock: '1px solid var(--rule)' }}>
+      <div className="zz-grid-2" style={{ ...S, padding: '96px 24px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, alignItems: 'center' }}>
+        <div>
+          <Label>راهکار ملی</Label>
+          <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,44px)', lineHeight: 1.25, margin: '0 0 22px' }}>پاسخی به بحران ناترازی انرژی</h2>
+          <p style={{ fontSize: 16.5, lineHeight: 2.05, color: 'var(--muted)', margin: '0 0 18px', textAlign: 'justify' }}>ساختمان‌ها مسئول حدود ۴۰٪ از مصرف انرژی کشورند و بخش بزرگی از این انرژی از پنجره‌های غیراستاندارد هدر می‌رود. نانوپوشش طیف‌گزین با کاهش بار سرمایشی، فشار بر شبکهٔ برق در پیک تابستان را کم می‌کند.</p>
+          <p style={{ fontSize: 16.5, lineHeight: 2.05, color: 'var(--muted)', margin: '0 0 28px', textAlign: 'justify' }}>این راهکار در راستای مبحث ۱۹ مقررات ملی ساختمان و بدون نیاز به بازسازی نما اجرا می‌شود.</p>
+          <Btn to="/roi" variant="outline" style={{ fontSize: 15, padding: '14px 26px' }}>مشاهدهٔ تحلیل اقتصادی و ملی ←</Btn>
+        </div>
+        <div style={{ aspectRatio: '1 / 1', borderRadius: 80, overflow: 'hidden', border: '1px solid var(--rule)' }}>
+          <img src="/assets/roof-test.jpg" alt="تست میدانی عملکرد حرارتی نانوپوشش زیگورات روی جعبه‌های شیشه‌ای" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+        </div>
+      </div>
+    </section>
+
+    {/* PRODUCT INTRO */}
+    <section className="zz-grid-2" style={{ ...S, padding: '96px 24px', display: 'grid', gridTemplateColumns: '.95fr 1.05fr', gap: 56, alignItems: 'center' }}>
+      <div style={{ aspectRatio: '4 / 3', borderRadius: 40, overflow: 'hidden', border: '1px solid var(--rule)' }}>
+        <img src="/assets/clarity.jpg" alt="شفافیت شیشه پوشش‌دار طیف‌گزین زیگورات" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
       </div>
       <div>
-        <h4 className="text-white font-bold text-sm">{name}</h4>
-        <p className="text-brand-cyan text-xs">{role}</p>
+        <Label>محصول پرچم‌دار</Label>
+        <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,44px)', lineHeight: 1.25, margin: '0 0 22px' }}>شیشهٔ طیف‌گزین زیگورات</h2>
+        <p style={{ fontSize: 16.5, lineHeight: 2.05, color: 'var(--muted)', margin: '0 0 28px', textAlign: 'justify' }}>نانوپوشش طیف‌گزین با انتخاب هوشمندانهٔ طیف نور، جایگزینی داخلی و مقرون‌به‌صرفه برای شیشه‌های های‌پرفورمنس وارداتی (Low-E و Sunergy) است. این فناوری نیاز کشور به واردات شیشه‌های گران‌قیمت را کاهش می‌دهد و بازار ساختمان‌های موجود و نیازمند بهسازی را پوشش می‌دهد.</p>
+        <Btn to="/products" style={{ fontSize: 15, padding: '14px 26px' }}>خط محصولات طیف‌گزین</Btn>
       </div>
-    </div>
-  </div>
+    </section>
+
+    {/* PROOF */}
+    <section style={{ background: 'var(--bg2)', borderBlock: '1px solid var(--rule)' }}>
+      <div style={{ ...S, padding: '96px 24px' }}>
+        <Label>اثبات اندازه‌گیری‌شده</Label>
+        <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,44px)', margin: '0 0 40px', maxWidth: '22ch' }}>ادعا نمی‌کنیم؛ اندازه می‌گیریم</h2>
+        <div className="zz-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+          {[
+            { img: '/assets/meter-65.jpg', alt: 'تست VLT 65 IRR 99 UVR 100', t: 'VLT ۶۵ · IRR ۹۹ · UVR ۱۰۰', d: 'نمونهٔ آزمایشگاهی؛ دفع کامل مادون‌قرمز و فرابنفش.' },
+            { img: '/assets/spectral-meter.jpg', alt: 'اندازه‌گیری طیفی UV 98.3 IR 85.8 VLT 74.3', t: 'UV ۹۸ · IR ۸۶ · VLT ۷۴', d: 'اندازه‌گیری روی خط تولید با دستگاه طیف‌سنج LS182.' },
+            { img: '/assets/meter-onsite.jpg', alt: 'تست میدانی روی پنجره پروژه VLT 50 IRR 90 UVR 95', t: 'VLT ۵۰ · IRR ۹۰ · UVR ۹۵', d: 'اجراشده روی پنجرهٔ پروژهٔ واقعی در محل.' },
+          ].map((c) => (
+            <div key={c.t} className="zz-card" style={{ overflow: 'hidden' }}>
+              <div style={{ aspectRatio: '4 / 3', overflow: 'hidden' }}><img src={c.img} alt={c.alt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} /></div>
+              <div style={{ padding: '20px 22px' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--ink)', marginBottom: 4 }}>{c.t}</div>
+                <p style={{ fontSize: 13, color: 'var(--muted)', margin: 0, lineHeight: 1.8 }}>{c.d}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* TESTIMONIALS */}
+    <section style={{ ...S, padding: '96px 24px' }}>
+      <Label>صدای مشتریان</Label>
+      <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,44px)', margin: '0 0 40px' }}>تجربهٔ متخصصان صنعت ساختمان</h2>
+      <div className="zz-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
+        {[
+          { q: '«اجرای پوشش طیف‌گزین تأثیر چشمگیری در کاهش دمای سقف شیشه‌ای ما داشت؛ اجرا ساده بود و تیم ما پس از آموزش به‌خوبی از عهدهٔ آن برآمد.»', i: 'ا', n: 'مهندس اکبریان', o: 'سازه‌های پایدار رهام' },
+          { q: '«در پروژهٔ وزارت اقتصاد و دارایی به‌دنبال تنظیم بهینهٔ دمای بنا، شفافیت مطلوب جداره و ظاهری مدرن بودیم؛ به همهٔ این اهداف رسیدیم.»', i: 'ت', n: 'دکتر تاجدار', o: 'مهندسی مشاور شارآباد بوم' },
+          { q: '«دفتر ما جنوبی است و تابش آفتاب آزاردهنده بود؛ با پوشش انجام‌شده فشار بر تأسیسات کاهش یافت و آسایش ما بهبود پیدا کرد.»', i: 'س', n: 'مهندس سلیمانی', o: 'پروژهٔ دانشگاه خاتم' },
+        ].map((c) => (
+          <figure key={c.n} className="zz-card" style={{ margin: 0, padding: 30 }}>
+            <blockquote style={{ margin: '0 0 22px', fontSize: 15.5, lineHeight: 2.05, fontWeight: 300, color: 'var(--ink)' }}>{c.q}</blockquote>
+            <figcaption style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ width: 40, height: 40, borderRadius: 100, background: 'var(--accent-soft)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700 }}>{c.i}</span>
+              <span><b style={{ display: 'block', fontSize: 14, color: 'var(--ink)' }}>{c.n}</b><span style={{ fontSize: 12.5, color: 'var(--muted)' }}>{c.o}</span></span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+
+    {/* CTA BAND */}
+    <section style={{ background: 'var(--onyx)', color: '#f0efe9' }}>
+      <div style={{ ...S, padding: '80px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
+        <div>
+          <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,42px)', margin: '0 0 12px', color: '#f0efe9' }}>آمادهٔ کاهش قبض انرژی هستید؟</h2>
+          <p style={{ fontSize: 16, color: '#b9c0b5', margin: 0, lineHeight: 1.9 }}>کارشناسان ما رایگان پروژهٔ شما را بررسی و بهترین راهکار طیف‌گزین را پیشنهاد می‌دهند.</p>
+        </div>
+        <Btn to="/contact" variant="onyx" style={{ fontSize: 16, padding: '17px 34px', flexShrink: 0 }}>درخواست مشاوره رایگان</Btn>
+      </div>
+    </section>
+  </>
 );
 
 export default HomePage;
