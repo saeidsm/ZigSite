@@ -21,8 +21,8 @@
       })();
     </script>
 
-    <!-- Caching & Performance -->
-    <meta http-equiv="Cache-Control" content="max-age=31536000, public" />
+    <!-- Performance: preconnect to CDNs. Cache-Control is set by the server
+         (Caddy) — index.html revalidates, hashed /assets/* are immutable. -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
 
