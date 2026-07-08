@@ -1,32 +1,94 @@
-/* Global Styles */
+/* ============================================================
+   Ziggurat design tokens — «شیشهٔ طیف‌گزین زیگورات»
+   Same palette is mirrored in index.html tailwind.config.
+   Theme is toggled via [data-theme] on <html> (see index.html).
+   ============================================================ */
+:root {
+  --bg: #F0EFE9;
+  --bg2: #EAE8E0;
+  --surface: #FFFFFF;
+  --surface-up: #FFFFFF;
+  --ink: #322D2A;
+  --muted: #8B857E;
+  --rule: rgba(50, 45, 42, 0.14);
+  --accent: #2F7A28;
+  --accent-strong: #245E1F;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(47, 122, 40, 0.09);
+  --onyx: #0F0E12;
+}
+
+html[data-theme="dark"] {
+  --bg: #0F0E12;
+  --bg2: #151419;
+  --surface: #1B1A20;
+  --surface-up: #232128;
+  --ink: #F0EFE9;
+  --muted: #9A968F;
+  --rule: rgba(240, 239, 233, 0.12);
+  --accent: #64C23F;
+  --accent-strong: #7ED257;
+  --accent-ink: #0E1A08;
+  --accent-soft: rgba(100, 194, 63, 0.14);
+  --onyx: #08070A;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
 body {
-  margin: 0;
-  padding: 0;
+  font-family: 'Vazirmatn', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background .4s ease, color .4s ease;
 }
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-strong); }
+img { display: block; max-width: 100%; }
+::selection { background: var(--accent); color: #fff; }
 
-/* Custom Scrollbar for nicer aesthetics */
-::-webkit-scrollbar {
-  width: 8px;
+@keyframes zzUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes zzSpin { to { transform: rotate(360deg); } }
 
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
+/* Horizontal scroll (tech comparison table) */
+.zz-scroll::-webkit-scrollbar { height: 6px; width: 6px; }
+.zz-scroll::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+
+/* ---- Reusable atoms (flat design system) ---- */
+.zz-wrap { max-width: 1200px; margin-inline: auto; padding-inline: 24px; }
+
+/* section label: small green square + green caption */
+.zz-label { display: flex; align-items: center; gap: 9px; margin-bottom: 16px; }
+.zz-label > i { width: 8px; height: 8px; background: var(--accent); display: inline-block; }
+.zz-label > span { font-size: 13px; font-weight: 700; color: var(--accent); }
+
+/* flat card, radius 26px */
+.zz-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 26px; }
+
+/* pill buttons */
+.zz-btn, .zz-btn-outline, .zz-btn-onyx {
+  display: inline-block; border-radius: 100px; cursor: pointer;
+  font-family: inherit; font-weight: 700; white-space: nowrap; text-align: center;
 }
+.zz-btn { border: none; background: var(--accent); color: var(--accent-ink); }
+.zz-btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--rule); font-weight: 600; }
+.zz-btn-onyx { border: none; background: #64c23f; color: #0e1a08; }
 
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+/* thin architectural headings, bold keyword via <b>/.em */
+.zz-h1 { font-weight: 300; line-height: 1.14; letter-spacing: -.01em; color: var(--ink); margin: 0; }
+.zz-h2 { font-weight: 300; line-height: 1.2; color: var(--ink); margin: 0; }
+.zz-h1 b, .zz-h1 .em, .zz-h2 b, .zz-h2 .em { font-weight: 700; }
+
+/* body copy: line-height ~2 for Farsi */
+.zz-p { font-size: 16px; line-height: 2.05; color: var(--muted); margin: 0; }
+
+@media (max-width: 880px) {
+  .zz-grid-2, .zz-grid-3, .zz-grid-4 { grid-template-columns: 1fr !important; }
+  .zz-hero { grid-template-columns: 1fr !important; }
 }
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Base styles are handled by Tailwind CDN in this setup, 
-   but standard projects would import tailwind here:
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-*/
+/* Pill nav scrolls horizontally instead of overflowing on narrow screens. */
+.zz-nav-links { max-width: 100%; overflow-x: auto; }
