@@ -877,7 +877,9 @@ function showConfigBanner(fromFallback){
 }
 async function initConfig(){
   try{
-    const res = await fetch("./ziggurat-config.json", {cache:"no-store"});
+    // Absolute path so the config loads whether the URL is /invest or /invest/
+    // (a relative "./" would resolve to the site root on the no-slash URL and 404).
+    const res = await fetch("/invest/ziggurat-config.json", {cache:"no-store"});
     if(!res.ok) throw new Error("http "+res.status);
     const cfg = await res.json();
     applyConfig(cfg); showConfigBanner(false);
