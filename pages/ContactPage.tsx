@@ -32,7 +32,7 @@ const ContactPage = () => {
 
       <section style={{ ...S, padding: '72px 24px 44px' }}>
         <Label>تماس با ما</Label>
-        <h1 className="zz-h1" style={{ fontSize: 'clamp(34px,4.2vw,58px)', margin: '0 0 20px', maxWidth: '22ch' }}>پروژهٔ خود را <span className="em">با ما در میان بگذارید</span></h1>
+        <h1 className="zz-h1" style={{ fontSize: 'clamp(34px,4.2vw,58px)', margin: '0 0 20px', maxWidth: '22ch' }}><span className="em">پروژهٔ خود</span> را با ما در میان بگذارید</h1>
         <p style={{ fontSize: 18, lineHeight: 2, color: 'var(--muted)', margin: 0, maxWidth: '58ch', textAlign: 'justify' }}>کارشناسان زیگورات به‌صورت رایگان شرایط پروژهٔ شما را بررسی و بهترین راهکار طیف‌گزین را پیشنهاد می‌دهند.</p>
       </section>
 

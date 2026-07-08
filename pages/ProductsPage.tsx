@@ -6,9 +6,9 @@ const S: React.CSSProperties = { maxWidth: 1200, marginInline: 'auto' };
 
 const SPECS: [string, string][] = [
   ['عبور نور مرئی (VLT)', '۵۰٪ تا ۷۵٪ (قابل تنظیم)'],
-  ['دفع مادون‌قرمز (IRR)', 'تا ۹۹٪'],
-  ['دفع فرابنفش (UVR)', 'تا ۱۰۰٪'],
-  ['سختی سطح', '۶H'],
+  ['دفع مادون‌قرمز (IRR)', 'تا ۹۰٪'],
+  ['دفع فرابنفش (UVR)', 'تا ۹۰٪'],
+  ['سختی سطح', '۴H'],
   ['صرفه‌جویی انرژی', 'تا ۳۰٪ در بار سرمایشی'],
 ];
 
@@ -37,7 +37,7 @@ const ProductsPage = () => (
         <h2 className="zz-h2" style={{ fontSize: 'clamp(26px,3vw,38px)', lineHeight: 1.25, margin: '0 0 18px' }}>شیشهٔ طیف‌گزین زیگورات</h2>
         <p style={{ fontSize: 16, lineHeight: 2.05, color: 'var(--muted)', margin: '0 0 26px', textAlign: 'justify' }}>نانوذرات فلزات کمیاب با پدیدهٔ رزونانس پلاسمون سطحی (LSPR)، طیف مادون‌قرمز را جذب و بازتاب می‌کنند و اجازهٔ عبور نور مرئی را می‌دهند. نتیجه: خنکیِ محسوس، بدون تیرگی.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 14 }}>
-          {[['۷۵٪', 'عبور نور مرئی'], ['۹۹٪', 'دفع مادون‌قرمز'], ['۱۰۰٪', 'دفع فرابنفش']].map(([v, l]) => (
+          {[['۷۵٪', 'عبور نور مرئی'], ['۹۰٪', 'دفع مادون‌قرمز'], ['۹۰٪', 'دفع فرابنفش']].map(([v, l]) => (
             <div key={l} className="zz-card" style={{ borderRadius: 18, padding: 18 }}>
               <div style={{ fontSize: 28, fontWeight: 300, color: 'var(--ink)' }}>{v}</div>
               <div style={{ fontSize: 12, color: 'var(--muted)' }}>{l}</div>

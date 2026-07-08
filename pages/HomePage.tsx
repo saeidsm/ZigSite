@@ -62,9 +62,9 @@ const HomePage = () => (
           <Btn to="/products" variant="outline" style={{ fontSize: 15, padding: '14px 27px' }}>آشنایی با محصولات</Btn>
         </div>
         <div style={{ display: 'flex', gap: 30, marginTop: 38, flexWrap: 'wrap' }}>
-          <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۹۹٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>دفع مادون‌قرمز (IR)</div></div>
+          <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۹۰٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>دفع مادون‌قرمز (IR)</div></div>
           <div style={{ width: 1, background: 'var(--rule)' }} />
-          <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۱۰۰٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>دفع فرابنفش (UV)</div></div>
+          <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۹۰٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>دفع فرابنفش (UV)</div></div>
           <div style={{ width: 1, background: 'var(--rule)' }} />
           <div><div style={{ fontSize: 30, fontWeight: 300, color: 'var(--ink)' }}>۷۵٪</div><div style={{ fontSize: 12.5, color: 'var(--muted)' }}>عبور نور مرئی</div></div>
         </div>
@@ -86,9 +86,9 @@ const HomePage = () => (
         <span style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>داده‌های واقعی، اندازه‌گیری‌شده روی پروژه‌ها با دستگاه Iran Facade Testing:</span>
         <div style={{ display: 'flex', gap: 34, flexWrap: 'wrap' }}>
           <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>VLT ۷۴٪</b> عبور نور</span>
-          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>IRR ۹۹٪</b> دفع گرما</span>
-          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>UVR ۱۰۰٪</b> دفع UV</span>
-          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>۶H</b> سختی سطح</span>
+          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>IRR ۹۰٪</b> دفع مادون‌قرمز</span>
+          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>UVR ۹۰٪</b> دفع UV</span>
+          <span style={{ fontSize: 14, color: 'var(--ink)' }}><b style={{ fontWeight: 700 }}>۴H</b> سختی سطح</span>
         </div>
       </div>
     </section>
@@ -99,10 +99,10 @@ const HomePage = () => (
       <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,44px)', margin: '0 0 8px', maxWidth: '20ch' }}>راهکاری جامع برای انرژی و آسایش در پوستهٔ ساختمان</h2>
       <div className="zz-grid-4" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 20, marginTop: 48 }}>
         {[
-          { n: '۰۱', t: 'فیلتراسیون طیفی', d: 'حذف تا ۹۹٪ گرمای مادون‌قرمز و ۱۰۰٪ اشعهٔ فرابنفش، بدون تیره‌کردن فضا.' },
+          { n: '۰۱', t: 'فیلتراسیون طیفی', d: 'حذف تا ۹۰٪ گرمای مادون‌قرمز و تا ۹۰٪ اشعهٔ فرابنفش، بدون تیره‌کردن فضا.' },
           { n: '۰۲', t: 'حفظ شفافیت', d: 'عبور نور مرئی تا ۷۵٪؛ منظرهٔ شفاف و روشن، برخلاف شیشه‌های رنگی و تیرهٔ قدیمی.' },
           { n: '۰۳', t: 'بازگشت سرمایه', d: 'بازگشت هزینهٔ اجرا در کمتر از ۳ سال، از محل صرفه‌جویی چشمگیر در قبض برق و سرمایش.' },
-          { n: '۰۴', t: 'دوام بالا', d: 'سختی سطح ۶H و مقاومت در برابر باران اسیدی و آلودگی؛ ماندگاری چندین‌ساله.' },
+          { n: '۰۴', t: 'دوام بالا', d: 'سختی سطح ۴H و مقاومت در برابر باران اسیدی و آلودگی؛ ماندگاری چندین‌ساله.' },
         ].map((c) => (
           <div key={c.n} className="zz-card" style={{ padding: 28 }}>
             <div style={{ fontWeight: 300, fontSize: 34, color: 'var(--accent)', marginBottom: 22 }}>{c.n}</div>
@@ -149,7 +149,7 @@ const HomePage = () => (
         <h2 className="zz-h2" style={{ fontSize: 'clamp(28px,3.4vw,44px)', margin: '0 0 40px', maxWidth: '22ch' }}>ادعا نمی‌کنیم؛ اندازه می‌گیریم</h2>
         <div className="zz-grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 20 }}>
           {[
-            { img: '/assets/meter-65.jpg', alt: 'تست VLT 65 IRR 99 UVR 100', t: 'VLT ۶۵ · IRR ۹۹ · UVR ۱۰۰', d: 'نمونهٔ آزمایشگاهی؛ دفع کامل مادون‌قرمز و فرابنفش.' },
+            { img: '/assets/meter-65.jpg', alt: 'تست VLT 65 IRR 99 UVR 100', t: 'VLT ۶۵ · IRR ۹۹ · UVR ۱۰۰', d: 'قرائت دستگاه روی یک نمونهٔ آزمایشگاهی خاص (Iran Facade Testing).' },
             { img: '/assets/spectral-meter.jpg', alt: 'اندازه‌گیری طیفی UV 98.3 IR 85.8 VLT 74.3', t: 'UV ۹۸ · IR ۸۶ · VLT ۷۴', d: 'اندازه‌گیری روی خط تولید با دستگاه طیف‌سنج LS182.' },
             { img: '/assets/meter-onsite.jpg', alt: 'تست میدانی روی پنجره پروژه VLT 50 IRR 90 UVR 95', t: 'VLT ۵۰ · IRR ۹۰ · UVR ۹۵', d: 'اجراشده روی پنجرهٔ پروژهٔ واقعی در محل.' },
           ].map((c) => (
