@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Unlisted tool: reachable by URL only, never indexed. -->
+  <meta name="robots" content="noindex,nofollow,noarchive,noimageindex" />
+  <title>شبیه‌ساز بیزنس‌پلن شیشه طیف‌گزین — زیگورات</title>
+  <!-- Site font + shared light/dark theme (same zz-theme key as the main SPA) -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('zz-theme');
+        if (t !== 'dark' && t !== 'light') {
+          t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+    })();
+  </script>
+  <style>
+    :root{
+      --bg:#f7f8f6; --card:#ffffff; --ink:#18222f; --muted:#647282; --line:#dbe1e7;
+      --navy:#17324d; --green:#1f6b54; --gold:#b78a35; --red:#b45a5a; --blue:#3e6b91;
+      --shadow:0 10px 28px rgba(20,32,45,.07); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Vazirmatn, Vazir, Tahoma, Arial, sans-serif;line-height:1.75;font-size:15px}
+    .app{display:grid;grid-template-columns:290px 1fr;min-height:100vh}
+    aside{background:#fff;border-left:1px solid var(--line);padding:26px 20px;position:sticky;top:0;height:100vh;overflow:auto}
+    main{padding:28px;max-width:1500px;width:100%;margin:0 auto}
+    h1,h2,h3{margin:0;color:var(--navy);line-height:1.35}
+    h1{font-size:25px;font-weight:850;margin-bottom:8px}
+    h2{font-size:21px;font-weight:820;margin-bottom:14px}
+    h3{font-size:16px;font-weight:800;margin-bottom:10px}
+    p{margin:0 0 12px}.muted{color:var(--muted)}.small{font-size:12.5px;color:var(--muted)}
+    .brand{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:16px}.brand .label{font-size:12px;color:var(--green);font-weight:750}
+    .nav button{width:100%;border:0;background:transparent;text-align:right;padding:12px 12px;border-radius:12px;cursor:pointer;color:var(--ink);font-family:inherit;font-weight:650;margin:3px 0}
+    .nav button.active,.nav button:hover{background:#eef4f1;color:var(--green)}
+    .actions{display:grid;gap:8px;margin-top:18px}.btn{border:1px solid var(--line);background:#fff;color:var(--navy);padding:10px 12px;border-radius:12px;cursor:pointer;font-family:inherit;font-weight:750;box-shadow:none}.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}.btn.gold{background:#fbf5e8;color:#6b4d12;border-color:#e6c983}.btn.danger{background:#fff4f2;color:#8b322d;border-color:#e9c4bd}.btn:hover{filter:brightness(.98)}
+    .curswitch{display:flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:14px}
+    .curswitch button{flex:1;border:0;background:#fff;padding:9px 6px;font-family:inherit;font-weight:800;font-size:12.5px;cursor:pointer;color:var(--muted)}
+    .curswitch button.active{background:var(--green);color:#fff}
+    .hero{background:linear-gradient(135deg,#ffffff 0%,#f0f5f2 100%);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:22px;display:grid;grid-template-columns:1.5fr .9fr;gap:20px;align-items:center}
+    .hero-title{font-size:27px;font-weight:900}.hero-sub{font-size:15px;color:var(--muted);max-width:850px}
+    .pill{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;background:#edf5f1;color:var(--green);font-size:12px;font-weight:800;margin:0 0 10px 8px}
+    .grid{display:grid;gap:16px}.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .kpi{padding:16px}.kpi .name{font-size:12px;color:var(--muted);font-weight:700}.kpi .value{font-size:22px;color:var(--navy);font-weight:900;margin-top:3px}.kpi .hint{font-size:12px;color:var(--muted);margin-top:4px}
+    .kpi.alert{border-color:#e9c4bd;background:#fff8f6}
+    .section{display:none}.section.active{display:block}
+    .form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    .field{display:flex;flex-direction:column;gap:6px}.field label{font-weight:750;font-size:12.5px;color:#344455}
+    .field input,.field select,.field textarea{font-family:inherit;border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 11px;color:var(--ink);min-height:42px}
+    .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid rgba(31,107,84,.16);border-color:#9bbdad}
+    .unit{font-size:11px;color:var(--muted)}
+    table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+    th,td{padding:10px 11px;border-bottom:1px solid var(--line);text-align:right;vertical-align:middle}
+    th{background:#f1f5f5;color:#314456;font-size:12.5px;font-weight:850}td{font-size:13px}tr:last-child td{border-bottom:0}
+    .num{text-align:left;direction:ltr;font-variant-numeric:tabular-nums}
+    .good{color:var(--green);font-weight:850}.bad{color:var(--red);font-weight:850}.warn{color:#a37119;font-weight:850}
+    .svgbox{width:100%;height:330px;border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden}.svgbox.small{height:250px}
+    .note{border-right:4px solid var(--gold);background:#fffaf0;padding:12px 14px;border-radius:14px;color:#4c3d22;margin-bottom:12px}
+    .note.danger{border-right-color:var(--red);background:#fff6f4;color:#5c2d28}
+    .risk{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-bottom:1px dashed var(--line);padding:9px 0}
+    .tag{display:inline-flex;align-items:center;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:850}
+    .tag.high{background:#ffefed;color:#a34037}.tag.med{background:#fff6db;color:#866010}.tag.low{background:#eef7ef;color:#2b6d40}
+    .print-only{display:none}.tabs-note{margin-top:10px;color:var(--muted);font-size:12px}
+    .scenario-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+    .footer{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    .report-page{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;max-width:1000px;margin:0 auto}
+    .report-page h2{margin-top:24px}.report-page h2:first-child{margin-top:0}
+    .report-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}
+    .report-summary .box{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fafafa}
+    .xmlarea{height:260px;direction:ltr;text-align:left;font-family:ui-monospace,Consolas,monospace;font-size:12px;line-height:1.5;width:100%}
+    .heat td{text-align:center;font-weight:750}.heat td.h-good{background:#e9f5ee;color:#1d5b41}.heat td.h-mid{background:#fdf6e2;color:#7c5c12}.heat td.h-bad{background:#fdecea;color:#96382f}
+    .legal-item{border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:10px;background:#fff}
+    .legal-item b{color:var(--navy)}
+    @media(max-width:1050px){.app{grid-template-columns:1fr}aside{position:relative;height:auto;border-left:0;border-bottom:1px solid var(--line)}main{padding:18px}.hero{grid-template-columns:1fr}.grid.cols-2,.grid.cols-3,.grid.cols-4,.form-grid{grid-template-columns:1fr}.report-summary{grid-template-columns:1fr}}
+    @media print{body{background:#fff;color:#111;font-size:12px}.app{display:block}aside,.no-print,.hero,.section:not(#report){display:none!important}main{padding:0;max-width:none}.section{display:none!important}#report{display:block!important}.report-page{box-shadow:none;border:0;border-radius:0;padding:0;max-width:none}.card{box-shadow:none}.print-only{display:block}h1{font-size:22px}h2{font-size:16px}h3{font-size:13px}table{page-break-inside:auto}tr{page-break-inside:avoid}.page-break{page-break-before:always}.svgbox{height:230px}.btn{display:none}}
+  </style>
+  <style id="zz-skin">
+    /* ============================================================
+       Ziggurat site skin — harmonises this standalone tool with the
+       main SPA design tokens (index.css). Loaded AFTER the tool's own
+       <style>, so these declarations win. The tool's markup + JS are
+       untouched; only colours/surfaces/fonts + a site header are added.
+       ============================================================ */
+    :root{
+      --bg:#F0EFE9; --bg2:#EAE8E0; --surface:#FFFFFF; --surface-up:#FFFFFF;
+      --ink:#322D2A; --muted:#8B857E; --rule:rgba(50,45,42,.14);
+      --accent:#2F7A28; --accent-strong:#245E1F; --accent-ink:#FFFFFF; --accent-soft:rgba(47,122,40,.09);
+      --onyx:#0F0E12;
+      /* remap the tool's own tokens onto the site palette */
+      --card:var(--surface); --line:var(--rule); --navy:var(--ink); --green:var(--accent);
+      --gold:#B78A35; --red:#C0554F; --blue:#3E6B91;
+      --shadow:0 1px 0 var(--rule); --radius:20px;
+      --zz-header-h:66px;
+    }
+    html[data-theme="dark"]{
+      --bg:#0F0E12; --bg2:#151419; --surface:#1B1A20; --surface-up:#232128;
+      --ink:#F0EFE9; --muted:#9A968F; --rule:rgba(240,239,233,.12);
+      --accent:#64C23F; --accent-strong:#7ED257; --accent-ink:#0E1A08; --accent-soft:rgba(100,194,63,.14);
+      --onyx:#08070A;
+      --gold:#D6B15E; --red:#E38C86; --blue:#7FA8CB;
+    }
+    body{font-family:'Vazirmatn', system-ui, sans-serif;background:var(--bg);color:var(--ink);
+      transition:background .35s ease,color .35s ease}
+    ::selection{background:var(--accent);color:#fff}
+
+    /* ---- surfaces that hard-coded a light hex → theme tokens ---- */
+    aside{background:var(--surface);border-left:1px solid var(--rule)}
+    .brand{border-bottom:1px solid var(--rule)}
+    .brand .label{color:var(--accent)}
+    .nav button{color:var(--ink)}
+    .nav button.active,.nav button:hover{background:var(--accent-soft);color:var(--accent)}
+    .actions .btn{background:var(--surface);color:var(--ink);border:1px solid var(--rule)}
+    .actions .btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+    .actions .btn.gold{background:var(--accent-soft);color:var(--ink);border-color:var(--rule)}
+    .curswitch{border:1px solid var(--rule)}
+    .curswitch button{background:var(--surface);color:var(--muted)}
+    .curswitch button.active{background:var(--accent);color:var(--accent-ink)}
+    .hero{background:var(--surface);border:1px solid var(--rule);box-shadow:none;border-radius:24px}
+    .hero-title{color:var(--ink)}
+    .pill{background:var(--accent-soft);color:var(--accent)}
+    .card{background:var(--surface);border:1px solid var(--rule);box-shadow:none;border-radius:22px}
+    h1,h2,h3{color:var(--ink)}
+    .kpi .value{color:var(--ink)}
+    .kpi.alert{background:var(--surface);border-color:var(--red)}
+    .field label{color:var(--ink)}
+    .field input,.field select,.field textarea{background:var(--surface-up);border:1px solid var(--rule);color:var(--ink)}
+    .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+    table{background:var(--surface);border:1px solid var(--rule)}
+    th{background:var(--bg2);color:var(--ink)}
+    th,td{border-bottom:1px solid var(--rule)}
+    .svgbox{background:var(--surface);border:1px solid var(--rule)}
+    .note{background:var(--accent-soft);border-right-color:var(--accent);color:var(--ink)}
+    .note.danger{background:color-mix(in srgb,var(--red) 16%,var(--surface));border-right-color:var(--red);color:var(--ink)}
+    .risk{border-bottom:1px dashed var(--rule)}
+    .report-page{background:var(--surface);border:1px solid var(--rule);box-shadow:none;border-radius:24px}
+    .report-summary .box{background:var(--bg2);border:1px solid var(--rule)}
+    .legal-item{background:var(--surface);border:1px solid var(--rule)}
+    .legal-item b{color:var(--ink)}
+    .footer{border-top:1px solid var(--rule)}
+    .good{color:var(--accent)}
+    .xmlarea{background:var(--surface-up);border:1px solid var(--rule);color:var(--ink)}
+
+    /* ---- site header (matches the SPA Navigation) ---- */
+    .zz-site-header{position:sticky;top:0;z-index:80;
+      background:color-mix(in srgb,var(--bg) 88%,transparent);
+      -webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);
+      border-bottom:1px solid var(--rule)}
+    .zz-hdr-wrap{max-width:1400px;margin-inline:auto;padding:12px 24px;display:flex;
+      align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .zz-hdr-brand{display:flex;align-items:center;gap:11px;color:var(--ink)}
+    .zz-hdr-name{display:flex;flex-direction:column;line-height:1.05}
+    .zz-hdr-name b{font-weight:800;font-size:19px;color:var(--ink)}
+    .zz-hdr-name small{font-size:9.5px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+    .zz-hdr-nav{display:flex;align-items:center;gap:4px;background:var(--surface);
+      border:1px solid var(--rule);border-radius:100px;padding:6px;max-width:100%;overflow-x:auto}
+    .zz-hdr-nav a{font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:100px;
+      white-space:nowrap;color:var(--muted);transition:color .2s}
+    .zz-hdr-nav a:hover{color:var(--accent)}
+    .zz-hdr-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+    #zzThemeBtn{width:40px;height:40px;border-radius:100px;border:1px solid var(--rule);
+      background:var(--surface);color:var(--ink);cursor:pointer;font-size:17px;line-height:1;
+      display:flex;align-items:center;justify-content:center}
+    .zz-hdr-cta{display:inline-block;background:var(--accent);color:var(--accent-ink);
+      border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px}
+    .zz-hdr-cta:hover{background:var(--accent-strong);color:var(--accent-ink)}
+    /* keep the tool's own sticky sidebar below the site header on desktop */
+    @media(min-width:1051px){aside{top:var(--zz-header-h)!important;height:calc(100vh - var(--zz-header-h))!important}}
+    @media(max-width:1050px){.zz-site-header{position:static}.zz-hdr-nav{order:3;width:100%}}
+    @media print{.zz-site-header{display:none!important}}
+  </style>
+</head>
+<body>
+<header class="zz-site-header no-print">
+  <div class="zz-hdr-wrap">
+    <a class="zz-hdr-brand" href="/" aria-label="زیگورات — خانه">
+      <svg width="30" height="26" viewBox="0 0 28 24" fill="none" aria-hidden="true">
+        <rect x="2" y="16" width="24" height="5.2" rx="1.4" fill="var(--accent)"/>
+        <rect x="6.5" y="8.7" width="15" height="5.2" rx="1.4" fill="var(--accent)"/>
+        <rect x="10.5" y="1.5" width="7" height="5.2" rx="1.4" fill="var(--accent)"/>
+      </svg>
+      <span class="zz-hdr-name"><b>زیگورات</b><small>طیف‌گزین · SUSTAINABLE</small></span>
+    </a>
+    <nav class="zz-hdr-nav zz-scroll" aria-label="ناوبری سایت">
+      <a href="/#/">خانه</a>
+      <a href="/#/products">محصولات</a>
+      <a href="/#/technology">تکنولوژی</a>
+      <a href="/#/roi">توجیه اقتصادی</a>
+      <a href="/#/articles">مقالات</a>
+      <a href="/#/about">درباره ما</a>
+      <a href="/#/contact">تماس با ما</a>
+    </nav>
+    <div class="zz-hdr-actions">
+      <button id="zzThemeBtn" type="button" aria-label="تغییر تم روشن و تیره">◐</button>
+      <a class="zz-hdr-cta" href="/#/contact">مشاوره رایگان</a>
+    </div>
+  </div>
+</header>
+<div class="app">
+<aside class="no-print">
+  <div class="brand">
+    <div class="label">زیگورات — نسخه ۳ دوارزی</div>
+    <h1 style="font-size:18px">شبیه‌ساز بیزنس‌پلن شیشه طیف‌گزین</h1>
+    <p class="small">مدل مالی ریالیِ اسمی با قیمت‌گذاری دلارلینک؛ قابل ارائه به کارخانه میزبان (سرمایه‌گذار) و بانک</p>
+  </div>
+  <div class="nav" id="nav">
+    <button data-tab="dashboard" class="active">داشبورد مدیریتی</button>
+    <button data-tab="assumptions">مفروضات و سناریو</button>
+    <button data-tab="cashflow">جریان نقدی و DSCR</button>
+    <button data-tab="sensitivity">حساسیت و نقطه سر به سر</button>
+    <button data-tab="legal">حقوقی، مجوز و ساختار همکاری</button>
+    <button data-tab="bptext">متن بیزنس‌پلن</button>
+    <button data-tab="report">گزارش قابل چاپ</button>
+    <button data-tab="io">ذخیره و بازیابی سناریو</button>
+  </div>
+  <div class="curswitch" id="curswitch">
+    <button data-cur="IRT" class="active">میلیارد تومان</button>
+    <button data-cur="USD">میلیون دلار</button>
+  </div>
+  <div class="actions">
+    <button class="btn primary" onclick="window.print()">چاپ گزارش</button>
+    <button class="btn gold" onclick="downloadXML()">دریافت پرونده سناریو</button>
+    <button class="btn" onclick="loadPreset('base')">سناریوی پایه</button>
+    <button class="btn" onclick="loadPreset('conservative')">محافظه‌کارانه ارزی</button>
+    <button class="btn" onclick="loadPreset('kb')">دانش‌بنیان</button>
+  </div>
+  <div id="configBanner" style="display:none;margin-top:14px"></div>
+  <p class="small" style="margin-top:14px">نسخه تعاملی بدون وابستگی به اینترنت. همه اعداد قابل ویرایش‌اند. نرخ ارز، تورم، مالیات و تسهیلات مطابق شرایط روز به‌روزرسانی شود.</p>
+</aside>
+<main>
+  <section id="dashboard" class="section active">
+    <div class="hero no-print">
+      <div>
+        <span class="pill">مدل دوارزی: قیمت دلارلینک، تأمین مالی ریالی</span>
+        <span class="pill">DSCR بانکی</span>
+        <span class="pill">سرمایه‌گذار: کارخانه میزبان</span>
+        <div class="hero-title">بیزنس‌پلن خط کوتینگ شیشه طیف‌گزین کنترل خورشیدی</div>
+        <p class="hero-sub">قیمت فروش و ماده کوتینگ دلارلینک (رقیب مرجع: شیشه وارداتی AGC)؛ درآمد، هزینه داخلی، تسهیلات و مالیات به‌صورت ریالیِ اسمی با فرض رشد نرخ ارز و تورم مدل می‌شود. خروجی‌ها هم‌زمان به تومان و دلار قابل نمایش‌اند.</p>
+      </div>
+      <div class="card"><h3>نتیجه لحظه‌ای سناریو</h3><p id="scenarioLine" class="small">در حال محاسبه...</p><button class="btn primary" onclick="activateTab('report')">مشاهده گزارش سرمایه‌گذار</button></div>
+    </div>
+    <div id="dscrWarn"></div>
+    <div class="grid cols-4" id="kpis" style="margin-bottom:18px"></div>
+    <div class="card" style="margin-bottom:18px"><h3>پل بازگشت سرمایه — ۵ سال نخست</h3><div class="svgbox" id="bridgeChart"></div><div id="bridgeNote" class="small" style="margin-top:8px"></div></div>
+    <div class="grid cols-2">
+      <div class="card"><h3>درآمد پنج‌سال نخست</h3><div class="svgbox" id="profitChart"></div></div>
+      <div class="card"><h3>جریان نقدی تجمعی پروژه</h3><div class="svgbox" id="cashChart"></div></div>
+      <div class="card"><h3>نسبت پوشش خدمت بدهی (DSCR)</h3><div class="svgbox" id="dscrChart"></div><p class="small">خط قرمز: حداقل قابل قبول بانکی ۱٫۲</p></div>
+      <div class="card"><h3>ارزش برای مشتری نهایی</h3><div id="customerValueBox"></div></div>
+    </div>
+  </section>
+
+  <section id="assumptions" class="section">
+    <h2>مفروضات و سناریو</h2>
+    <div class="scenario-buttons">
+      <button class="btn" onclick="loadPreset('pilot')">پایلوت یک کارخانه</button>
+      <button class="btn" onclick="loadPreset('base')">پایه یک کارخانه</button>
+      <button class="btn" onclick="loadPreset('growth')">توسعه داخلی دو خط</button>
+      <button class="btn" onclick="loadPreset('conservative')">محافظه‌کارانه ارزی</button>
+      <button class="btn" onclick="loadPreset('optimistic')">فروش قوی</button>
+      <button class="btn" onclick="loadPreset('kb')">دانش‌بنیان</button>
+    </div>
+    <p class="small">پیش‌فرض‌ها برای تصمیم‌گیری یک کارخانه تنظیم شده‌اند؛ پس از انتخاب هر سناریو می‌توانید همه متغیرها را ویرایش کنید.</p>
+    <div class="card" style="margin-bottom:16px"><h3>اقتصاد کلان و ارز</h3><div class="form-grid" id="macroInputs"></div><div class="note" style="margin-top:12px">قیمت فروش و ماده کوتینگ با نرخ ارز رشد می‌کنند (دلارلینک)؛ هزینه‌های داخلی و هزینه ثابت با تورم داخلی. اگر رشد ارز از تورم عقب بماند، حاشیه ریالی طرح فشرده می‌شود — این را در سناریوی محافظه‌کارانه ارزی ببینید.</div></div>
+    <div class="card" style="margin-bottom:16px"><h3>مفروضات تولید، فروش و رقابت</h3><div class="form-grid" id="prodInputs"></div></div>
+    <div class="card" style="margin-bottom:16px"><h3>سرمایه ثابت و هزینه‌های کارخانه</h3><div class="form-grid" id="costInputs"></div></div>
+    <div class="card" style="margin-bottom:16px"><h3>هزینه متغیر، سرمایه در گردش، تسهیلات و مالیات</h3><div class="form-grid" id="financeInputs"></div><div class="note" style="margin-top:12px">تسهیلات ثابت (روی سرمایه ثابت) و تسهیلات سرمایه در گردش جدا مدل می‌شوند؛ بهره دوران ساخت به اصل تسهیلات ثابت اضافه می‌شود. معافیت دانش‌بنیان، مالیات مؤثر را صفر می‌کند (ماده ۳ قانون جهش تولید دانش‌بنیان). دو اهرم بانک‌پذیری: «بازپرداخت پلکانی» اقساط اصل را با منحنی بهره‌برداری هماهنگ می‌کند (در سال‌های کم‌ظرفیت، قسط کمتر)، و «تنفس کامل» بهرهٔ سال‌های نخست را به‌جای پرداخت، به اصل تسهیلات اضافه می‌کند. هر دو DSCR سال‌های اول را بالا می‌برند بی‌آنکه بازده پروژه را کم کنند.</div></div>
+    <div class="card"><h3>نرخ بهره‌برداری سالانه</h3><div class="form-grid" id="utilInputs"></div></div>
+  </section>
+
+  <section id="cashflow" class="section">
+    <h2>جدول جریان نقدی ده‌ساله (ریالی اسمی)</h2>
+    <div class="card" style="overflow:auto;margin-bottom:16px"><table id="cashflowTable"></table></div>
+    <div class="grid cols-2">
+      <div class="card"><h3>جریان نقدی آزاد پروژه</h3><div class="svgbox" id="fcfChart"></div></div>
+      <div class="card"><h3>خدمت بدهی و مانده تسهیلات</h3><div class="svgbox" id="debtChart"></div></div>
+    </div>
+    <div class="card" style="margin-top:16px"><h3>جمع‌بندی بانکی</h3><div id="bankBox"></div></div>
+  </section>
+
+  <section id="sensitivity" class="section">
+    <h2>حساسیت و نقطه سر به سر</h2>
+    <div class="card" style="margin-bottom:16px">
+      <h3>اهرم‌های سرمایه در گردش (زنده)</h3>
+      <p class="small">این دو اهرم مستقیم سرمایه در گردش را کم می‌کنند و بازگشت را کوتاه‌تر. اسلایدرها را حرکت دهید تا اثر لحظه‌ای را ببینید؛ همهٔ محاسبات کل ابزار هم‌زمان به‌روز می‌شوند.</p>
+      <div class="grid cols-2" style="margin-top:6px">
+        <div class="field"><label>پیش‌پرداخت مشتری: <b id="advVal"></b></label><input id="advSlider" type="range" min="10" max="100" step="5" style="min-height:auto"><span class="unit">هرچه بیشتر، مطالبات کمتر و سرمایه در گردش کمتر</span></div>
+        <div class="field"><label>دورهٔ تحویل پروژه: <b id="delVal"></b></label><input id="delSlider" type="range" min="1" max="6" step="1" style="min-height:auto"><span class="unit">بلندتر: رنگ در دورهٔ تحویل با پول مشتری می‌رسد، پس ذخیرهٔ کمتری لازم است</span></div>
+      </div>
+      <div class="grid cols-3" id="wcLiveMetrics" style="margin-top:14px"></div>
+      <div class="note" id="wcCompareNote" style="margin-top:12px"></div>
+    </div>
+    <div class="grid cols-2" style="margin-bottom:16px">
+      <div class="card"><h3>حساسیت دوره بازگشت به قیمت فروش</h3><div class="svgbox small" id="priceSens"></div><p class="small">دوره بازگشت دلاری پروژه؛ ستون‌های قرمز یعنی خارج از افق ده‌ساله.</p></div>
+      <div class="card"><h3>حساسیت دوره بازگشت به بهره‌برداری</h3><div class="svgbox small" id="volumeSens"></div><p class="small">بهره‌برداری ثابت در همه سال‌ها.</p></div>
+    </div>
+    <div class="card" style="margin-bottom:16px"><h3>جدول دوبعدی: قیمت فروش × بهره‌برداری (دوره بازگشت دلاری، سال)</h3><div style="overflow:auto" id="matrixWrap"></div></div>
+    <div class="card" style="margin-bottom:16px"><h3>حساسیت به شکاف رشد ارز و تورم</h3><div style="overflow:auto" id="fxSensWrap"></div><p class="small">قیمت و ماده دلارلینک‌اند؛ بنابراین بازده دلاری پایدار می‌ماند اما IRR ریالی و DSCR به شکاف ارز/تورم حساس‌اند.</p></div>
+    <div class="card" style="margin-bottom:16px"><h3>تحلیل نقطه سر به سر</h3><div id="breakevenBox"></div><div style="overflow:auto" id="breakevenTableWrap"></div></div>
+    <div class="card"><h3>ریسک‌های کلیدی و کنترل‌ها</h3><div id="riskBox"></div></div>
+  </section>
+
+  <section id="legal" class="section">
+    <h2>حقوقی، مجوزها و ساختار همکاری</h2>
+    <div class="card" style="margin-bottom:16px">
+      <h3>مدل حقوقی همکاری با کارخانه میزبان</h3>
+      <div class="field" style="max-width:520px"><label>انتخاب ساختار همکاری</label>
+        <select id="coopSelect">
+          <option value="jv">مشارکت مدنی — کارخانه سرمایه‌گذار، زیگورات صاحب فناوری</option>
+          <option value="toll">حق‌العمل‌کاری (تولید قراردادی) — زیگورات مالک ماده و برند</option>
+          <option value="lease">اجاره فضا — زیگورات مالک کامل خط</option>
+        </select>
+      </div>
+      <div id="coopText" style="margin-top:12px"></div>
+    </div>
+    <div class="card" style="margin-bottom:16px"><h3>چک‌لیست مجوزها و انطباق</h3><div id="permitBox"></div></div>
+    <div class="card"><h3>مالیات، لیسانس و دانش‌بنیان</h3><div id="taxLegalBox"></div></div>
+    <div class="note" style="margin-top:16px">این بخش چک‌لیست کارشناسی است، نه مشاوره حقوقی؛ متن نهایی قراردادها و ساختار مالیاتی باید توسط وکیل و مشاور مالیاتی معتمد تأیید شود.</div>
+  </section>
+
+  <section id="bptext" class="section">
+    <h2>متن بیزنس‌پلن</h2>
+    <div class="report-page" id="bpText"></div>
+  </section>
+
+  <section id="report" class="section">
+    <div class="report-page" id="printReport"></div>
+  </section>
+
+  <section id="io" class="section">
+    <h2>ذخیره و بازیابی سناریو</h2>
+    <div class="grid cols-2">
+      <div class="card"><h3>خروجی پرونده سناریو</h3><p class="small">این پرونده را ذخیره کنید تا بعداً همین سناریو را بازیابی کنید.</p><textarea id="xmlOutput" class="xmlarea" readonly></textarea><div style="display:flex;gap:8px;margin-top:10px"><button class="btn" onclick="generateXML()">تولید پرونده</button><button class="btn primary" onclick="downloadXML()">دریافت پرونده</button></div></div>
+      <div class="card"><h3>بازیابی سناریو</h3><p class="small">متن پرونده ذخیره‌شده را اینجا قرار دهید و بازیابی کنید.</p><textarea id="xmlInput" class="xmlarea" placeholder="<scenario>...</scenario>"></textarea><div style="display:flex;gap:8px;margin-top:10px"><button class="btn primary" onclick="loadXMLFromText()">بازیابی سناریو</button><button class="btn danger" onclick="document.getElementById('xmlInput').value=''">پاک کردن</button></div></div>
+    </div>
+  </section>
+  <div class="footer">شبیه‌ساز بیزنس‌پلن زیگورات — نسخه ۳ دوارزی. اعداد پیش‌فرض نمونه‌اند و باید با استعلام روز (نرخ ارز، نرخ مصوب تسهیلات، تعرفه برق، قیمت رقیب) به‌روزرسانی شوند.</div>
+</main>
+</div>
+<script>
+const years = 10;
+// ── تنظیمات از فایل ziggurat-config.json خوانده می‌شود ──
+// نسخهٔ پشتیبان داخلی (اگر فایل کنار برنامه در دسترس نباشد از این استفاده می‌شود).
+// منبع اصلی و قابل ویرایش، همان فایل ziggurat-config.json در کنار این صفحه است.
+const EMBEDDED_CONFIG = {
+  "meta": {
+    "schemaVersion": 3,
+    "toolName": "شبیه‌ساز بیزنس‌پلن شیشه طیف‌گزین زیگورات",
+    "lastUpdated": "1405-04-17",
+    "howToUpdate": "همهٔ اعداد و پیش‌فرض‌ها را در همین فایل ویرایش کنید؛ نیازی به دست‌زدن به فایل HTML نیست. پس از ویرایش، اگر فایل را با یک سرور محلی باز می‌کنید تغییرات خودکار اعمال می‌شود؛ اگر فایل را مستقیم (دابل‌کلیک) باز می‌کنید، در نوار کناری دکمهٔ «بارگذاری فایل تنظیمات» را بزنید و همین فایل را انتخاب کنید.",
+    "fxRateNote": "نرخ دلار بازار آزاد تهران در تیر ۱۴۰۵ حدود ۱۷۵٬۰۰۰ تومان بود (منبع: بازار آزاد). این نرخ سریع تغییر می‌کند؛ پیش از هر ارائه، fx0 را به‌روزرسانی کنید.",
+    "priceNote": "salePrice=55 دلار (حدود ۴۵٪ زیر رقیب وارداتی ۱۰۰ دلاری؛ چون کیفیت/ماندگاری/برند هنوز هم‌تراز واردات نیست). glassCost=10.3 دلار ≈ شیشهٔ خام سوپرکلیر ۱٫۸ میلیون تومان با نرخ ۱۷۵٬۰۰۰."
+  },
+  "defaults": {
+    "name": "سناریوی پایه بانک‌پذیر (یک کارخانه، یک خط)",
+    "lines": 1,
+    "capacityPerLine": 200000,
+    "salePrice": 55,
+    "competitorPrice": 100,
+    "energyKwhPerM2": 105,
+    "elecPriceToman": 2500,
+    "fx0": 175000,
+    "fxGrowth": 30,
+    "inflation": 35,
+    "coatingCost": 15,
+    "glassCost": 10.3,
+    "applicationCost": 5,
+    "wastePct": 1.5,
+    "warrantyPct": 4,
+    "licensePct": 5,
+    "fixedOpexPerLine": 85000,
+    "productionLineCost": 500000,
+    "factoryHasIGU": 1,
+    "iguLineCost": 200000,
+    "cleanRoomCost": 200000,
+    "washingPrepCost": 30000,
+    "shedBuildoutCost": 120000,
+    "installUtilitiesCost": 80000,
+    "handlingQcSparesCost": 70000,
+    "certCost": 20000,
+    "contingencyPct": 8,
+    "maintenancePct": 2.5,
+    "salvagePct": 10,
+    "constructionMonths": 9,
+    "knowledgeBased": 0,
+    "taxPct": 25,
+    "discountRateRial": 35,
+    "discountRateUsd": 20,
+    "debtPct": 65,
+    "interestRate": 23,
+    "graceYears": 2,
+    "debtTenor": 7,
+    "interestMoratoriumYears": 1,
+    "repayStructure": "sculpted",
+    "wcDebtPct": 50,
+    "wcInterestRate": 23,
+    "wcBufferPct": 15,
+    "deliveryMonths": 2,
+    "advancePct": 60,
+    "dsoDays": 45,
+    "rawGlassStockDays": 15,
+    "payableDays": 15,
+    "coopModel": "jv",
+    "util1": 15,
+    "util2": 30,
+    "util3": 50,
+    "util4": 70,
+    "util5": 75,
+    "util6": 75,
+    "util7": 75,
+    "util8": 75,
+    "util9": 75,
+    "util10": 75
+  },
+  "presets": {
+    "pilot": {
+      "name": "پایلوت یک کارخانه، یک خط",
+      "util1": 12,
+      "util2": 25,
+      "util3": 45,
+      "util4": 60,
+      "util5": 70,
+      "util6": 70,
+      "util7": 70,
+      "util8": 70,
+      "util9": 70,
+      "util10": 70
+    },
+    "growth": {
+      "name": "توسعه داخلی یک کارخانه، دو خط",
+      "lines": 2
+    },
+    "conservative": {
+      "name": "محافظه‌کارانه ارزی و فروش",
+      "salePrice": 50,
+      "fxGrowth": 38,
+      "inflation": 40,
+      "fixedOpexPerLine": 100000,
+      "contingencyPct": 12,
+      "wcBufferPct": 20,
+      "advancePct": 50,
+      "dsoDays": 60,
+      "interestRate": 24,
+      "wcInterestRate": 24,
+      "graceYears": 2,
+      "util1": 10,
+      "util2": 22,
+      "util3": 40,
+      "util4": 55,
+      "util5": 62,
+      "util6": 65,
+      "util7": 65,
+      "util8": 65,
+      "util9": 65,
+      "util10": 65
+    },
+    "optimistic": {
+      "name": "سناریوی فروش قوی یک کارخانه",
+      "salePrice": 62,
+      "dsoDays": 30,
+      "advancePct": 75,
+      "util1": 25,
+      "util2": 50,
+      "util3": 70,
+      "util4": 85,
+      "util5": 85,
+      "util6": 85,
+      "util7": 85,
+      "util8": 85,
+      "util9": 85,
+      "util10": 85
+    },
+    "kb": {
+      "name": "سناریوی دانش‌بنیان با تسهیلات صندوق نوآوری",
+      "knowledgeBased": 1,
+      "interestRate": 11,
+      "wcInterestRate": 11,
+      "graceYears": 2
+    }
+  }
+};
+let defaults = {}, PRESETS = {}, CONFIG_META = {};
+let s = {};
+let cur = 'IRT';
+function nf(x,d=0){if(!isFinite(x)) return '—'; return new Intl.NumberFormat('fa-IR',{maximumFractionDigits:d,minimumFractionDigits:d}).format(x)}
+function money(t,u,d=1){ return cur==='IRT' ? nf(t/1e9,d)+' میلیارد تومان' : nf(u/1e6,d)+' میلیون دلار'; }
+function moneyShort(t,u,d=1){ return cur==='IRT' ? nf(t/1e9,d) : nf(u/1e6,d); }
+function curLabel(){return cur==='IRT'?'میلیارد تومان':'میلیون دلار'}
+function pct(x,d=1){return nf(x,d)+'٪'}
+function xmlEscape(str){return String(str).replace(/[<>&'"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;',"'":'&apos;','"':'&quot;'}[c]))}
+function toNumber(v){const n=Number(String(v).replace(/,/g,''));return isFinite(n)?n:0}
+
+const fieldDefs = {
+ macroInputs:[
+  ['fx0','نرخ ارز پایه (سال صفر)','number','تومان به ازای هر دلار'],
+  ['fxGrowth','رشد سالانه نرخ ارز','number','درصد'],
+  ['inflation','تورم داخلی سالانه','number','درصد؛ اعمال بر هزینه‌های داخلی'],
+  ['discountRateRial','نرخ تنزیل ریالی اسمی','number','درصد'],
+  ['discountRateUsd','نرخ تنزیل دلاری','number','درصد'],
+  ['constructionMonths','دوره ساخت و راه‌اندازی','number','ماه؛ بهره این دوره به اصل تسهیلات اضافه می‌شود']
+ ],
+ prodInputs:[
+  ['name','نام سناریو','text',''],
+  ['lines','تعداد خطوط در همین کارخانه','number','خط'],
+  ['capacityPerLine','ظرفیت هدف هر خط','number','مترمربع در سال'],
+  ['salePrice','قیمت فروش متوسط (دلارلینک)','number','دلار بر مترمربع'],
+  ['competitorPrice','قیمت رقیب وارداتی (AGC)','number','دلار بر مترمربع، تحویل ایران'],
+  ['energyKwhPerM2','صرفه‌جویی برق هر مترمربع','number','کیلووات‌ساعت در سال'],
+  ['elecPriceToman','تعرفه برق مبنا','number','تومان بر کیلووات‌ساعت']
+ ],
+ costInputs:[
+  ['productionLineCost','خط تولید کوتینگ و کیورینگ','number','دلار'],
+  ['factoryHasIGU','کارخانه خط دوجداره دارد','checkbox','در صورت فعال بودن، خط دوجداره جدید خریداری نمی‌شود'],
+  ['iguLineCost','خط دوجداره در صورت نیاز','number','دلار'],
+  ['cleanRoomCost','کلین‌روم یا محفظه کنترل‌شده','number','دلار'],
+  ['washingPrepCost','شستشو و آماده‌سازی سطح','number','دلار'],
+  ['shedBuildoutCost','سوله و آماده‌سازی اضافه','number','دلار'],
+  ['installUtilitiesCost','نصب، برق، تهویه و زیرساخت','number','دلار'],
+  ['handlingQcSparesCost','هندلینگ، کنترل کیفیت و قطعات یدکی','number','دلار'],
+  ['certCost','استاندارد ملی و آزمون‌های گواهی','number','دلار؛ آزمون مرکز تحقیقات راه و مسکن'],
+  ['contingencyPct','پیش‌بینی ریسک سرمایه ثابت','number','درصد'],
+  ['fixedOpexPerLine','هزینه ثابت سالانه هر خط','number','معادل دلار سال صفر؛ با تورم رشد می‌کند'],
+  ['maintenancePct','نگهداشت سالانه','number','درصد ارزش جایگزینی سرمایه ثابت'],
+  ['salvagePct','ارزش اسقاط پایان دوره','number','درصد سرمایه ثابت در سال دهم']
+ ],
+ financeInputs:[
+  ['coatingCost','هزینه ماده کوتینگ (وارداتی، دلارلینک)','number','دلار بر مترمربع؛ شامل حمل و حقوق ورودی'],
+  ['glassCost','هزینه شیشه و خدمات پایه (دلارلینک)','number','دلار بر مترمربع؛ شیشه فلوت از قیمت جهانی تبعیت می‌کند'],
+  ['applicationCost','هزینه اعمال و فرآوری (داخلی)','number','معادل دلار سال صفر؛ با تورم داخلی رشد می‌کند'],
+  ['wastePct','ذخیره پرت و ضایعات','number','درصد فروش'],
+  ['warrantyPct','ذخیره گارانتی و برگشتی','number','درصد فروش'],
+  ['licensePct','حق لیسانس و پشتیبانی فنی زیگورات','number','درصد فروش'],
+  ['deliveryMonths','دورهٔ تحویل پروژه','number','ماه؛ بلندتر یعنی رنگ کمتری پیش‌خرید می‌شود و سرمایه در گردش کمتر است'],
+  ['wcBufferPct','حاشیه اطمینان سرمایه در گردش','number','درصد'],
+  ['advancePct','پیش‌دریافت از مشتری','number','درصد فروش'],
+  ['dsoDays','دوره وصول مانده مطالبات','number','روز'],
+  ['rawGlassStockDays','موجودی شیشه و خدمات پایه','number','روز'],
+  ['payableDays','دوره پرداخت به تأمین‌کننده داخلی','number','روز؛ ماده وارداتی نقدی فرض شده'],
+  ['debtPct','نسبت تسهیلات ثابت به سرمایه ثابت','number','درصد'],
+  ['interestRate','نرخ تسهیلات ثابت','number','درصد سالانه ریالی'],
+  ['graceYears','تنفس اصل تسهیلات','number','سال'],
+  ['debtTenor','دوره بازپرداخت اصل','number','سال'],
+  ['wcDebtPct','نسبت تسهیلات سرمایه در گردش','number','درصد از سرمایه در گردش اولیه'],
+  ['wcInterestRate','نرخ تسهیلات سرمایه در گردش','number','درصد سالانه'],
+  ['interestMoratoriumYears','تنفس کامل (سرمایه‌ای‌شدن بهره)','number','سال؛ بهرهٔ این سال‌ها به اصل افزوده می‌شود و پرداخت نمی‌شود'],
+  ['repayStructure','ساختار بازپرداخت اصل','select-repay','پلکانی: اقساط همگام با منحنی بهره‌برداری (DSCR پایدارتر)'],
+  ['knowledgeBased','معافیت مالیاتی دانش‌بنیان','checkbox','ماده ۳ قانون جهش تولید دانش‌بنیان؛ مالیات مؤثر صفر'],
+  ['taxPct','مالیات اشخاص حقوقی','number','درصد؛ ماده ۱۰۵ ق.م.م — پیش‌فرض ۲۵'],
+ ],
+ utilInputs:Array.from({length:10},(_,i)=>['util'+(i+1),'بهره‌برداری سال '+(i+1),'number','درصد'])
+};
+
+function capexPerLineUsd(p){
+ const base = p.productionLineCost + p.cleanRoomCost + p.washingPrepCost + p.shedBuildoutCost + p.installUtilitiesCost + p.handlingQcSparesCost + p.certCost + (p.factoryHasIGU?0:p.iguLineCost);
+ return base * (1 + p.contingencyPct/100);
+}
+function model(custom={}){
+ const p={...s,...custom};
+ const totalCap=p.lines*p.capacityPerLine;
+ const fx=y=>p.fx0*Math.pow(1+p.fxGrowth/100,y-1);
+ const infl=y=>Math.pow(1+p.inflation/100,y-1);
+ const capexUsd=p.lines*capexPerLineUsd(p);
+ const capex=capexUsd*p.fx0; // تومان، ثبت دفتری سال صفر
+ // سرمایه در گردش اولیه بر مبنای سال اول
+ function wcAt(revenue,coating,glassDom){
+   const D=Math.max(0.5,p.deliveryMonths||2); const coatingStockMonths=Math.min(4,Math.max(0.4,3.6/D)); // دورهٔ تحویل بلندتر → رنگ کمتر پیش‌خرید‌شده
+   const coatingInv=coating*(coatingStockMonths/12)*(1+p.wcBufferPct/100);
+   const glassInv=glassDom*p.rawGlassStockDays/365;
+   const ar=revenue*(1-p.advancePct/100)*p.dsoDays/365;
+   const pay=glassDom*p.payableDays/365;
+   return Math.max(0, coatingInv+glassInv+ar-pay);
+ }
+ const y1m2=totalCap*p.util1/100;
+ const y1rev=y1m2*p.salePrice*fx(1);
+ const y1coat=y1m2*p.coatingCost*fx(1);
+ const y1glassDom=y1m2*(p.glassCost*fx(1)+p.applicationCost*p.fx0*infl(1));
+ const initialWC=wcAt(y1rev,y1coat,y1glassDom);
+ // تسهیلات
+ const fixedDebt0=capex*p.debtPct/100;
+ const idc=fixedDebt0*(p.interestRate/100)*(p.constructionMonths/12)*0.5; // بهره دوران ساخت، برداشت میانگین ۵۰٪
+ let fixedDebt=fixedDebt0+idc;
+ const wcDebt=initialWC*p.wcDebtPct/100;
+ const investment=capex+idc+initialWC;
+ const equity0=capex+initialWC-fixedDebt0-wcDebt;
+ const dep=(capex+idc)/10;
+ const morat=Math.max(0,p.interestMoratoriumYears||0);
+ // اصل مبنای بازپرداخت پس از سرمایه‌ای‌شدن بهرهٔ سال‌های تنفس کامل
+ let capPrincipal=fixedDebt; for(let k=1;k<=morat;k++){capPrincipal+=capPrincipal*p.interestRate/100;}
+ const repayYears=[]; for(let yy=p.graceYears+1;yy<=Math.min(years,p.graceYears+p.debtTenor);yy++) repayYears.push(yy);
+ const sched={};
+ if(p.repayStructure==='sculpted'){const wsum=repayYears.reduce((a,yy)=>a+p['util'+yy],0)||1; repayYears.forEach(yy=>sched[yy]=capPrincipal*p['util'+yy]/wsum);}
+ else {repayYears.forEach(yy=>sched[yy]=capPrincipal/Math.max(1,repayYears.length));}
+ let prevWC=initialWC, rows=[], cumUn=-investment, cumEq=-equity0;
+ for(let y=1;y<=years;y++){
+  const util=p['util'+y]/100, m2=totalCap*util, f=fx(y), ix=infl(y);
+  const revenue=m2*p.salePrice*f;
+  const coating=m2*p.coatingCost*f;
+  const glassDom=m2*(p.glassCost*f + p.applicationCost*p.fx0*ix);
+  const pcts=revenue*(p.wastePct+p.warrantyPct+p.licensePct)/100;
+  const licenseIncome=revenue*p.licensePct/100;
+  const variable=coating+glassDom+pcts;
+  const fixed=p.lines*p.fixedOpexPerLine*p.fx0*ix;
+  const ebitda=revenue-variable-fixed;
+  const interest=fixedDebt*p.interestRate/100 + wcDebt*p.wcInterestRate/100; // بهرهٔ تعهدی، مبنای مالیات
+  let interestPaid=interest;
+  if(y<=morat){ fixedDebt+=fixedDebt*p.interestRate/100; interestPaid=wcDebt*p.wcInterestRate/100; } // تنفس کامل: بهرهٔ ثابت سرمایه‌ای می‌شود
+  let principal=sched[y]||0; if(principal>fixedDebt)principal=fixedDebt; fixedDebt-=principal;
+  let wcPrincipal=(y===years)?wcDebt:0;
+  const debtService=interestPaid+principal+wcPrincipal;
+  const ebit=ebitda-dep;
+  const taxable=ebit-interest;
+  const tax=p.knowledgeBased?0:Math.max(0,taxable*p.taxPct/100);
+  const maint=capexUsd*f*p.maintenancePct/100;
+  const wcReq=Math.max(initialWC, wcAt(revenue,coating,glassDom));
+  const deltaWC=wcReq-prevWC; prevWC=wcReq;
+  const cfads=ebitda-tax-maint-deltaWC;
+  const dscr=debtService>0?cfads/debtService:Infinity;
+  let fcf=cfads;
+  let salvage=0;
+  if(y===years){salvage=capexUsd*f*p.salvagePct/100; fcf+=wcReq+salvage;}
+  let eqcf=fcf-debtService;
+  cumUn+=fcf; cumEq+=eqcf;
+  rows.push({year:y,util,m2,revenue,coating,glassDom,variable,fixed,ebitda,dep,tax,maint,wcReq,deltaWC,cfads,dscr,fcf,cumUn,interest,principal,debtService,debtOutstanding:fixedDebt+((y===years)?0:wcDebt),eqcf,cumEq,licenseIncome,fx:f,salvage});
+ }
+ // شاخص‌های دلاری: جریان تومانی تقسیم بر نرخ ارز همان سال
+ const usdFcf=rows.map(r=>r.fcf/r.fx), usdEq=rows.map(r=>r.eqcf/r.fx);
+ const usdInvestment=investment/p.fx0, usdEquity0=equity0/p.fx0;
+ const cmPerM2Usd=p.salePrice-(p.coatingCost+p.glassCost+p.applicationCost)-p.salePrice*(p.wastePct+p.warrantyPct+p.licensePct)/100;
+ const fixedY1Usd=p.lines*p.fixedOpexPerLine;
+ const beM2=cmPerM2Usd>0?fixedY1Usd/cmPerM2Usd:Infinity;
+ const beUtil=beM2/totalCap*100;
+ const paybackUsd=calcPayback([-usdInvestment,...usdFcf]);
+ const equityPaybackUsd=calcPayback([-usdEquity0,...usdEq]);
+ const irrRial=calcIRR([-investment,...rows.map(r=>r.fcf)]);
+ const irrUsd=calcIRR([-usdInvestment,...usdFcf]);
+ const eqIrrRial=calcIRR([-equity0,...rows.map(r=>r.eqcf)]);
+ const eqIrrUsd=calcIRR([-usdEquity0,...usdEq]);
+ const npvRial=calcNPV([-investment,...rows.map(r=>r.fcf)],p.discountRateRial/100);
+ const npvUsd=calcNPV([-usdInvestment,...usdFcf],p.discountRateUsd/100);
+ const repayRows=rows.filter(r=>r.debtService>0 && r.year<years);
+ const minDscr=repayRows.length?Math.min(...repayRows.map(r=>r.dscr)):Infinity;
+ const totalLicense=rows.reduce((a,r)=>a+r.licenseIncome,0);
+ return {p,totalCap,capexUsd,capex,idc,initialWC,investment,usdInvestment,fixedDebt0,wcDebt,equity0,usdEquity0,rows,
+  cmPerM2Usd,beM2,beUtil,paybackUsd,equityPaybackUsd,irrRial,irrUsd,eqIrrRial,eqIrrUsd,npvRial,npvUsd,minDscr,totalLicense,fx};
+}
+function calcPayback(cfs){let cum=0; for(let i=0;i<cfs.length;i++){let prev=cum; cum+=cfs[i]; if(i>0&&cum>=0){return (i-1)+(-prev/cfs[i]);}} return Infinity;}
+function calcNPV(cfs,rate){return cfs.reduce((a,c,i)=>a+c/Math.pow(1+rate,i),0)}
+function calcIRR(cfs){if(!cfs.some(c=>c>0)) return NaN; let low=-.95,high=5; for(let i=0;i<100;i++){let mid=(low+high)/2; let v=calcNPV(cfs,mid); if(v>0) low=mid; else high=mid;} return (low+high)/2*100;}
+//__DOM__
+function buildInputs(){
+ Object.keys(fieldDefs).forEach(group=>{
+  const el=document.getElementById(group); el.innerHTML='';
+  fieldDefs[group].forEach(([key,label,type,unit])=>{
+   const div=document.createElement('div'); div.className='field';
+   if(type==='select-repay'){
+    div.innerHTML=`<label>${label}</label><select data-key="${key}"><option value="sculpted" ${s[key]==='sculpted'?'selected':''}>پلکانی همگام با بهره‌برداری</option><option value="equal" ${s[key]==='equal'?'selected':''}>اقساط مساوی</option></select><span class="unit">${unit}</span>`;
+   }else if(type==='checkbox'){
+    div.innerHTML=`<label>${label}</label><label style="display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 11px;background:#fff"><input data-key="${key}" type="checkbox" ${s[key]? 'checked':''} style="width:18px;height:18px;min-height:auto"> <span>فعال</span></label><span class="unit">${unit}</span>`;
+   }else{
+    div.innerHTML=`<label>${label}</label><input data-key="${key}" type="${type}" value="${s[key]}"><span class="unit">${unit}</span>`;
+   }
+   el.appendChild(div);
+  });
+ });
+ document.querySelectorAll('input[data-key]').forEach(inp=>inp.addEventListener('input',e=>{const k=e.target.dataset.key; s[k]=e.target.type==='checkbox'?(e.target.checked?1:0):(e.target.type==='number'?toNumber(e.target.value):e.target.value); calculateAndRender();}));
+ document.querySelectorAll('select[data-key]').forEach(sel=>sel.addEventListener('change',e=>{s[e.target.dataset.key]=e.target.value; calculateAndRender();}));
+ document.getElementById('coopSelect').value=s.coopModel;
+}
+function loadPreset(type){
+ s = {...defaults, ...((PRESETS && PRESETS[type]) || {})};
+ buildInputs(); calculateAndRender();
+}
+function calculateAndRender(){const m=model(); renderKPIs(m); renderCharts(m); renderTables(m); renderLegal(m); renderTexts(m); renderWCPanel(m); generateXML();
+ document.getElementById('scenarioLine').textContent=`${s.name}؛ ${nf(s.lines)} خط، ظرفیت هدف ${nf(m.totalCap)} مترمربع در سال، بازگشت دلاری پروژه ${isFinite(m.paybackUsd)?nf(m.paybackUsd,1)+' سال':'خارج از افق مدل'}، حداقل DSCR ${isFinite(m.minDscr)?nf(m.minDscr,2):'—'}.`;}
+function renderKPIs(m){const y3=m.rows[2]; const dscrBad=m.minDscr<1.2;
+ const items=[
+ ['سرمایه کل پروژه',money(m.investment,m.usdInvestment,1),'سرمایه ثابت، بهره دوران ساخت و سرمایه در گردش اولیه',''],
+ ['ظرفیت هدف سالانه',nf(m.totalCap)+' مترمربع','نقطه سر به سر: '+nf(m.beM2)+' مترمربع ('+pct(m.beUtil,1)+')',''],
+ ['حداقل DSCR دوره بازپرداخت',isFinite(m.minDscr)?nf(m.minDscr,2):'—',dscrBad?'زیر آستانه بانکی ۱٫۲ — ساختار تسهیلات نیاز به اصلاح دارد':'بالاتر از آستانه بانکی ۱٫۲',dscrBad?'alert':''],
+ ['دوره بازگشت پروژه',isFinite(m.paybackUsd)?nf(m.paybackUsd,1)+' سال':'نامحقق','بر مبنای جریان نقدی دلاری؛ سهامدار: '+(isFinite(m.equityPaybackUsd)?nf(m.equityPaybackUsd,1)+' سال':'نامحقق'),''],
+ ['نرخ بازده داخلی پروژه',pct(m.irrUsd,1)+' دلاری','معادل ریالی اسمی: '+pct(m.irrRial,1),''],
+ ['نرخ بازده سهامدار (کارخانه میزبان)',pct(m.eqIrrUsd,1)+' دلاری','معادل ریالی اسمی: '+pct(m.eqIrrRial,1),''],
+ ['ارزش فعلی خالص',money(m.npvRial,m.npvUsd,1),'تنزیل ریالی '+pct(s.discountRateRial,0)+' / دلاری '+pct(s.discountRateUsd,0),''],
+ ['درآمد سال سوم',money(y3.revenue,y3.revenue/y3.fx,1),'حاشیه عملیاتی سال سوم: '+pct(y3.ebitda/y3.revenue*100,1),'']];
+ document.getElementById('kpis').innerHTML=items.map(it=>`<div class="card kpi ${it[3]}"><div class="name">${it[0]}</div><div class="value">${it[1]}</div><div class="hint">${it[2]}</div></div>`).join('');
+ document.getElementById('dscrWarn').innerHTML = dscrBad ? `<div class="note danger no-print"><b>هشدار بانک‌پذیری:</b> حداقل DSCR دوره بازپرداخت ${nf(m.minDscr,2)} است (آستانه متعارف ۱٫۲). راهکارها (همه در تب مفروضات قابل تنظیم‌اند): «ساختار بازپرداخت پلکانی همگام با بهره‌برداری»، افزایش «تنفس اصل»، افزودن «تنفس کامل» یک تا دو ساله (سرمایه‌ای‌شدن بهره)، افزایش «دوره بازپرداخت»، یا کاهش «نسبت تسهیلات». سناریوی پایه با همین اهرم‌ها بالای ۱٫۲ تنظیم شده است.</div>` : '';
+}
+function svgBar(data,opts={}){const w=760,h=300,pad={r:58,l:28,t:28,b:50}; const max=Math.max(...data.map(d=>d.v1||0),1)*1.15; const bw=(w-pad.r-pad.l)/data.length*.55; let bars=''; data.forEach((d,i)=>{const x=pad.r+i*(w-pad.r-pad.l)/data.length+((w-pad.r-pad.l)/data.length-bw)/2; const y=h-pad.b-(d.v1/max)*(h-pad.t-pad.b); const bh=(d.v1/max)*(h-pad.t-pad.b); bars+=`<rect x="${x}" y="${y}" width="${bw}" height="${bh}" rx="7" fill="${d.color||opts.color||'#1f6b54'}"></rect><text x="${x+bw/2}" y="${h-22}" text-anchor="middle" font-size="12" fill="#566">${d.label}</text><text x="${x+bw/2}" y="${y-6}" text-anchor="middle" font-size="12" fill="#17324d" font-weight="700">${d.txt}</text>`}); return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%" direction="rtl"><line x1="${pad.r}" y1="${h-pad.b}" x2="${w-pad.l}" y2="${h-pad.b}" stroke="#dbe1e7"/><line x1="${pad.r}" y1="${pad.t}" x2="${pad.r}" y2="${h-pad.b}" stroke="#dbe1e7"/>${bars}</svg>`;}
+function svgLine(series,opts={}){const w=760,h=300,pad={r:50,l:30,t:25,b:44}; const all=series.flatMap(s=>s.data.map(d=>d.v)); let max=Math.max(...all,opts.hline||0,1)*1.15; let min=Math.min(...all,0); const range=max-min||1; const x=(i,n)=>pad.r+i*(w-pad.r-pad.l)/(n-1); const y=v=>h-pad.b-((v-min)/range)*(h-pad.t-pad.b);
+ let grid=''; for(let k=0;k<=4;k++){let yy=pad.t+k*(h-pad.t-pad.b)/4;grid+=`<line x1="${pad.r}" y1="${yy}" x2="${w-pad.l}" y2="${yy}" stroke="#edf0f2"/>`;}
+ let hl=''; if(opts.hline!==undefined){hl=`<line x1="${pad.r}" y1="${y(opts.hline)}" x2="${w-pad.l}" y2="${y(opts.hline)}" stroke="#b45a5a" stroke-dasharray="6 4" stroke-width="2"/>`;}
+ let zero=''; if(min<0){zero=`<line x1="${pad.r}" y1="${y(0)}" x2="${w-pad.l}" y2="${y(0)}" stroke="#c6ccd2"/>`;}
+ let paths=''; series.forEach(ser=>{const pts=ser.data.map((d,i)=>`${x(i,ser.data.length)},${y(d.v)}`).join(' '); paths+=`<polyline points="${pts}" fill="none" stroke="${ser.color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`; ser.data.forEach((d,i)=>{if(i===0||i===ser.data.length-1||i===4){paths+=`<circle cx="${x(i,ser.data.length)}" cy="${y(d.v)}" r="4" fill="${ser.color}"/><text x="${x(i,ser.data.length)}" y="${y(d.v)-9}" text-anchor="middle" font-size="11" fill="#17324d" font-weight="700">${d.txt}</text>`}});});
+ let labels=series[0].data.map((d,i)=>`<text x="${x(i,series[0].data.length)}" y="${h-20}" text-anchor="middle" font-size="11" fill="#566">${d.label}</text>`).join('');
+ let legend=series.map((s,i)=>`<rect x="${w-pad.l-170-i*180}" y="8" width="12" height="12" rx="3" fill="${s.color}"/><text x="${w-pad.l-152-i*180}" y="19" text-anchor="start" font-size="12" fill="#344">${s.name}</text>`).join('');
+ return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%">${grid}${zero}${hl}<line x1="${pad.r}" y1="${h-pad.b}" x2="${w-pad.l}" y2="${h-pad.b}" stroke="#dbe1e7"/>${paths}${labels}${legend}</svg>`;}
+function svgBridge(steps,opts){const w=760,h=300,pad={r:56,l:30,t:26,b:46};
+ const cums=steps.map(s=>s.cum),fcfs=steps.map(s=>s.fcf||0);
+ let max=Math.max(...cums,...fcfs,0)*1.12,min=Math.min(...cums,0)*1.12;const range=(max-min)||1;
+ const n=steps.length,slot=(w-pad.r-pad.l)/n,bw=slot*0.5;
+ const x=i=>pad.r+i*slot+slot/2,y=v=>h-pad.b-((v-min)/range)*(h-pad.t-pad.b);
+ let grid="";for(let k=0;k<=4;k++){let yy=pad.t+k*(h-pad.t-pad.b)/4;grid+=`<line x1="${pad.r}" y1="${yy}" x2="${w-pad.l}" y2="${yy}" stroke="#edf0f2"/>`;}
+ const y0=y(0);let zero=`<line x1="${pad.r}" y1="${y0}" x2="${w-pad.l}" y2="${y0}" stroke="#c6ccd2"/>`;
+ let bars="";steps.forEach((s,i)=>{if(s.fcf==null){const top=y(Math.max(0,s.cum)),bot=y(Math.min(0,s.cum));bars+=`<rect x="${x(i)-bw/2}" y="${y(0)}" width="${bw}" height="${y(s.cum)-y(0)}" rx="6" fill="#b45a5a"></rect><text x="${x(i)}" y="${y(s.cum)+16}" text-anchor="middle" font-size="11" fill="#8b322d" font-weight="700">${s.txt}</text>`;}else{const top=y(Math.max(0,s.fcf)),hh=Math.abs(y(s.fcf)-y(0));bars+=`<rect x="${x(i)-bw/2}" y="${top}" width="${bw}" height="${hh}" rx="6" fill="#3e6b91"></rect><text x="${x(i)}" y="${top-6}" text-anchor="middle" font-size="11" fill="#17324d" font-weight="700">${s.txt}</text>`;}});
+ const pts=steps.map((s,i)=>`${x(i)},${y(s.cum)}`).join(" ");
+ let line=`<polyline points="${pts}" fill="none" stroke="#b45a5a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;
+ steps.forEach((s,i)=>{line+=`<circle cx="${x(i)}" cy="${y(s.cum)}" r="4" fill="#b45a5a"/>`;});
+ let cross="";if(opts&&opts.payback!=null&&isFinite(opts.payback)&&opts.payback<=steps.length-1){const xc=pad.r+(opts.payback+ (opts.hasInvestmentCol?1:0))*slot+slot/2- (opts.hasInvestmentCol?0:0);const xp=x(0)+ (opts.payback)*slot;cross=`<line x1="${xp}" y1="${pad.t}" x2="${xp}" y2="${y0}" stroke="#1f6b54" stroke-dasharray="5 4" stroke-width="2"/><text x="${xp}" y="${pad.t+13}" text-anchor="middle" font-size="11" fill="#1f6b54" font-weight="800">سربه‌سری ${nf(opts.payback,1)}</text>`;}
+ let labels=steps.map((s,i)=>`<text x="${x(i)}" y="${h-18}" text-anchor="middle" font-size="11" fill="#566">${s.label}</text>`).join("");
+ return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%">${grid}${zero}${bars}${cross}${line}${labels}</svg>`;}
+function renderCharts(m){
+ const mv=(t,fxy)=>moneyShort(t,t/fxy,1);
+ document.getElementById('profitChart').innerHTML=svgBar(m.rows.slice(0,5).map(r=>({label:'سال '+r.year,v1:cur==='IRT'?r.revenue:r.revenue/r.fx,txt:mv(r.revenue,r.fx)})),{color:'#1f6b54'});
+ document.getElementById('cashChart').innerHTML=svgLine([{name:'جریان نقدی تجمعی ('+curLabel()+')',color:'#3e6b91',data:m.rows.map(r=>({label:'سال '+r.year,v:cur==='IRT'?r.cumUn:r.cumUn/r.fx,txt:mv(r.cumUn,r.fx)}))}]);
+ document.getElementById('dscrChart').innerHTML=svgLine([{name:'DSCR سالانه',color:'#1f6b54',data:m.rows.map(r=>({label:'سال '+r.year,v:Math.min(isFinite(r.dscr)?r.dscr:8,8),txt:isFinite(r.dscr)?nf(Math.min(r.dscr,8),1):'—'}))}],{hline:1.2});
+ document.getElementById('fcfChart').innerHTML=svgBar(m.rows.map(r=>({label:'سال '+r.year,v1:Math.max(cur==='IRT'?r.fcf:r.fcf/r.fx,0),txt:mv(r.fcf,r.fx),color:r.fcf>=0?'#3e6b91':'#b45a5a'})),{});
+ document.getElementById('debtChart').innerHTML=svgLine([{name:'مانده تسهیلات ('+curLabel()+')',color:'#b78a35',data:m.rows.map(r=>({label:'سال '+r.year,v:cur==='IRT'?r.debtOutstanding:r.debtOutstanding/r.fx,txt:mv(r.debtOutstanding,r.fx)}))}]);
+ const pb=v=>({v1:isFinite(v)?v:10,txt:isFinite(v)?nf(v,1):'>۱۰',color:isFinite(v)?undefined:'#b45a5a'});
+ const priceData=[]; for(let p=38;p<=56;p+=3){const mm=model({salePrice:p}); priceData.push({label:nf(p,0)+' دلار',...pb(mm.paybackUsd)});}
+ document.getElementById('priceSens').innerHTML=svgBar(priceData,{color:'#1f6b54'});
+ const volData=[40,50,60,70,80,90].map(u=>{const o={}; for(let y=1;y<=10;y++) o['util'+y]=u; const mm=model(o); return {label:nf(u)+'٪',...pb(mm.paybackUsd)};});
+ document.getElementById('volumeSens').innerHTML=svgBar(volData,{color:'#b78a35'});
+ // ارزش برای مشتری
+ const saveT=s.energyKwhPerM2*s.elecPriceToman; const priceT=s.salePrice*s.fx0; const disc=(1-s.salePrice/Math.max(1,s.competitorPrice))*100;
+ (function(){var invT=m.investment,invU=m.usdInvestment;var steps=[{label:'سرمایهٔ اولیه',fcf:null,cum:cur==='IRT'?-invT:-invU,txt:moneyShort(-invT,-invU,0)}];var run=cur==='IRT'?-invT:-invU;for(var i=0;i<5;i++){var r=m.rows[i];var add=cur==='IRT'?r.fcf:r.fcf/r.fx;run+=add;steps.push({label:'سال '+(i+1),fcf:cur==='IRT'?r.fcf:r.fcf/r.fx,cum:run,txt:moneyShort(r.fcf,r.fcf/r.fx,0)});}document.getElementById('bridgeChart').innerHTML=svgBridge(steps,{payback:m.paybackUsd});var y4=m.rows[3];document.getElementById('bridgeNote').innerHTML='مثال سال ۴: EBITDA '+moneyShort(y4.ebitda,y4.ebitda/y4.fx,0)+' منهای مالیات '+moneyShort(y4.tax,y4.tax/y4.fx,0)+' منهای رشد سرمایه در گردش '+moneyShort(y4.deltaWC,y4.deltaWC/y4.fx,0)+' منهای نگهداشت '+moneyShort(y4.maint,y4.maint/y4.fx,0)+' = جریان نقدی آزاد '+moneyShort(y4.fcf,y4.fcf/y4.fx,0)+' ('+curLabel()+'). رشد سرمایه در گردش، بخش بزرگی از سود عملیاتی را در سال‌های رشد جذب می‌کند و همین بازگشت را به حدود ۴ سال می‌برد.';})();
+ document.getElementById('customerValueBox').innerHTML=`<table><tbody>
+ <tr><th>صرفه‌جویی برق سالانه هر مترمربع</th><td class="num">${nf(saveT)} تومان (${nf(s.energyKwhPerM2)} کیلووات‌ساعت)</td></tr>
+ <tr><th>صرفه‌جویی ده‌ساله هر مترمربع (اسمی، با تورم تعرفه)</th><td class="num">${nf(saveT*((Math.pow(1+s.inflation/100,10)-1)/(s.inflation/100)),0)} تومان</td></tr>
+ <tr><th>قیمت ما نسبت به رقیب وارداتی</th><td class="num">${nf(disc,0)}٪ ارزان‌تر (${nf(s.salePrice,1)} در برابر ${nf(s.competitorPrice,1)} دلار)</td></tr>
+ </tbody></table><p class="small" style="margin-top:8px">در کنار صرفه‌جویی برق، کاهش ظرفیت موردنیاز سرمایش و انطباق با مبحث ۱۹ مقررات ملی ساختمان، استدلال فروش به انبوه‌ساز و پروژه‌های اداری است.</p>`;
+}
+function renderTables(m){const rows=m.rows;
+ const heads=['سال','بهره‌برداری','متراژ فروش','درآمد','هزینه متغیر','هزینه ثابت','سود عملیاتی','مالیات','تغییر سرمایه در گردش','جریان نقدی آزاد','خدمت بدهی','DSCR','جریان نقدی سهامدار'];
+ document.getElementById('cashflowTable').innerHTML='<thead><tr>'+heads.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>'+rows.map(r=>{const M=(t)=>moneyShort(t,t/r.fx,1); const dscrTxt=isFinite(r.dscr)?nf(r.dscr,2):'—'; const dscrCls=!isFinite(r.dscr)?'':(r.dscr>=1.2?'good':(r.dscr>=1?'warn':'bad'));
+  return `<tr><td>${nf(r.year)}</td><td class="num">${pct(r.util*100,0)}</td><td class="num">${nf(r.m2)}</td><td class="num">${M(r.revenue)}</td><td class="num">${M(r.variable)}</td><td class="num">${M(r.fixed)}</td><td class="num ${r.ebitda>=0?'good':'bad'}">${M(r.ebitda)}</td><td class="num">${M(r.tax)}</td><td class="num">${M(r.deltaWC)}</td><td class="num ${r.fcf>=0?'good':'bad'}">${M(r.fcf)}</td><td class="num">${M(r.debtService)}</td><td class="num ${dscrCls}">${dscrTxt}</td><td class="num ${r.eqcf>=0?'good':'bad'}">${M(r.eqcf)}</td></tr>`}).join('')+'</tbody>'+`<tfoot><tr><td colspan="13" class="small">اعداد به ${curLabel()}؛ ستون‌های ریالی اسمی‌اند و معادل دلاری هر سال با نرخ ارز همان سال محاسبه می‌شود.</td></tr></tfoot>`;
+ document.getElementById('bankBox').innerHTML=`<table><tbody>
+ <tr><th>کل سرمایه‌گذاری (شامل بهره دوران ساخت)</th><td class="num">${money(m.investment,m.usdInvestment,1)}</td></tr>
+ <tr><th>سرمایه ثابت + بهره دوران ساخت</th><td class="num">${money(m.capex+m.idc,(m.capex+m.idc)/s.fx0,1)}</td></tr>
+ <tr><th>سرمایه در گردش اولیه</th><td class="num">${money(m.initialWC,m.initialWC/s.fx0,1)}</td></tr>
+ <tr><th>تسهیلات ثابت (${pct(s.debtPct,0)} سرمایه ثابت، نرخ ${pct(s.interestRate,0)})</th><td class="num">${money(m.fixedDebt0+m.idc,(m.fixedDebt0+m.idc)/s.fx0,1)}</td></tr>
+ <tr><th>تسهیلات سرمایه در گردش (نرخ ${pct(s.wcInterestRate,0)})</th><td class="num">${money(m.wcDebt,m.wcDebt/s.fx0,1)}</td></tr>
+ <tr><th>ساختار بازپرداخت</th><td class="num">${s.repayStructure==='sculpted'?'پلکانی همگام با بهره‌برداری':'اقساط مساوی'}؛ تنفس ${nf(s.graceYears)} سال + تنفس کامل ${nf(s.interestMoratoriumYears)} سال، بازپرداخت ${nf(s.debtTenor)} سال</td></tr>
+ <tr><th>آورده سهامدار (کارخانه میزبان)</th><td class="num">${money(m.equity0,m.usdEquity0,1)}</td></tr>
+ <tr><th>حداقل DSCR دوره بازپرداخت</th><td class="num ${m.minDscr>=1.2?'good':'bad'}">${isFinite(m.minDscr)?nf(m.minDscr,2):'—'}</td></tr>
+ <tr><th>دوره بازگشت پروژه / سهامدار (دلاری)</th><td class="num">${isFinite(m.paybackUsd)?nf(m.paybackUsd,1):'—'} / ${isFinite(m.equityPaybackUsd)?nf(m.equityPaybackUsd,1):'—'} سال</td></tr>
+ <tr><th>نرخ بازده داخلی پروژه</th><td class="num">${pct(m.irrUsd,1)} دلاری — ${pct(m.irrRial,1)} ریالی اسمی</td></tr>
+ <tr><th>نرخ بازده داخلی سهامدار</th><td class="num">${pct(m.eqIrrUsd,1)} دلاری — ${pct(m.eqIrrRial,1)} ریالی اسمی</td></tr>
+ <tr><th>ارزش فعلی خالص</th><td class="num">${money(m.npvRial,m.npvUsd,1)}</td></tr>
+ </tbody></table>`;
+ // ماتریس قیمت × بهره‌برداری
+ const prices=[42,45,47.5,50,52], utils=[40,50,60,70,80];
+ let mt='<table class="heat"><thead><tr><th>قیمت \\ بهره‌برداری</th>'+utils.map(u=>`<th>${nf(u)}٪</th>`).join('')+'</tr></thead><tbody>';
+ prices.forEach(pr=>{mt+=`<tr><th>${nf(pr,1)} دلار</th>`; utils.forEach(u=>{const o={salePrice:pr}; for(let y=1;y<=10;y++) o['util'+y]=u; const mm=model(o); const v=mm.paybackUsd; const cls=!isFinite(v)?'h-bad':(v<=4?'h-good':(v<=6?'h-mid':'h-bad')); mt+=`<td class="${cls}">${isFinite(v)?nf(v,1):'>۱۰'}</td>`;}); mt+='</tr>';});
+ document.getElementById('matrixWrap').innerHTML=mt+'</tbody></table>';
+ // حساسیت ارز/تورم
+ let fxr='<table><thead><tr><th>رشد سالانه ارز</th><th>IRR ریالی</th><th>IRR دلاری</th><th>حداقل DSCR</th><th>بازگشت دلاری</th></tr></thead><tbody>';
+ [20,25,30,35,40].forEach(g=>{const mm=model({fxGrowth:g}); fxr+=`<tr><td>${pct(g,0)} (تورم ${pct(s.inflation,0)})</td><td class="num">${pct(mm.irrRial,1)}</td><td class="num">${pct(mm.irrUsd,1)}</td><td class="num ${mm.minDscr>=1.2?'good':'bad'}">${nf(mm.minDscr,2)}</td><td class="num">${isFinite(mm.paybackUsd)?nf(mm.paybackUsd,1)+' سال':'—'}</td></tr>`;});
+ document.getElementById('fxSensWrap').innerHTML=fxr+'</tbody></table>';
+ // سر به سر
+ document.getElementById('breakevenBox').innerHTML=`<p>حاشیه مشارکت هر مترمربع (به قیمت‌های سال صفر) حدود <b>${nf(m.cmPerM2Usd,1)} دلار</b> معادل <b>${nf(m.cmPerM2Usd*s.fx0/1e6,1)} میلیون تومان</b> است. با هزینه ثابت سال اول، نقطه سر به سر سالانه حدود <b>${nf(m.beM2)} مترمربع</b> یا <b>${pct(m.beUtil,1)}</b> ظرفیت هدف است.</p><div class="note">اگر قیمت فروش کمتر از هزینه متغیر کامل شود، نقطه سر به سر عملاً نامعتبر می‌شود. سقف قیمتی، قیمت رقیب وارداتی (${nf(s.competitorPrice,1)} دلار) منهای انگیزه تغییر تأمین‌کننده است.</div>`;
+ const beRows=[42,45,47.5,50,52].map(p=>{const mm=model({salePrice:p}); return `<tr><td>${nf(p,1)} دلار</td><td class="num">${nf(mm.cmPerM2Usd,1)} دلار</td><td class="num">${nf(mm.beM2)}</td><td class="num">${pct(mm.beUtil,1)}</td><td class="num">${isFinite(mm.paybackUsd)?nf(mm.paybackUsd,1)+' سال':'—'}</td></tr>`}).join('');
+ document.getElementById('breakevenTableWrap').innerHTML=`<table><thead><tr><th>قیمت فروش</th><th>حاشیه مشارکت</th><th>نقطه سر به سر</th><th>درصد ظرفیت</th><th>بازگشت دلاری</th></tr></thead><tbody>${beRows}</tbody></table>`;
+ document.getElementById('riskBox').innerHTML=[
+ ['ریسک ارز و تورم','بالا','قیمت‌گذاری دلارلینک در قرارداد فروش، خرید مرحله‌ای ماده، پوشش طبیعی درآمد و هزینه ارزی؛ سناریوی محافظه‌کارانه ارزی را ببینید'],
+ ['سرمایه در گردش ماده کوتینگ و مطالبات','بالا','خرید مرحله‌ای ماده بر اساس فروش پیش‌بینی‌شده، پیش‌دریافت پروژه‌ای و سقف اعتبار مشتری'],
+ ['تأخیر گواهینامه فنی و استاندارد','بالا','شروع فرآیند استاندارد ملی و آزمون مرکز تحقیقات راه و مسکن در دوره ساخت؛ فروش پایلوت غیرالزامی'],
+ ['وابستگی ماده مصرفی وارداتی و ثبت سفارش','متوسط','موجودی راهبردی، تأمین‌کننده جایگزین، تنوع مسیر حمل، پیگیری تخصیص ارز'],
+ ['دور زدن مالک فناوری توسط میزبان','متوسط','انحصار تأمین ماده نزد زیگورات، ثبت برند، گواهینامه به نام زیگورات، تعهد عدم رقابت و NDA در قرارداد مشارکت'],
+ ['مالیاتی و انطباق (ارزش افزوده، تکلیفی لیسانس)','متوسط','ثبت‌نام ارزش افزوده، شفافیت قرارداد لیسانس، اخذ مشاوره مالیاتی پیش از عقد قرارداد']
+ ].map(r=>`<div class="risk"><div><b>${r[0]}</b><div class="small">${r[2]}</div></div><span class="tag ${r[1]==='بالا'?'high':'med'}">${r[1]}</span></div>`).join('');
+}
+function coopTexts(){return {
+ jv:`<p><b>مشارکت مدنی:</b> کارخانه میزبان به‌عنوان سرمایه‌گذار، آورده نقدی و زیرساخت (سوله، برش، سکوریت، نیروی انسانی) را تأمین می‌کند؛ زیگورات فناوری، ماده کوتینگ، برند، گواهینامه و پشتیبانی فنی را می‌آورد و ${'حق لیسانس '+nf(s.licensePct,0)+'٪'} از فروش دریافت می‌کند. بازده نمایش‌داده‌شده در این ابزار، بازده سهامدار یعنی کارخانه میزبان است.</p>
+ <div class="legal-item"><b>الزامات قراردادی:</b> قرارداد مشارکت مدنی با تعیین دقیق سهم آورده، نحوه تقسیم سود، حسابرسی مستقل، ساز‌وکار خروج و حل اختلاف (داوری)؛ تصریح مالکیت انحصاری فرمولاسیون و برند نزد زیگورات؛ تعهد عدم رقابت و عدم دور زدن (خرید ماده صرفاً از زیگورات) با وجه التزام.</div>
+ <div class="legal-item"><b>نکته مالیاتی:</b> مشارکت مدنی شخصیت حقوقی مستقل ندارد؛ درآمد به نسبت سهم در دفاتر طرفین شناسایی می‌شود. اگر شرکت مشترک (JV ثبتی) تأسیس شود، مالیات ۲۵٪ ماده ۱۰۵ بر شخص حقوقی جدید اعمال می‌شود و معافیت دانش‌بنیان فقط با احراز شرایط برای همان شخص حقوقی قابل استفاده است.</div>`,
+ toll:`<p><b>حق‌العمل‌کاری (تولید قراردادی):</b> زیگورات مالک ماده، برند و محصول نهایی می‌ماند و کارخانه میزبان در ازای اجرت مشخص (ثابت یا بر مترمربع) خدمات فرآوری ارائه می‌کند. کنترل فناوری حداکثری است اما تمام سرمایه در گردش و ریسک فروش نزد زیگورات می‌ماند و این ابزار باید با آورده سهامدار زیگورات تفسیر شود.</p>
+ <div class="legal-item"><b>الزامات قراردادی:</b> قرارداد حق‌العمل‌کاری با SLA کیفیت، نرخ پرت مجاز، برنامه ظرفیت، محرمانگی و بازرسی؛ بیمه مسئولیت کیفیت.</div>
+ <div class="legal-item"><b>نکته مالیاتی:</b> اجرت فرآوری برای کارخانه درآمد خدمات است؛ ارزش افزوده روی صورتحساب اجرت اعمال می‌شود.</div>`,
+ lease:`<p><b>اجاره فضا:</b> زیگورات مالک کامل خط است و صرفاً فضا و یوتیلیتی را از کارخانه اجاره می‌کند. استقلال کامل، اما سرمایه‌گذاری و ریسک تماماً بر عهده زیگورات است و هم‌افزایی با زیرساخت میزبان (برش، سکوریت، بازار محلی) باید جداگانه قرارداد شود.</p>
+ <div class="legal-item"><b>الزامات قراردادی:</b> اجاره‌نامه رسمی با حق دسترسی، تضمین برق و یوتیلیتی، شرایط تخلیه و انتقال خط؛ قرارداد خدمات جانبی جدا.</div>
+ <div class="legal-item"><b>نکته مالیاتی:</b> اجاره برای موجر مشمول مالیات اجاره است؛ سرمایه‌گذاری در دفاتر زیگورات ثبت و مستهلک می‌شود.</div>`
+}};
+function renderLegal(m){
+ const ct=coopTexts();
+ document.getElementById('coopText').innerHTML=ct[s.coopModel]||ct.jv;
+ document.getElementById('permitBox').innerHTML=[
+ ['جواز توسعه / اصلاح پروانه بهره‌برداری (وزارت صمت)','افزودن خط کوتینگ به کارخانه موجود، توسعه ظرفیت محسوب می‌شود و باید در پروانه درج شود؛ پیش‌نیاز تسهیلات بانکی طرح.'],
+ ['استاندارد ملی و آزمون‌های عملکردی','اخذ نشان استاندارد شیشه دوجداره/کم‌گسیل و آزمون‌های طیفی در مرکز تحقیقات راه، مسکن و شهرسازی. بودجه آن در سرمایه ثابت (ردیف استاندارد و گواهی) دیده شده و باید در دوره ساخت آغاز شود.'],
+ ['مبحث ۱۹ مقررات ملی ساختمان','انطباق محصول با الزامات انرژی ساختمان، اهرم فروش به انبوه‌ساز و پروژه‌های دولتی است؛ گواهی انطباق تهیه شود.'],
+ ['ثبت سفارش و تخصیص ارز واردات ماده','کد تعرفه ماده کوتینگ، ثبت سفارش در سامانه جامع تجارت و برنامه تخصیص ارز؛ هزینه حمل و حقوق ورودی در قیمت ماده لحاظ شده است.'],
+ ['ثبت برند و اسرار تجاری','ثبت علامت تجاری در ایران؛ حفاظت فرمولاسیون از طریق اسرار تجاری و انحصار تأمین ماده (اهرم اصلی در برابر دور زدن).'],
+ ['بیمه و ایمنی','بیمه تمام‌خطر تجهیزات و مسئولیت مدنی؛ حق بیمه تأمین اجتماعی نیروی خط در هزینه ثابت سالانه لحاظ شود.'],
+ ['مالیات بر ارزش افزوده','ثبت‌نام و صدور صورتحساب الکترونیکی (سامانه مودیان)؛ در فروش B2B قابل انتقال است اما بر جریان نقدی کوتاه‌مدت اثر دارد.']
+ ].map(x=>`<div class="legal-item"><b>${x[0]}</b><div class="small">${x[1]}</div></div>`).join('');
+ document.getElementById('taxLegalBox').innerHTML=`
+ <div class="legal-item"><b>مالیات اشخاص حقوقی:</b> نرخ ماده ۱۰۵ ق.م.م ۲۵٪ است (در مدل پیش‌فرض ${pct(s.taxPct,0)}). هزینه بهره تسهیلات در محاسبه مالیات این مدل کسر می‌شود.</div>
+ <div class="legal-item"><b>دانش‌بنیان:</b> با احراز شرایط، معافیت مالیاتی ماده ۳ قانون جهش تولید دانش‌بنیان و دسترسی به تسهیلات صندوق نوآوری و شکوفایی (نرخ ترجیحی) فعال می‌شود — سناریوی «دانش‌بنیان» را ببینید. وضعیت فعلی: ${s.knowledgeBased?'<span class="good">فعال در مدل</span>':'<span class="warn">غیرفعال — در حال پیگیری</span>'}.</div>
+ <div class="legal-item"><b>حق لیسانس ${nf(s.licensePct,0)}٪:</b> اگر دریافت‌کننده لیسانس شخص حقوقی ایرانی (زیگورات) باشد، درآمد عادی مشمول مالیات اوست. اگر بخشی به لیسانس‌دهنده خارجی پرداخت شود، مالیات تکلیفی مواد ۱۰۷/۱۰۹ ق.م.م و محدودیت انتقال ارز باید پیش از عقد قرارداد بررسی شود.</div>
+ <div class="legal-item"><b>گارانتی:</b> ذخیره ${nf(s.warrantyPct,1)}٪ فروش برای تعهدات گارانتی در مدل منظور شده؛ متن تعهد گارانتی (مدت، سقف مسئولیت، استثنائات نصب) باید در قرارداد فروش استاندارد شود.</div>`;
+}
+function renderTexts(m){const p=m.p; const y3=m.rows[2];
+ const coopTitle={jv:'مشارکت مدنی با کارخانه میزبان',toll:'حق‌العمل‌کاری (تولید قراردادی)',lease:'اجاره فضا و مالکیت کامل خط'}[p.coopModel];
+ const disc=(1-p.salePrice/Math.max(1,p.competitorPrice))*100;
+ const text=`
+<h2>خلاصه مدیریتی</h2>
+<p>این طرح برای افزودن خط کوتینگ شیشه طیف‌گزین کنترل خورشیدی به یک کارخانه شیشه‌پردازی موجود تدوین شده است. منطق طرح، ساخت کارخانه جدید نیست؛ بلکه افزودن یک حلقه فناورانه به ظرفیت موجود است: کارخانه میزبان زیرساخت برش، سکوریت، نیروی انسانی، سوله و بازار محلی را دارد و زیگورات فناوری کوتینگ، ماده مصرفی، برند، گواهینامه و پشتیبانی فنی را می‌آورد. ساختار همکاری پیشنهادی: <b>${coopTitle}</b>. سرمایه کل ${money(m.investment,m.usdInvestment,1)}، دوره بازگشت دلاری ${isFinite(m.paybackUsd)?nf(m.paybackUsd,1)+' سال':'خارج از افق'} و نرخ بازده داخلی سهامدار ${pct(m.eqIrrUsd,1)} دلاری (${pct(m.eqIrrRial,1)} ریالی اسمی) است.</p>
+<div class="report-summary"><div class="box"><b>سرمایه‌گذاری کل</b><br>${money(m.investment,m.usdInvestment,1)}</div><div class="box"><b>ظرفیت هدف</b><br>${nf(m.totalCap)} مترمربع در سال</div><div class="box"><b>حداقل DSCR</b><br>${isFinite(m.minDscr)?nf(m.minDscr,2):'—'}</div></div>
+<h2>بازار و رقابت</h2>
+<p>مرجع قیمتی بازار، شیشه کنترل انرژی وارداتی (نظیر AGC بلژیک) با قیمت تحویل حدود <b>${nf(p.competitorPrice,1)} دلار بر مترمربع</b> است. قیمت‌گذاری طرح <b>${nf(p.salePrice,1)} دلار</b>، یعنی حدود <b>${nf(disc,0)}٪ زیر رقیب وارداتی</b>، با مزیت تحویل داخلی، خدمات پس از فروش و حذف ریسک واردات برای مشتری. محرک تقاضا، الزامات مبحث ۱۹ مقررات ملی ساختمان و رشد تعرفه انرژی است: هر مترمربع شیشه طیف‌گزین حدود <b>${nf(p.energyKwhPerM2)} کیلووات‌ساعت در سال</b> صرفه‌جویی برق ایجاد می‌کند. چون قیمت رقیب مرجع دلاری است، قیمت فروش طرح دلارلینک تعریف شده و پوشش طبیعی در برابر رشد نرخ ارز فراهم می‌کند.</p>
+<h2>مدل درآمد</h2>
+<p>محصول در دو مسیر فروخته می‌شود: لایه شیشه کوت‌شده به کارخانه‌های دوجداره‌سازی، تولیدکنندگان پنجره و شرکت‌های نما؛ و واحد دوجداره کامل برای پروژه‌های ساختمانی. ظرفیت هدف سالانه <b>${nf(m.totalCap)} مترمربع</b> با منحنی بهره‌برداری ${pct(p.util1,0)} در سال اول تا ${pct(p.util5,0)} از سال پنجم است.</p>
+<h2>ساختار همکاری و نقش طرفین</h2>
+<p>کارخانه میزبان در نقش سرمایه‌گذار، آورده نقدی (${money(m.equity0,m.usdEquity0,1)}) و زیرساخت را تأمین می‌کند و مالک جریان نقدی سهامدار این مدل است. زیگورات مالک فناوری، برند و انحصار تأمین ماده کوتینگ است و <b>${nf(p.licensePct,0)}٪ فروش</b> را به‌عنوان حق لیسانس و پشتیبانی فنی دریافت می‌کند (جمع ده‌ساله حدود ${money(m.totalLicense,m.totalLicense/((m.rows[0].fx+m.rows[9].fx)/2),1)}). این تفکیک، ریسک «دور زدن فناوری» را با اهرم انحصار ماده و گواهینامه کنترل می‌کند.</p>
+<h2>ساختار هزینه</h2>
+<p>اجزای دلارلینک: ماده کوتینگ (${nf(p.coatingCost,1)} دلار) و شیشه پایه (${nf(p.glassCost,1)} دلار)؛ اجزای ریالی: اعمال و فرآوری و هزینه ثابت کارخانه که با تورم داخلی رشد می‌کنند. حاشیه مشارکت هر مترمربع به قیمت‌های سال صفر حدود <b>${nf(m.cmPerM2Usd,1)} دلار</b> و نقطه سر به سر سالانه حدود <b>${nf(m.beM2)} مترمربع (${pct(m.beUtil,1)} ظرفیت)</b> است.</p>
+<h2>سرمایه‌گذاری و تأمین مالی</h2>
+<p>سرمایه ثابت هر خط ${money(capexPerLineUsd(p)*p.fx0,capexPerLineUsd(p),1)} شامل خط کوتینگ و کیورینگ، کلین‌روم، شستشو، سوله، نصب و زیرساخت، کنترل کیفیت، هزینه استاندارد و گواهی و ذخیره ریسک ${pct(p.contingencyPct,0)} است. دوره ساخت ${nf(p.constructionMonths)} ماه فرض شده و بهره این دوره (${money(m.idc,m.idc/p.fx0,1)}) به اصل تسهیلات اضافه می‌شود. تأمین مالی: تسهیلات ثابت ${pct(p.debtPct,0)} سرمایه ثابت با نرخ ${pct(p.interestRate,0)}، تنفس ${nf(p.graceYears)} سال و بازپرداخت ${nf(p.debtTenor)} سال؛ تسهیلات سرمایه در گردش ${pct(p.wcDebtPct,0)} از سرمایه در گردش اولیه با نرخ ${pct(p.wcInterestRate,0)}. ساختار بازپرداخت ${p.repayStructure==='sculpted'?'پلکانی و همگام با منحنی بهره‌برداری':'اقساط مساوی'} است${p.interestMoratoriumYears>0?' و '+nf(p.interestMoratoriumYears)+' سال تنفس کامل (سرمایه‌ای‌شدن بهره) برای عبور از دورهٔ راه‌اندازی در نظر گرفته شده':''}، به‌گونه‌ای که نسبت پوشش خدمت بدهی در سال‌های نخست بالای آستانهٔ بانکی بماند. سرمایه در گردش بر اساس فروش، دوره‌های خرید ماده، پیش‌دریافت ${pct(p.advancePct,0)} و وصول ${nf(p.dsoDays)}روزه محاسبه و رشد اسمی آن هر سال از جریان نقدی کسر می‌شود.</p>
+<h2>قابلیت بانکی و پوشش خدمت بدهی</h2>
+<p>در سال سوم، درآمد ${money(y3.revenue,y3.revenue/y3.fx,1)} و سود عملیاتی ${money(y3.ebitda,y3.ebitda/y3.fx,1)} است. حداقل نسبت پوشش خدمت بدهی در دوره بازپرداخت <b>${isFinite(m.minDscr)?nf(m.minDscr,2):'—'}</b> است؛ ${m.minDscr>=1.2?'بالاتر از آستانه متعارف ۱٫۲ و قابل دفاع در کمیته اعتباری.':'زیر آستانه ۱٫۲؛ پیشنهاد می‌شود تنفس دوساله یا فازبندی برداشت تسهیلات مذاکره شود.'}</p>
+<h2>مالیات و مشوق‌ها</h2>
+<p>مالیات اشخاص حقوقی ${p.knowledgeBased?'با فرض معافیت دانش‌بنیان صفر':'با نرخ '+pct(p.taxPct,0)+' (ماده ۱۰۵)'} منظور شده و بهره تسهیلات به‌عنوان هزینه قابل قبول کسر می‌شود. اخذ گواهی دانش‌بنیان، علاوه بر معافیت مالیاتی، دسترسی به تسهیلات ترجیحی صندوق نوآوری را فراهم می‌کند و در حال پیگیری است.</p>`;
+ document.getElementById('bpText').innerHTML=text;
+ document.getElementById('printReport').innerHTML=`<h1>گزارش سرمایه‌گذاری خط کوتینگ شیشه طیف‌گزین کنترل خورشیدی</h1><p class="muted">${s.name} — گزارش قابل ارائه به کارخانه میزبان (سرمایه‌گذار) و بانک — اعداد به ${curLabel()}</p>${text}<h2>جدول جریان نقدی خلاصه</h2>${document.getElementById('cashflowTable').outerHTML.replace('id="cashflowTable"','')}<h2>جمع‌بندی بانکی</h2>${document.getElementById('bankBox').innerHTML}<h2>تحلیل ریسک</h2>${document.getElementById('riskBox').innerHTML}<h2>چک‌لیست حقوقی و مجوزها</h2>${document.getElementById('permitBox')?document.getElementById('permitBox').innerHTML:''}<p class="small">این گزارش خروجی یک مدل شبیه‌سازی است؛ مفروضات کلان (نرخ ارز، تورم، نرخ تسهیلات) باید با استعلام روز به‌روزرسانی و ساختار حقوقی و مالیاتی توسط مشاور معتمد تأیید شود.</p>`;
+}
+function activateTab(tab){document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));document.getElementById(tab).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));window.scrollTo({top:0,behavior:'smooth'});}
+document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>activateTab(b.dataset.tab)));
+document.querySelectorAll('#curswitch button').forEach(b=>b.addEventListener('click',()=>{cur=b.dataset.cur;document.querySelectorAll('#curswitch button').forEach(x=>x.classList.toggle('active',x===b));calculateAndRender();}));
+document.getElementById('coopSelect').addEventListener('change',e=>{s.coopModel=e.target.value;calculateAndRender();});
+function renderWCPanel(m){
+ const adv=s.advancePct, del=s.deliveryMonths;
+ const aS=document.getElementById('advSlider'), dS=document.getElementById('delSlider');
+ if(aS && document.activeElement!==aS) aS.value=adv;
+ if(dS && document.activeElement!==dS) dS.value=del;
+ const av=document.getElementById('advVal'); if(av) av.textContent=nf(adv)+'٪';
+ const dv=document.getElementById('delVal'); if(dv) dv.textContent=nf(del)+' ماه';
+ const metrics=[
+  ['سرمایه در گردش اولیه', money(m.initialWC,m.initialWC/s.fx0,1), 'پولی که در رنگ و مطالبات قفل می‌شود'],
+  ['دورهٔ بازگشت پروژه', isFinite(m.paybackUsd)?nf(m.paybackUsd,1)+' سال':'نامحقق', 'دلاری'],
+  ['حداقل DSCR', isFinite(m.minDscr)?nf(m.minDscr,2):'—', 'پوشش خدمت بدهی']
+ ];
+ const wl=document.getElementById('wcLiveMetrics');
+ if(wl) wl.innerHTML=metrics.map(x=>`<div class="card kpi"><div class="name">${x[0]}</div><div class="value">${x[1]}</div><div class="hint">${x[2]}</div></div>`).join('');
+ // مقایسه با حالت تنگ و هدف
+ const tight=model({advancePct:50,deliveryMonths:1});
+ const target=model({advancePct:70,deliveryMonths:3});
+ const cn=document.getElementById('wcCompareNote');
+ if(cn) cn.innerHTML=`<b>مقایسه:</b> حالت تنگ (پیش‌پرداخت ۵۰٪، تحویل ۱ ماه) سرمایه در گردش ≈ ${money(tight.initialWC,tight.initialWC/s.fx0,0)} و بازگشت ${nf(tight.paybackUsd,1)} سال؛ هدف پیشنهادی شما (پیش‌پرداخت ۷۰٪، تحویل ۳ ماه) سرمایه در گردش ≈ ${money(target.initialWC,target.initialWC/s.fx0,0)} و بازگشت ${nf(target.paybackUsd,1)} سال. یعنی رفتن به هدف، حدود ${money(tight.initialWC-target.initialWC,(tight.initialWC-target.initialWC)/s.fx0,0)} از سرمایهٔ قفل‌شده آزاد می‌کند.`;
+}
+function bindWCSliders(){
+ const aS=document.getElementById('advSlider'), dS=document.getElementById('delSlider');
+ if(aS) aS.addEventListener('input',e=>{s.advancePct=toNumber(e.target.value); const f=document.querySelector('input[data-key=advancePct]'); if(f) f.value=s.advancePct; calculateAndRender();});
+ if(dS) dS.addEventListener('input',e=>{s.deliveryMonths=toNumber(e.target.value); const f=document.querySelector('input[data-key=deliveryMonths]'); if(f) f.value=s.deliveryMonths; calculateAndRender();});
+}
+function generateXML(){const keys=Object.keys(defaults); const xml='<?xml version="1.0" encoding="UTF-8"?>\n<scenario version="3" created="'+new Date().toISOString()+'">\n'+keys.map(k=>`  <${k}>${xmlEscape(s[k])}</${k}>`).join('\n')+'\n</scenario>'; document.getElementById('xmlOutput').value=xml; return xml;}
+function downloadXML(){const xml=generateXML(); const blob=new Blob([xml],{type:'application/xml;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ziggurat-solar-glass-scenario-v3.xml'; document.body.appendChild(a); a.click(); a.remove();}
+function loadXMLFromText(){const txt=document.getElementById('xmlInput').value.trim(); if(!txt){alert('متن پرونده سناریو خالی است.');return} try{const doc=new DOMParser().parseFromString(txt,'application/xml'); const ns={...s}; Object.keys(defaults).forEach(k=>{const el=doc.getElementsByTagName(k)[0]; if(el){ns[k]=typeof defaults[k]==='number'?toNumber(el.textContent):el.textContent;}}); s=ns; buildInputs(); calculateAndRender(); alert('سناریو بازیابی شد.');}catch(e){alert('پرونده قابل خواندن نیست.');}}
+function applyConfig(cfg){
+  CONFIG_META = cfg.meta || {};
+  defaults = JSON.parse(JSON.stringify(cfg.defaults || {}));
+  PRESETS = cfg.presets || {};
+  s = {...defaults};
+  buildInputs(); calculateAndRender(); bindWCSliders();
+}
+function showConfigBanner(fromFallback){
+  const el = document.getElementById("configBanner"); if(!el) return;
+  if(fromFallback){
+    el.style.display = "block";
+    el.innerHTML = `<div class="note" style="margin:0"><b>تنظیمات از نسخهٔ داخلی خوانده شد.</b><br><span class="small">برای اعمال ویرایش‌های فایل <code>ziggurat-config.json</code>، آن را بارگذاری کنید یا صفحه را از طریق یک سرور محلی باز کنید.</span><br><label class="btn" style="display:inline-block;margin-top:8px;cursor:pointer">بارگذاری فایل تنظیمات<input id="cfgFile" type="file" accept="application/json,.json" style="display:none"></label></div>`;
+    const inp = document.getElementById("cfgFile");
+    inp && inp.addEventListener("change", e=>{const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const c=JSON.parse(r.result); applyConfig(c); el.style.display="none";}catch(err){alert("فایل تنظیمات معتبر نیست.");}}; r.readAsText(f);});
+  } else { el.style.display = "none"; }
+}
+async function initConfig(){
+  try{
+    const res = await fetch("./ziggurat-config.json", {cache:"no-store"});
+    if(!res.ok) throw new Error("http "+res.status);
+    const cfg = await res.json();
+    applyConfig(cfg); showConfigBanner(false);
+  }catch(e){
+    applyConfig(EMBEDDED_CONFIG); showConfigBanner(true);
+  }
+}
+initConfig();
+</script>
+<script>
+  /* Site-header light/dark toggle — mirrors the SPA (localStorage 'zz-theme'). */
+  (function () {
+    var btn = document.getElementById('zzThemeBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      var next = cur === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('zz-theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

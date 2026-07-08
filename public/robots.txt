@@ -1,0 +1,7 @@
+# Unlisted investor tool — reachable by direct URL only, kept out of search.
+User-agent: *
+Disallow: /invest/
+Disallow: /invest
+
+# Everything else is crawlable.
+Allow: /
