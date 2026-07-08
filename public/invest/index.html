@@ -81,38 +81,27 @@
     @media print{body{background:#fff;color:#111;font-size:12px}.app{display:block}aside,.no-print,.hero,.section:not(#report){display:none!important}main{padding:0;max-width:none}.section{display:none!important}#report{display:block!important}.report-page{box-shadow:none;border:0;border-radius:0;padding:0;max-width:none}.card{box-shadow:none}.print-only{display:block}h1{font-size:22px}h2{font-size:16px}h3{font-size:13px}table{page-break-inside:auto}tr{page-break-inside:avoid}.page-break{page-break-before:always}.svgbox{height:230px}.btn{display:none}}
   </style>
   <style id="zz-skin">
-    /* ============================================================
-       Ziggurat site skin — harmonises this standalone tool with the
-       main SPA design tokens (index.css). Loaded AFTER the tool's own
-       <style>, so these declarations win. The tool's markup + JS are
-       untouched; only colours/surfaces/fonts + a site header are added.
-       ============================================================ */
+    /* Ziggurat site skin — harmonises this standalone tool with the main SPA
+       design tokens (index.css). Loaded AFTER the tool's own style, so wins. */
     :root{
       --bg:#F0EFE9; --bg2:#EAE8E0; --surface:#FFFFFF; --surface-up:#FFFFFF;
       --ink:#322D2A; --muted:#8B857E; --rule:rgba(50,45,42,.14);
       --accent:#2F7A28; --accent-strong:#245E1F; --accent-ink:#FFFFFF; --accent-soft:rgba(47,122,40,.09);
       --onyx:#0F0E12;
-      /* remap the tool's own tokens onto the site palette */
       --card:var(--surface); --line:var(--rule); --navy:var(--ink); --green:var(--accent);
       --gold:#B78A35; --red:#C0554F; --blue:#3E6B91;
-      --shadow:0 1px 0 var(--rule); --radius:20px;
-      --zz-header-h:66px;
+      --shadow:0 1px 0 var(--rule); --radius:20px; --zz-header-h:66px;
     }
     html[data-theme="dark"]{
       --bg:#0F0E12; --bg2:#151419; --surface:#1B1A20; --surface-up:#232128;
       --ink:#F0EFE9; --muted:#9A968F; --rule:rgba(240,239,233,.12);
       --accent:#64C23F; --accent-strong:#7ED257; --accent-ink:#0E1A08; --accent-soft:rgba(100,194,63,.14);
-      --onyx:#08070A;
-      --gold:#D6B15E; --red:#E38C86; --blue:#7FA8CB;
+      --onyx:#08070A; --gold:#D6B15E; --red:#E38C86; --blue:#7FA8CB;
     }
-    body{font-family:'Vazirmatn', system-ui, sans-serif;background:var(--bg);color:var(--ink);
-      transition:background .35s ease,color .35s ease}
+    body{font-family:'Vazirmatn', system-ui, sans-serif;background:var(--bg);color:var(--ink);transition:background .35s ease,color .35s ease}
     ::selection{background:var(--accent);color:#fff}
-
-    /* ---- surfaces that hard-coded a light hex → theme tokens ---- */
     aside{background:var(--surface);border-left:1px solid var(--rule)}
-    .brand{border-bottom:1px solid var(--rule)}
-    .brand .label{color:var(--accent)}
+    .brand{border-bottom:1px solid var(--rule)} .brand .label{color:var(--accent)}
     .nav button{color:var(--ink)}
     .nav button.active,.nav button:hover{background:var(--accent-soft);color:var(--accent)}
     .actions .btn{background:var(--surface);color:var(--ink);border:1px solid var(--rule)}
@@ -122,54 +111,42 @@
     .curswitch button{background:var(--surface);color:var(--muted)}
     .curswitch button.active{background:var(--accent);color:var(--accent-ink)}
     .hero{background:var(--surface);border:1px solid var(--rule);box-shadow:none;border-radius:24px}
-    .hero-title{color:var(--ink)}
-    .pill{background:var(--accent-soft);color:var(--accent)}
+    .hero-title{color:var(--ink)} .pill{background:var(--accent-soft);color:var(--accent)}
     .card{background:var(--surface);border:1px solid var(--rule);box-shadow:none;border-radius:22px}
-    h1,h2,h3{color:var(--ink)}
-    .kpi .value{color:var(--ink)}
+    h1,h2,h3{color:var(--ink)} .kpi .value{color:var(--ink)}
     .kpi.alert{background:var(--surface);border-color:var(--red)}
     .field label{color:var(--ink)}
     .field input,.field select,.field textarea{background:var(--surface-up);border:1px solid var(--rule);color:var(--ink)}
     .field input:focus,.field textarea:focus,.field select:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
     table{background:var(--surface);border:1px solid var(--rule)}
-    th{background:var(--bg2);color:var(--ink)}
-    th,td{border-bottom:1px solid var(--rule)}
+    th{background:var(--bg2);color:var(--ink)} th,td{border-bottom:1px solid var(--rule)}
     .svgbox{background:var(--surface);border:1px solid var(--rule)}
     .note{background:var(--accent-soft);border-right-color:var(--accent);color:var(--ink)}
     .note.danger{background:color-mix(in srgb,var(--red) 16%,var(--surface));border-right-color:var(--red);color:var(--ink)}
     .risk{border-bottom:1px dashed var(--rule)}
     .report-page{background:var(--surface);border:1px solid var(--rule);box-shadow:none;border-radius:24px}
     .report-summary .box{background:var(--bg2);border:1px solid var(--rule)}
-    .legal-item{background:var(--surface);border:1px solid var(--rule)}
-    .legal-item b{color:var(--ink)}
-    .footer{border-top:1px solid var(--rule)}
-    .good{color:var(--accent)}
+    .legal-item{background:var(--surface);border:1px solid var(--rule)} .legal-item b{color:var(--ink)}
+    .footer{border-top:1px solid var(--rule)} .good{color:var(--accent)}
     .xmlarea{background:var(--surface-up);border:1px solid var(--rule);color:var(--ink)}
-
-    /* ---- site header (matches the SPA Navigation) ---- */
-    .zz-site-header{position:sticky;top:0;z-index:80;
-      background:color-mix(in srgb,var(--bg) 88%,transparent);
-      -webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);
-      border-bottom:1px solid var(--rule)}
-    .zz-hdr-wrap{max-width:1400px;margin-inline:auto;padding:12px 24px;display:flex;
-      align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .heat td.h-good{background:color-mix(in srgb,var(--accent) 16%,var(--surface));color:var(--ink)}
+    .heat td.h-mid{background:color-mix(in srgb,var(--gold) 20%,var(--surface));color:var(--ink)}
+    .heat td.h-bad{background:color-mix(in srgb,var(--red) 18%,var(--surface));color:var(--ink)}
+    /* site header */
+    .zz-site-header{position:sticky;top:0;z-index:80;background:color-mix(in srgb,var(--bg) 88%,transparent);
+      -webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--rule)}
+    .zz-hdr-wrap{max-width:1400px;margin-inline:auto;padding:12px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
     .zz-hdr-brand{display:flex;align-items:center;gap:11px;color:var(--ink)}
     .zz-hdr-name{display:flex;flex-direction:column;line-height:1.05}
     .zz-hdr-name b{font-weight:800;font-size:19px;color:var(--ink)}
     .zz-hdr-name small{font-size:9.5px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
-    .zz-hdr-nav{display:flex;align-items:center;gap:4px;background:var(--surface);
-      border:1px solid var(--rule);border-radius:100px;padding:6px;max-width:100%;overflow-x:auto}
-    .zz-hdr-nav a{font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:100px;
-      white-space:nowrap;color:var(--muted);transition:color .2s}
+    .zz-hdr-nav{display:flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--rule);border-radius:100px;padding:6px;max-width:100%;overflow-x:auto}
+    .zz-hdr-nav a{font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:100px;white-space:nowrap;color:var(--muted);transition:color .2s}
     .zz-hdr-nav a:hover{color:var(--accent)}
     .zz-hdr-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
-    #zzThemeBtn{width:40px;height:40px;border-radius:100px;border:1px solid var(--rule);
-      background:var(--surface);color:var(--ink);cursor:pointer;font-size:17px;line-height:1;
-      display:flex;align-items:center;justify-content:center}
-    .zz-hdr-cta{display:inline-block;background:var(--accent);color:var(--accent-ink);
-      border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px}
+    #zzThemeBtn{width:40px;height:40px;border-radius:100px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);cursor:pointer;font-size:17px;line-height:1;display:flex;align-items:center;justify-content:center}
+    .zz-hdr-cta{display:inline-block;background:var(--accent);color:var(--accent-ink);border-radius:100px;padding:11px 20px;font-weight:700;font-size:14px}
     .zz-hdr-cta:hover{background:var(--accent-strong);color:var(--accent-ink)}
-    /* keep the tool's own sticky sidebar below the site header on desktop */
     @media(min-width:1051px){aside{top:var(--zz-header-h)!important;height:calc(100vh - var(--zz-header-h))!important}}
     @media(max-width:1050px){.zz-site-header{position:static}.zz-hdr-nav{order:3;width:100%}}
     @media print{.zz-site-header{display:none!important}}
@@ -290,7 +267,7 @@
       <p class="small">این دو اهرم مستقیم سرمایه در گردش را کم می‌کنند و بازگشت را کوتاه‌تر. اسلایدرها را حرکت دهید تا اثر لحظه‌ای را ببینید؛ همهٔ محاسبات کل ابزار هم‌زمان به‌روز می‌شوند.</p>
       <div class="grid cols-2" style="margin-top:6px">
         <div class="field"><label>پیش‌پرداخت مشتری: <b id="advVal"></b></label><input id="advSlider" type="range" min="10" max="100" step="5" style="min-height:auto"><span class="unit">هرچه بیشتر، مطالبات کمتر و سرمایه در گردش کمتر</span></div>
-        <div class="field"><label>دورهٔ تحویل پروژه: <b id="delVal"></b></label><input id="delSlider" type="range" min="1" max="6" step="1" style="min-height:auto"><span class="unit">بلندتر: رنگ در دورهٔ تحویل با پول مشتری می‌رسد، پس ذخیرهٔ کمتری لازم است</span></div>
+        <div class="field"><label>ذخیرهٔ رنگ وارداتی (ماه): <b id="delVal"></b></label><input id="delSlider" type="range" min="1" max="6" step="1" style="min-height:auto"><span class="unit">برابر دورهٔ حمل دریایی + ترخیص؛ کمتر (حمل هوایی) یعنی سرمایه در گردش کمتر</span></div>
       </div>
       <div class="grid cols-3" id="wcLiveMetrics" style="margin-top:14px"></div>
       <div class="note" id="wcCompareNote" style="margin-top:12px"></div>
@@ -354,7 +331,7 @@ const EMBEDDED_CONFIG = {
     "lastUpdated": "1405-04-17",
     "howToUpdate": "همهٔ اعداد و پیش‌فرض‌ها را در همین فایل ویرایش کنید؛ نیازی به دست‌زدن به فایل HTML نیست. پس از ویرایش، اگر فایل را با یک سرور محلی باز می‌کنید تغییرات خودکار اعمال می‌شود؛ اگر فایل را مستقیم (دابل‌کلیک) باز می‌کنید، در نوار کناری دکمهٔ «بارگذاری فایل تنظیمات» را بزنید و همین فایل را انتخاب کنید.",
     "fxRateNote": "نرخ دلار بازار آزاد تهران در تیر ۱۴۰۵ حدود ۱۷۵٬۰۰۰ تومان بود (منبع: بازار آزاد). این نرخ سریع تغییر می‌کند؛ پیش از هر ارائه، fx0 را به‌روزرسانی کنید.",
-    "priceNote": "salePrice=55 دلار (حدود ۴۵٪ زیر رقیب وارداتی ۱۰۰ دلاری؛ چون کیفیت/ماندگاری/برند هنوز هم‌تراز واردات نیست). glassCost=10.3 دلار ≈ شیشهٔ خام سوپرکلیر ۱٫۸ میلیون تومان با نرخ ۱۷۵٬۰۰۰."
+    "priceNote": "salePrice=55 دلار (حدود ۴۵٪ زیر رقیب وارداتی ۱۰۰ دلاری؛ چون کیفیت/ماندگاری/برند هنوز هم‌تراز واردات نیست). glassCost=10.3 دلار ≈ شیشهٔ خام سوپرکلیر ۱٫۸ میلیون تومان با نرخ ۱۷۵٬۰۰۰. | سناریوی کارخانه پروسه شیشه: خط کوتینگ ۳۰۰ هزار یورو≈۳۴۳ هزار دلار، کلین‌روم ۲۵ میلیارد تومان≈۱۴۳ هزار دلار، خرک ۵۰۰ میلیون تومان، هزینه ثابت ۵۰ هزار دلار (پرسنل مشترک)، ذخیرهٔ رنگ ۴ ماه (یک‌سوم فروش سالانه، حمل دریایی)."
   },
   "defaults": {
     "name": "سناریوی پایه بانک‌پذیر (یک کارخانه، یک خط)",
@@ -400,7 +377,7 @@ const EMBEDDED_CONFIG = {
     "wcDebtPct": 50,
     "wcInterestRate": 23,
     "wcBufferPct": 15,
-    "deliveryMonths": 2,
+    "coatingStockMonths": 3,
     "advancePct": 60,
     "dsoDays": 45,
     "rawGlassStockDays": 15,
@@ -481,6 +458,33 @@ const EMBEDDED_CONFIG = {
       "interestRate": 11,
       "wcInterestRate": 11,
       "graceYears": 2
+    },
+    "glassprocessor": {
+      "name": "کارخانه پروسه شیشه (زیرساخت موجود)",
+      "capacityPerLine": 180000,
+      "productionLineCost": 343000,
+      "cleanRoomCost": 143000,
+      "washingPrepCost": 0,
+      "shedBuildoutCost": 0,
+      "installUtilitiesCost": 30000,
+      "handlingQcSparesCost": 2860,
+      "certCost": 20000,
+      "factoryHasIGU": 1,
+      "contingencyPct": 8,
+      "fixedOpexPerLine": 50000,
+      "advancePct": 70,
+      "dsoDays": 10,
+      "coatingStockMonths": 4,
+      "util1": 15,
+      "util2": 30,
+      "util3": 40,
+      "util4": 44,
+      "util5": 44,
+      "util6": 44,
+      "util7": 44,
+      "util8": 44,
+      "util9": 44,
+      "util10": 44
     }
   }
 };
@@ -535,7 +539,7 @@ const fieldDefs = {
   ['wastePct','ذخیره پرت و ضایعات','number','درصد فروش'],
   ['warrantyPct','ذخیره گارانتی و برگشتی','number','درصد فروش'],
   ['licensePct','حق لیسانس و پشتیبانی فنی زیگورات','number','درصد فروش'],
-  ['deliveryMonths','دورهٔ تحویل پروژه','number','ماه؛ بلندتر یعنی رنگ کمتری پیش‌خرید می‌شود و سرمایه در گردش کمتر است'],
+  ['coatingStockMonths','ذخیرهٔ رنگ وارداتی','number','ماه پوشش؛ برابر دورهٔ حمل دریایی + ترخیص (≈۴ ماه = یک‌سوم فروش سالانه). بیشتر یعنی سرمایه در گردش بیشتر'],
   ['wcBufferPct','حاشیه اطمینان سرمایه در گردش','number','درصد'],
   ['advancePct','پیش‌دریافت از مشتری','number','درصد فروش'],
   ['dsoDays','دوره وصول مانده مطالبات','number','روز'],
@@ -568,7 +572,7 @@ function model(custom={}){
  const capex=capexUsd*p.fx0; // تومان، ثبت دفتری سال صفر
  // سرمایه در گردش اولیه بر مبنای سال اول
  function wcAt(revenue,coating,glassDom){
-   const D=Math.max(0.5,p.deliveryMonths||2); const coatingStockMonths=Math.min(4,Math.max(0.4,3.6/D)); // دورهٔ تحویل بلندتر → رنگ کمتر پیش‌خرید‌شده
+   const coatingStockMonths=Math.max(0.25,p.coatingStockMonths||3); // ذخیرهٔ رنگ وارداتی بابت دورهٔ حمل دریایی + ترخیص (≈۱/۳ فروش سالانه)
    const coatingInv=coating*(coatingStockMonths/12)*(1+p.wcBufferPct/100);
    const glassInv=glassDom*p.rawGlassStockDays/365;
    const ar=revenue*(1-p.advancePct/100)*p.dsoDays/365;
@@ -832,7 +836,7 @@ document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',(
 document.querySelectorAll('#curswitch button').forEach(b=>b.addEventListener('click',()=>{cur=b.dataset.cur;document.querySelectorAll('#curswitch button').forEach(x=>x.classList.toggle('active',x===b));calculateAndRender();}));
 document.getElementById('coopSelect').addEventListener('change',e=>{s.coopModel=e.target.value;calculateAndRender();});
 function renderWCPanel(m){
- const adv=s.advancePct, del=s.deliveryMonths;
+ const adv=s.advancePct, del=s.coatingStockMonths;
  const aS=document.getElementById('advSlider'), dS=document.getElementById('delSlider');
  if(aS && document.activeElement!==aS) aS.value=adv;
  if(dS && document.activeElement!==dS) dS.value=del;
@@ -846,15 +850,15 @@ function renderWCPanel(m){
  const wl=document.getElementById('wcLiveMetrics');
  if(wl) wl.innerHTML=metrics.map(x=>`<div class="card kpi"><div class="name">${x[0]}</div><div class="value">${x[1]}</div><div class="hint">${x[2]}</div></div>`).join('');
  // مقایسه با حالت تنگ و هدف
- const tight=model({advancePct:50,deliveryMonths:1});
- const target=model({advancePct:70,deliveryMonths:3});
+ const tight=model({advancePct:50,coatingStockMonths:5});
+ const target=model({advancePct:70,coatingStockMonths:3});
  const cn=document.getElementById('wcCompareNote');
- if(cn) cn.innerHTML=`<b>مقایسه:</b> حالت تنگ (پیش‌پرداخت ۵۰٪، تحویل ۱ ماه) سرمایه در گردش ≈ ${money(tight.initialWC,tight.initialWC/s.fx0,0)} و بازگشت ${nf(tight.paybackUsd,1)} سال؛ هدف پیشنهادی شما (پیش‌پرداخت ۷۰٪، تحویل ۳ ماه) سرمایه در گردش ≈ ${money(target.initialWC,target.initialWC/s.fx0,0)} و بازگشت ${nf(target.paybackUsd,1)} سال. یعنی رفتن به هدف، حدود ${money(tight.initialWC-target.initialWC,(tight.initialWC-target.initialWC)/s.fx0,0)} از سرمایهٔ قفل‌شده آزاد می‌کند.`;
+ if(cn) cn.innerHTML=`<b>مقایسه:</b> حالت پرریسک (پیش‌پرداخت ۵۰٪، ذخیرهٔ رنگ ۵ ماه) سرمایه در گردش ≈ ${money(tight.initialWC,tight.initialWC/s.fx0,0)} و بازگشت ${nf(tight.paybackUsd,1)} سال؛ هدف بهینه (پیش‌پرداخت ۷۰٪، ذخیرهٔ رنگ ۳ ماه) سرمایه در گردش ≈ ${money(target.initialWC,target.initialWC/s.fx0,0)} و بازگشت ${nf(target.paybackUsd,1)} سال. یعنی رفتن به هدف، حدود ${money(tight.initialWC-target.initialWC,(tight.initialWC-target.initialWC)/s.fx0,0)} از سرمایهٔ قفل‌شده آزاد می‌کند.`;
 }
 function bindWCSliders(){
  const aS=document.getElementById('advSlider'), dS=document.getElementById('delSlider');
  if(aS) aS.addEventListener('input',e=>{s.advancePct=toNumber(e.target.value); const f=document.querySelector('input[data-key=advancePct]'); if(f) f.value=s.advancePct; calculateAndRender();});
- if(dS) dS.addEventListener('input',e=>{s.deliveryMonths=toNumber(e.target.value); const f=document.querySelector('input[data-key=deliveryMonths]'); if(f) f.value=s.deliveryMonths; calculateAndRender();});
+ if(dS) dS.addEventListener('input',e=>{s.coatingStockMonths=toNumber(e.target.value); const f=document.querySelector('input[data-key=coatingStockMonths]'); if(f) f.value=s.coatingStockMonths; calculateAndRender();});
 }
 function generateXML(){const keys=Object.keys(defaults); const xml='<?xml version="1.0" encoding="UTF-8"?>\n<scenario version="3" created="'+new Date().toISOString()+'">\n'+keys.map(k=>`  <${k}>${xmlEscape(s[k])}</${k}>`).join('\n')+'\n</scenario>'; document.getElementById('xmlOutput').value=xml; return xml;}
 function downloadXML(){const xml=generateXML(); const blob=new Blob([xml],{type:'application/xml;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ziggurat-solar-glass-scenario-v3.xml'; document.body.appendChild(a); a.click(); a.remove();}
@@ -877,8 +881,7 @@ function showConfigBanner(fromFallback){
 }
 async function initConfig(){
   try{
-    // Absolute path so the config loads whether the URL is /invest or /invest/
-    // (a relative "./" would resolve to the site root on the no-slash URL and 404).
+    // Absolute path so config loads on both /invest and /invest/.
     const res = await fetch("/invest/ziggurat-config.json", {cache:"no-store"});
     if(!res.ok) throw new Error("http "+res.status);
     const cfg = await res.json();
