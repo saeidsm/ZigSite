@@ -85,6 +85,20 @@ const TechnologyPage = () => (
         </div>
       </div>
     </section>
+
+    {/* VIDEO — معرفی فناوری (Aparat) */}
+    <section style={{ ...S, padding: '0 24px 96px' }}>
+      <Label>ویدئوی معرفی</Label>
+      <div style={{ position: 'relative', width: '100%', aspectRatio: '16 / 9', marginTop: 20, borderRadius: 40, overflow: 'hidden', border: '1px solid var(--rule)', background: '#000' }}>
+        <iframe
+          src="https://www.aparat.com/video/video/embed/videohash/jtm59e0/vt/frame"
+          title="ویدئوی معرفی فناوری نانوپوشش طیف‌گزین زیگورات"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+        />
+      </div>
+    </section>
   </>
 );
 
