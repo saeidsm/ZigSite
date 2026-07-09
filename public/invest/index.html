@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <!-- Unlisted tool: reachable by URL only, never indexed. -->
   <meta name="robots" content="noindex,nofollow,noarchive,noimageindex" />
-  <title>شبیه‌ساز بیزنس‌پلن شیشه طیف‌گزین — زیگورات</title>
   <!-- Site font + shared light/dark theme (same zz-theme key as the main SPA) -->
   <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
   <script>
@@ -19,6 +18,7 @@
       } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
     })();
   </script>
+  <title>شبیه‌ساز بیزنس‌پلن شیشه طیف‌گزین — نسخه ۳ دوارزی</title>
   <style>
     :root{
       --bg:#f7f8f6; --card:#ffffff; --ink:#18222f; --muted:#647282; --line:#dbe1e7;
@@ -79,6 +79,39 @@
     .legal-item b{color:var(--navy)}
     @media(max-width:1050px){.app{grid-template-columns:1fr}aside{position:relative;height:auto;border-left:0;border-bottom:1px solid var(--line)}main{padding:18px}.hero{grid-template-columns:1fr}.grid.cols-2,.grid.cols-3,.grid.cols-4,.form-grid{grid-template-columns:1fr}.report-summary{grid-template-columns:1fr}}
     @media print{body{background:#fff;color:#111;font-size:12px}.app{display:block}aside,.no-print,.hero,.section:not(#report){display:none!important}main{padding:0;max-width:none}.section{display:none!important}#report{display:block!important}.report-page{box-shadow:none;border:0;border-radius:0;padding:0;max-width:none}.card{box-shadow:none}.print-only{display:block}h1{font-size:22px}h2{font-size:16px}h3{font-size:13px}table{page-break-inside:auto}tr{page-break-inside:avoid}.page-break{page-break-before:always}.svgbox{height:230px}.btn{display:none}}
+
+    /* دفاع در برابر بازنویسی CSS سایت میزبان */
+    .app .btn{background:#fff;color:var(--navy)}
+    .app .btn.primary{background:var(--green);color:#fff}
+    .app .btn.gold{background:#fbf5e8;color:#6b4d12}
+    .app .btn.danger{background:#fff4f2;color:#8b322d}
+    /* حالت تیره */
+    html[data-theme="dark"]{--bg:#0f141a;--card:#151c25;--ink:#e6ecf2;--muted:#94a3b3;--line:#2a3644;--navy:#d9e5f1;--shadow:0 10px 28px rgba(0,0,0,.35)}
+    html[data-theme="dark"] .app .btn{background:#1a2330;color:#d9e5f1;border-color:#2a3644}
+    html[data-theme="dark"] .app .btn.primary{background:var(--green);color:#fff}
+    html[data-theme="dark"] .app .btn.gold{background:#2c2517;color:#e6c983;border-color:#5c4a1e}
+    html[data-theme="dark"] .app .btn.danger{background:#2c1a18;color:#e9a79f;border-color:#5c2d28}
+    html[data-theme="dark"] .field input,html[data-theme="dark"] .field select,html[data-theme="dark"] .field textarea{background:#1a2330;color:#e6ecf2;border-color:#2a3644}
+    html[data-theme="dark"] th{background:#1a2330;color:#c2cfdc}
+    html[data-theme="dark"] table{background:#151c25}
+    html[data-theme="dark"] .nav button.active,html[data-theme="dark"] .nav button:hover{background:#1b2a24;color:#7fc9a8}
+    html[data-theme="dark"] .curswitch button{background:#151c25;color:#94a3b3}
+    html[data-theme="dark"] .curswitch button.active{background:var(--green);color:#fff}
+    html[data-theme="dark"] .hero{background:linear-gradient(135deg,#151c25 0%,#182420 100%)}
+    html[data-theme="dark"] .pill{background:#1b2a24;color:#7fc9a8}
+    html[data-theme="dark"] .note{background:#241d10;color:#e4cf9d}
+    html[data-theme="dark"] .note.danger{background:#2a1715;color:#eab4ac}
+    html[data-theme="dark"] .legal-item,html[data-theme="dark"] .report-page,html[data-theme="dark"] .report-summary .box{background:#151c25}
+    html[data-theme="dark"] .svgbox{background:#fff} /* نمودارها پنل روشن می‌مانند تا متن SVG خوانا باشد */
+    html[data-theme="dark"] .heat td.h-good{background:#14301f;color:#8fd9ae}
+    html[data-theme="dark"] .heat td.h-mid{background:#2c2410;color:#e2c37b}
+    html[data-theme="dark"] .heat td.h-bad{background:#331715;color:#eba39a}
+    /* نمودارهای گزارش */
+    .report-charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+    .chartblock{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:#fff;page-break-inside:avoid}
+    .chartblock h3{font-size:13.5px;margin-bottom:6px}
+    .chartblock .svgbox{height:235px;border:0}
+    @media print{.report-charts{grid-template-columns:1fr 1fr;gap:8px}.chartblock{border:1px solid #ccc}.chartblock .svgbox{height:190px}}
   </style>
   <style id="zz-skin">
     /* Ziggurat site skin — harmonises this standalone tool with the main SPA
@@ -202,9 +235,10 @@
   <div class="actions">
     <button class="btn primary" onclick="window.print()">چاپ گزارش</button>
     <button class="btn gold" onclick="downloadXML()">دریافت پرونده سناریو</button>
-    <button class="btn" onclick="loadPreset('base')">سناریوی پایه</button>
-    <button class="btn" onclick="loadPreset('conservative')">محافظه‌کارانه ارزی</button>
-    <button class="btn" onclick="loadPreset('kb')">دانش‌بنیان</button>
+    <div id="sidebarPresets" style="display:grid;gap:8px"></div>
+    <button class="btn" onclick="saveLocalScenario()">ذخیرهٔ سناریوی من در مرورگر</button>
+    <button class="btn danger" onclick="clearLocalScenario()">حذف ذخیرهٔ مرورگر</button>
+    <button class="btn" id="themeToggle" onclick="toggleTheme()">حالت تیره</button>
   </div>
   <div id="configBanner" style="display:none;margin-top:14px"></div>
   <p class="small" style="margin-top:14px">نسخه تعاملی بدون وابستگی به اینترنت. همه اعداد قابل ویرایش‌اند. نرخ ارز، تورم، مالیات و تسهیلات مطابق شرایط روز به‌روزرسانی شود.</p>
@@ -234,15 +268,7 @@
 
   <section id="assumptions" class="section">
     <h2>مفروضات و سناریو</h2>
-    <div class="scenario-buttons">
-      <button class="btn" onclick="loadPreset('pilot')">پایلوت یک کارخانه</button>
-      <button class="btn" onclick="loadPreset('base')">پایه یک کارخانه</button>
-      <button class="btn" onclick="loadPreset('growth')">توسعه داخلی دو خط</button>
-      <button class="btn" onclick="loadPreset('conservative')">محافظه‌کارانه ارزی</button>
-      <button class="btn" onclick="loadPreset('optimistic')">فروش قوی</button>
-      <button class="btn" onclick="loadPreset('kb')">دانش‌بنیان</button>
-      <button class="btn" onclick="loadPreset('glassprocessor')">کارخانه پروسه شیشه</button>
-    </div>
+    <div class="scenario-buttons" id="presetButtons"></div>
     <p class="small">پیش‌فرض‌ها برای تصمیم‌گیری یک کارخانه تنظیم شده‌اند؛ پس از انتخاب هر سناریو می‌توانید همه متغیرها را ویرایش کنید.</p>
     <div class="card" style="margin-bottom:16px"><h3>اقتصاد کلان و ارز</h3><div class="form-grid" id="macroInputs"></div><div class="note" style="margin-top:12px">قیمت فروش و ماده کوتینگ با نرخ ارز رشد می‌کنند (دلارلینک)؛ هزینه‌های داخلی و هزینه ثابت با تورم داخلی. اگر رشد ارز از تورم عقب بماند، حاشیه ریالی طرح فشرده می‌شود — این را در سناریوی محافظه‌کارانه ارزی ببینید.</div></div>
     <div class="card" style="margin-bottom:16px"><h3>مفروضات تولید، فروش و رقابت</h3><div class="form-grid" id="prodInputs"></div></div>
@@ -331,7 +357,7 @@ const EMBEDDED_CONFIG = {
     "toolName": "شبیه‌ساز بیزنس‌پلن شیشه طیف‌گزین زیگورات",
     "lastUpdated": "1405-04-17",
     "howToUpdate": "همهٔ اعداد و پیش‌فرض‌ها را در همین فایل ویرایش کنید؛ نیازی به دست‌زدن به فایل HTML نیست. پس از ویرایش، اگر فایل را با یک سرور محلی باز می‌کنید تغییرات خودکار اعمال می‌شود؛ اگر فایل را مستقیم (دابل‌کلیک) باز می‌کنید، در نوار کناری دکمهٔ «بارگذاری فایل تنظیمات» را بزنید و همین فایل را انتخاب کنید.",
-    "fxRateNote": "نرخ دلار بازار آزاد تهران در تیر ۱۴۰۵ حدود ۱۷۵٬۰۰۰ تومان بود (منبع: بازار آزاد). این نرخ سریع تغییر می‌کند؛ پیش از هر ارائه، fx0 را به‌روزرسانی کنید.",
+    "fxRateNote": "نرخ دلار آزاد تیر ۱۴۰۵ ≈ ۱۷۵٬۰۰۰ تومان. رشد سالانه ارز و تورم داخلی هر دو ۶۰٪ فرض شده (نظر بنیان‌گذار)؛ هزینه‌های دلارلینک فقط با ارز و هزینه‌های ریالی فقط با تورم رشد می‌کنند.",
     "priceNote": "salePrice=55 دلار (حدود ۴۵٪ زیر رقیب وارداتی ۱۰۰ دلاری؛ چون کیفیت/ماندگاری/برند هنوز هم‌تراز واردات نیست). glassCost=10.3 دلار ≈ شیشهٔ خام سوپرکلیر ۱٫۸ میلیون تومان با نرخ ۱۷۵٬۰۰۰. | سناریوی کارخانه پروسه شیشه: خط کوتینگ ۳۰۰ هزار یورو≈۳۴۳ هزار دلار، کلین‌روم ۲۵ میلیارد تومان≈۱۴۳ هزار دلار، خرک ۵۰۰ میلیون تومان، هزینه ثابت ۵۰ هزار دلار (پرسنل مشترک)، ذخیرهٔ رنگ ۴ ماه (یک‌سوم فروش سالانه، حمل دریایی)."
   },
   "defaults": {
@@ -343,8 +369,8 @@ const EMBEDDED_CONFIG = {
     "energyKwhPerM2": 105,
     "elecPriceToman": 2500,
     "fx0": 175000,
-    "fxGrowth": 30,
-    "inflation": 35,
+    "fxGrowth": 60,
+    "inflation": 60,
     "coatingCost": 15,
     "glassCost": 10.3,
     "applicationCost": 5,
@@ -367,7 +393,7 @@ const EMBEDDED_CONFIG = {
     "constructionMonths": 9,
     "knowledgeBased": 0,
     "taxPct": 25,
-    "discountRateRial": 35,
+    "discountRateRial": 70,
     "discountRateUsd": 20,
     "debtPct": 65,
     "interestRate": 23,
@@ -416,8 +442,8 @@ const EMBEDDED_CONFIG = {
     "conservative": {
       "name": "محافظه‌کارانه ارزی و فروش",
       "salePrice": 50,
-      "fxGrowth": 38,
-      "inflation": 40,
+      "fxGrowth": 57,
+      "inflation": 65,
       "fixedOpexPerLine": 100000,
       "contingencyPct": 12,
       "wcBufferPct": 20,
@@ -534,9 +560,10 @@ const fieldDefs = {
   ['salvagePct','ارزش اسقاط پایان دوره','number','درصد سرمایه ثابت در سال دهم']
  ],
  financeInputs:[
+  ['financingMode','روش تأمین مالی (مستر)','select-fin','وام بانکی یا تأمین کامل از آوردهٔ شخصی/شرکا'],
   ['coatingCost','هزینه ماده کوتینگ (وارداتی، دلارلینک)','number','دلار بر مترمربع؛ شامل حمل و حقوق ورودی'],
   ['glassCost','هزینه شیشه و خدمات پایه (دلارلینک)','number','دلار بر مترمربع؛ شیشه فلوت از قیمت جهانی تبعیت می‌کند'],
-  ['applicationCost','هزینه اعمال و فرآوری (داخلی)','number','معادل دلار سال صفر؛ با تورم داخلی رشد می‌کند'],
+  ['applicationCost','بالاسری تولید و کارمزد کارخانه (داخلی)','number','دلار بر مترمربع؛ دستمزد، انرژی و سربار خط (بدون رنگ و شیشه)؛ با تورم داخلی رشد می‌کند'],
   ['wastePct','ذخیره پرت و ضایعات','number','درصد فروش'],
   ['warrantyPct','ذخیره گارانتی و برگشتی','number','درصد فروش'],
   ['licensePct','حق لیسانس و پشتیبانی فنی زیگورات','number','درصد فروش'],
@@ -586,10 +613,11 @@ function model(custom={}){
  const y1glassDom=y1m2*(p.glassCost*fx(1)+p.applicationCost*p.fx0*infl(1));
  const initialWC=wcAt(y1rev,y1coat,y1glassDom);
  // تسهیلات
- const fixedDebt0=capex*p.debtPct/100;
+ const useDebt=(p.financingMode!=='equity');
+ const fixedDebt0=useDebt?capex*p.debtPct/100:0;
  const idc=fixedDebt0*(p.interestRate/100)*(p.constructionMonths/12)*0.5; // بهره دوران ساخت، برداشت میانگین ۵۰٪
  let fixedDebt=fixedDebt0+idc;
- const wcDebt=initialWC*p.wcDebtPct/100;
+ const wcDebt=useDebt?initialWC*p.wcDebtPct/100:0;
  const investment=capex+idc+initialWC;
  const equity0=capex+initialWC-fixedDebt0-wcDebt;
  const dep=(capex+idc)/10;
@@ -662,7 +690,9 @@ function buildInputs(){
   const el=document.getElementById(group); el.innerHTML='';
   fieldDefs[group].forEach(([key,label,type,unit])=>{
    const div=document.createElement('div'); div.className='field';
-   if(type==='select-repay'){
+   if(type==='select-fin'){
+    div.innerHTML=`<label>${label}</label><select data-key="${key}"><option value="debt" ${s[key]!=='equity'?'selected':''}>تسهیلات بانکی + آورده</option><option value="equity" ${s[key]==='equity'?'selected':''}>تأمین کامل از آورده (بدون وام)</option></select><span class="unit">${unit}</span>`;
+   }else if(type==='select-repay'){
     div.innerHTML=`<label>${label}</label><select data-key="${key}"><option value="sculpted" ${s[key]==='sculpted'?'selected':''}>پلکانی همگام با بهره‌برداری</option><option value="equal" ${s[key]==='equal'?'selected':''}>اقساط مساوی</option></select><span class="unit">${unit}</span>`;
    }else if(type==='checkbox'){
     div.innerHTML=`<label>${label}</label><label style="display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:10px 11px;background:#fff"><input data-key="${key}" type="checkbox" ${s[key]? 'checked':''} style="width:18px;height:18px;min-height:auto"> <span>فعال</span></label><span class="unit">${unit}</span>`;
@@ -686,7 +716,7 @@ function renderKPIs(m){const y3=m.rows[2]; const dscrBad=m.minDscr<1.2;
  const items=[
  ['سرمایه کل پروژه',money(m.investment,m.usdInvestment,1),'سرمایه ثابت، بهره دوران ساخت و سرمایه در گردش اولیه',''],
  ['ظرفیت هدف سالانه',nf(m.totalCap)+' مترمربع','نقطه سر به سر: '+nf(m.beM2)+' مترمربع ('+pct(m.beUtil,1)+')',''],
- ['حداقل DSCR دوره بازپرداخت',isFinite(m.minDscr)?nf(m.minDscr,2):'—',dscrBad?'زیر آستانه بانکی ۱٫۲ — ساختار تسهیلات نیاز به اصلاح دارد':'بالاتر از آستانه بانکی ۱٫۲',dscrBad?'alert':''],
+ ['حداقل DSCR دوره بازپرداخت',isFinite(m.minDscr)?nf(m.minDscr,2):'—',!isFinite(m.minDscr)?'بدون تسهیلات — تأمین کامل از آورده':(dscrBad?'زیر آستانه بانکی ۱٫۲ — ساختار تسهیلات نیاز به اصلاح دارد':'بالاتر از آستانه بانکی ۱٫۲'),dscrBad?'alert':''],
  ['دوره بازگشت پروژه',isFinite(m.paybackUsd)?nf(m.paybackUsd,1)+' سال':'نامحقق','بر مبنای جریان نقدی دلاری؛ سهامدار: '+(isFinite(m.equityPaybackUsd)?nf(m.equityPaybackUsd,1)+' سال':'نامحقق'),''],
  ['نرخ بازده داخلی پروژه',pct(m.irrUsd,1)+' دلاری','معادل ریالی اسمی: '+pct(m.irrRial,1),''],
  ['نرخ بازده سهامدار (کارخانه میزبان)',pct(m.eqIrrUsd,1)+' دلاری','معادل ریالی اسمی: '+pct(m.eqIrrRial,1),''],
@@ -718,6 +748,7 @@ function svgBridge(steps,opts){const w=760,h=300,pad={r:56,l:30,t:26,b:46};
  let cross="";if(opts&&opts.payback!=null&&isFinite(opts.payback)&&opts.payback<=steps.length-1){const xc=pad.r+(opts.payback+ (opts.hasInvestmentCol?1:0))*slot+slot/2- (opts.hasInvestmentCol?0:0);const xp=x(0)+ (opts.payback)*slot;cross=`<line x1="${xp}" y1="${pad.t}" x2="${xp}" y2="${y0}" stroke="#1f6b54" stroke-dasharray="5 4" stroke-width="2"/><text x="${xp}" y="${pad.t+13}" text-anchor="middle" font-size="11" fill="#1f6b54" font-weight="800">سربه‌سری ${nf(opts.payback,1)}</text>`;}
  let labels=steps.map((s,i)=>`<text x="${x(i)}" y="${h-18}" text-anchor="middle" font-size="11" fill="#566">${s.label}</text>`).join("");
  return `<svg viewBox="0 0 ${w} ${h}" width="100%" height="100%">${grid}${zero}${bars}${cross}${line}${labels}</svg>`;}
+function bridgeSvgFor(m){var invT=m.investment,invU=m.usdInvestment;var steps=[{label:'سرمایهٔ اولیه',fcf:null,cum:cur==='IRT'?-invT:-invU,txt:moneyShort(-invT,-invU,0)}];var run=cur==='IRT'?-invT:-invU;for(var i=0;i<5;i++){var r=m.rows[i];var add=cur==='IRT'?r.fcf:r.fcf/r.fx;run+=add;steps.push({label:'سال '+(i+1),fcf:cur==='IRT'?r.fcf:r.fcf/r.fx,cum:run,txt:moneyShort(r.fcf,r.fcf/r.fx,0)});}return svgBridge(steps,{payback:m.paybackUsd});}
 function renderCharts(m){
  const mv=(t,fxy)=>moneyShort(t,t/fxy,1);
  document.getElementById('profitChart').innerHTML=svgBar(m.rows.slice(0,5).map(r=>({label:'سال '+r.year,v1:cur==='IRT'?r.revenue:r.revenue/r.fx,txt:mv(r.revenue,r.fx)})),{color:'#1f6b54'});
@@ -732,7 +763,8 @@ function renderCharts(m){
  document.getElementById('volumeSens').innerHTML=svgBar(volData,{color:'#b78a35'});
  // ارزش برای مشتری
  const saveT=s.energyKwhPerM2*s.elecPriceToman; const priceT=s.salePrice*s.fx0; const disc=(1-s.salePrice/Math.max(1,s.competitorPrice))*100;
- (function(){var invT=m.investment,invU=m.usdInvestment;var steps=[{label:'سرمایهٔ اولیه',fcf:null,cum:cur==='IRT'?-invT:-invU,txt:moneyShort(-invT,-invU,0)}];var run=cur==='IRT'?-invT:-invU;for(var i=0;i<5;i++){var r=m.rows[i];var add=cur==='IRT'?r.fcf:r.fcf/r.fx;run+=add;steps.push({label:'سال '+(i+1),fcf:cur==='IRT'?r.fcf:r.fcf/r.fx,cum:run,txt:moneyShort(r.fcf,r.fcf/r.fx,0)});}document.getElementById('bridgeChart').innerHTML=svgBridge(steps,{payback:m.paybackUsd});var y4=m.rows[3];document.getElementById('bridgeNote').innerHTML='مثال سال ۴: EBITDA '+moneyShort(y4.ebitda,y4.ebitda/y4.fx,0)+' منهای مالیات '+moneyShort(y4.tax,y4.tax/y4.fx,0)+' منهای رشد سرمایه در گردش '+moneyShort(y4.deltaWC,y4.deltaWC/y4.fx,0)+' منهای نگهداشت '+moneyShort(y4.maint,y4.maint/y4.fx,0)+' = جریان نقدی آزاد '+moneyShort(y4.fcf,y4.fcf/y4.fx,0)+' ('+curLabel()+'). رشد سرمایه در گردش، بخش بزرگی از سود عملیاتی را در سال‌های رشد جذب می‌کند و همین بازگشت را به حدود ۴ سال می‌برد.';})();
+ document.getElementById('bridgeChart').innerHTML=bridgeSvgFor(m);
+ var y4=m.rows[3];document.getElementById('bridgeNote').innerHTML='مثال سال ۴: EBITDA '+moneyShort(y4.ebitda,y4.ebitda/y4.fx,0)+' منهای مالیات '+moneyShort(y4.tax,y4.tax/y4.fx,0)+' منهای رشد سرمایه در گردش '+moneyShort(y4.deltaWC,y4.deltaWC/y4.fx,0)+' منهای نگهداشت '+moneyShort(y4.maint,y4.maint/y4.fx,0)+' = جریان نقدی آزاد '+moneyShort(y4.fcf,y4.fcf/y4.fx,0)+' ('+curLabel()+'). رشد سرمایه در گردش، بخش بزرگی از سود عملیاتی را در سال‌های رشد جذب می‌کند و همین بازگشت را به حدود ۴ سال می‌برد.';
  document.getElementById('customerValueBox').innerHTML=`<table><tbody>
  <tr><th>صرفه‌جویی برق سالانه هر مترمربع</th><td class="num">${nf(saveT)} تومان (${nf(s.energyKwhPerM2)} کیلووات‌ساعت)</td></tr>
  <tr><th>صرفه‌جویی ده‌ساله هر مترمربع (اسمی، با تورم تعرفه)</th><td class="num">${nf(saveT*((Math.pow(1+s.inflation/100,10)-1)/(s.inflation/100)),0)} تومان</td></tr>
@@ -764,7 +796,7 @@ function renderTables(m){const rows=m.rows;
  document.getElementById('matrixWrap').innerHTML=mt+'</tbody></table>';
  // حساسیت ارز/تورم
  let fxr='<table><thead><tr><th>رشد سالانه ارز</th><th>IRR ریالی</th><th>IRR دلاری</th><th>حداقل DSCR</th><th>بازگشت دلاری</th></tr></thead><tbody>';
- [20,25,30,35,40].forEach(g=>{const mm=model({fxGrowth:g}); fxr+=`<tr><td>${pct(g,0)} (تورم ${pct(s.inflation,0)})</td><td class="num">${pct(mm.irrRial,1)}</td><td class="num">${pct(mm.irrUsd,1)}</td><td class="num ${mm.minDscr>=1.2?'good':'bad'}">${nf(mm.minDscr,2)}</td><td class="num">${isFinite(mm.paybackUsd)?nf(mm.paybackUsd,1)+' سال':'—'}</td></tr>`;});
+ const fxB=Math.round(s.fxGrowth);[fxB-20,fxB-10,fxB,fxB+10,fxB+20].forEach(g=>{const mm=model({fxGrowth:g}); fxr+=`<tr><td>${pct(g,0)} (تورم ${pct(s.inflation,0)})</td><td class="num">${pct(mm.irrRial,1)}</td><td class="num">${pct(mm.irrUsd,1)}</td><td class="num ${mm.minDscr>=1.2?'good':'bad'}">${nf(mm.minDscr,2)}</td><td class="num">${isFinite(mm.paybackUsd)?nf(mm.paybackUsd,1)+' سال':'—'}</td></tr>`;});
  document.getElementById('fxSensWrap').innerHTML=fxr+'</tbody></table>';
  // سر به سر
  document.getElementById('breakevenBox').innerHTML=`<p>حاشیه مشارکت هر مترمربع (به قیمت‌های سال صفر) حدود <b>${nf(m.cmPerM2Usd,1)} دلار</b> معادل <b>${nf(m.cmPerM2Usd*s.fx0/1e6,1)} میلیون تومان</b> است. با هزینه ثابت سال اول، نقطه سر به سر سالانه حدود <b>${nf(m.beM2)} مترمربع</b> یا <b>${pct(m.beUtil,1)}</b> ظرفیت هدف است.</p><div class="note">اگر قیمت فروش کمتر از هزینه متغیر کامل شود، نقطه سر به سر عملاً نامعتبر می‌شود. سقف قیمتی، قیمت رقیب وارداتی (${nf(s.competitorPrice,1)} دلار) منهای انگیزه تغییر تأمین‌کننده است.</div>`;
@@ -808,6 +840,38 @@ function renderLegal(m){
  <div class="legal-item"><b>حق لیسانس ${nf(s.licensePct,0)}٪:</b> اگر دریافت‌کننده لیسانس شخص حقوقی ایرانی (زیگورات) باشد، درآمد عادی مشمول مالیات اوست. اگر بخشی به لیسانس‌دهنده خارجی پرداخت شود، مالیات تکلیفی مواد ۱۰۷/۱۰۹ ق.م.م و محدودیت انتقال ارز باید پیش از عقد قرارداد بررسی شود.</div>
  <div class="legal-item"><b>گارانتی:</b> ذخیره ${nf(s.warrantyPct,1)}٪ فروش برای تعهدات گارانتی در مدل منظور شده؛ متن تعهد گارانتی (مدت، سقف مسئولیت، استثنائات نصب) باید در قرارداد فروش استاندارد شود.</div>`;
 }
+function buildReportCharts(m){
+ const p=m.p, fx0=p.fx0;
+ const V=(v)=>cur==='IRT'?v:v/fx0;
+ const srcSvg=svgBar([
+  {label:'آوردهٔ سهامدار',v1:V(m.equity0),txt:moneyShort(m.equity0,m.equity0/fx0,1),color:'#1f6b54'},
+  {label:'تسهیلات ثابت',v1:V(m.fixedDebt0+m.idc),txt:moneyShort(m.fixedDebt0+m.idc,(m.fixedDebt0+m.idc)/fx0,1),color:'#3e6b91'},
+  {label:'تسهیلات در گردش',v1:V(m.wcDebt),txt:moneyShort(m.wcDebt,m.wcDebt/fx0,1),color:'#b78a35'}]);
+ const usesSvg=svgBar([
+  {label:'سرمایه ثابت + بهره ساخت',v1:V(m.capex+m.idc),txt:moneyShort(m.capex+m.idc,(m.capex+m.idc)/fx0,1),color:'#17324d'},
+  {label:'سرمایه در گردش اولیه',v1:V(m.initialWC),txt:moneyShort(m.initialWC,m.initialWC/fx0,1),color:'#b45a5a'}]);
+ const pctS=p.wastePct+p.warrantyPct+p.licensePct;
+ const perSvg=svgBar([
+  {label:'قیمت فروش',v1:p.salePrice,txt:nf(p.salePrice,1),color:'#17324d'},
+  {label:'رنگ',v1:p.coatingCost,txt:nf(p.coatingCost,1),color:'#b45a5a'},
+  {label:'شیشه',v1:p.glassCost,txt:nf(p.glassCost,1),color:'#b78a35'},
+  {label:'بالاسری تولید',v1:p.applicationCost,txt:nf(p.applicationCost,1),color:'#3e6b91'},
+  {label:'پرت+گارانتی+لیسانس',v1:p.salePrice*pctS/100,txt:nf(p.salePrice*pctS/100,1),color:'#8a97a5'},
+  {label:'حاشیه هر متر',v1:m.cmPerM2Usd,txt:nf(m.cmPerM2Usd,1),color:'#1f6b54'}]);
+ const revSvg=svgLine([
+  {name:'درآمد ('+curLabel()+')',color:'#17324d',data:m.rows.map(r=>({label:'س'+r.year,v:cur==='IRT'?r.revenue:r.revenue/r.fx,txt:moneyShort(r.revenue,r.revenue/r.fx,0)}))},
+  {name:'سود عملیاتی',color:'#1f6b54',data:m.rows.map(r=>({label:'س'+r.year,v:cur==='IRT'?r.ebitda:r.ebitda/r.fx,txt:moneyShort(r.ebitda,r.ebitda/r.fx,0)}))}]);
+ const hasDebt=m.rows.some(r=>r.debtService>0);
+ const dscrBlock=hasDebt?`<div class="chartblock"><h3>پوشش خدمت بدهی (DSCR) — آستانه بانکی ۱٫۲</h3><div class="svgbox">${svgLine([{name:'DSCR',color:'#1f6b54',data:m.rows.map(r=>({label:'س'+r.year,v:Math.min(isFinite(r.dscr)?r.dscr:8,8),txt:isFinite(r.dscr)?nf(Math.min(r.dscr,8),1):'—'}))}],{hline:1.2})}</div></div>`:'';
+ return `<h2>نمای گرافیکی طرح</h2><div class="report-charts">
+ <div class="chartblock"><h3>منابع تأمین مالی</h3><div class="svgbox">${srcSvg}</div></div>
+ <div class="chartblock"><h3>مصارف سرمایه</h3><div class="svgbox">${usesSvg}</div></div>
+ <div class="chartblock"><h3>اقتصاد هر مترمربع (دلار)</h3><div class="svgbox">${perSvg}</div></div>
+ <div class="chartblock"><h3>روند درآمد و سود عملیاتی ده‌ساله</h3><div class="svgbox">${revSvg}</div></div>
+ <div class="chartblock"><h3>پل بازگشت سرمایه — ۵ سال نخست</h3><div class="svgbox">${bridgeSvgFor(m)}</div></div>
+ ${dscrBlock}
+ </div>`;
+}
 function renderTexts(m){const p=m.p; const y3=m.rows[2];
  const coopTitle={jv:'مشارکت مدنی با کارخانه میزبان',toll:'حق‌العمل‌کاری (تولید قراردادی)',lease:'اجاره فضا و مالکیت کامل خط'}[p.coopModel];
  const disc=(1-p.salePrice/Math.max(1,p.competitorPrice))*100;
@@ -822,7 +886,7 @@ function renderTexts(m){const p=m.p; const y3=m.rows[2];
 <h2>ساختار همکاری و نقش طرفین</h2>
 <p>کارخانه میزبان در نقش سرمایه‌گذار، آورده نقدی (${money(m.equity0,m.usdEquity0,1)}) و زیرساخت را تأمین می‌کند و مالک جریان نقدی سهامدار این مدل است. زیگورات مالک فناوری، برند و انحصار تأمین ماده کوتینگ است و <b>${nf(p.licensePct,0)}٪ فروش</b> را به‌عنوان حق لیسانس و پشتیبانی فنی دریافت می‌کند (جمع ده‌ساله حدود ${money(m.totalLicense,m.totalLicense/((m.rows[0].fx+m.rows[9].fx)/2),1)}). این تفکیک، ریسک «دور زدن فناوری» را با اهرم انحصار ماده و گواهینامه کنترل می‌کند.</p>
 <h2>ساختار هزینه</h2>
-<p>اجزای دلارلینک: ماده کوتینگ (${nf(p.coatingCost,1)} دلار) و شیشه پایه (${nf(p.glassCost,1)} دلار)؛ اجزای ریالی: اعمال و فرآوری و هزینه ثابت کارخانه که با تورم داخلی رشد می‌کنند. حاشیه مشارکت هر مترمربع به قیمت‌های سال صفر حدود <b>${nf(m.cmPerM2Usd,1)} دلار</b> و نقطه سر به سر سالانه حدود <b>${nf(m.beM2)} مترمربع (${pct(m.beUtil,1)} ظرفیت)</b> است.</p>
+<p>اجزای دلارلینک: ماده کوتینگ (${nf(p.coatingCost,1)} دلار) و شیشه پایه (${nf(p.glassCost,1)} دلار)؛ اجزای ریالی: بالاسری تولید و کارمزد کارخانه و هزینه ثابت که با تورم داخلی رشد می‌کنند. حاشیه مشارکت هر مترمربع به قیمت‌های سال صفر حدود <b>${nf(m.cmPerM2Usd,1)} دلار</b> و نقطه سر به سر سالانه حدود <b>${nf(m.beM2)} مترمربع (${pct(m.beUtil,1)} ظرفیت)</b> است.</p>
 <h2>سرمایه‌گذاری و تأمین مالی</h2>
 <p>سرمایه ثابت هر خط ${money(capexPerLineUsd(p)*p.fx0,capexPerLineUsd(p),1)} شامل خط کوتینگ و کیورینگ، کلین‌روم، شستشو، سوله، نصب و زیرساخت، کنترل کیفیت، هزینه استاندارد و گواهی و ذخیره ریسک ${pct(p.contingencyPct,0)} است. دوره ساخت ${nf(p.constructionMonths)} ماه فرض شده و بهره این دوره (${money(m.idc,m.idc/p.fx0,1)}) به اصل تسهیلات اضافه می‌شود. تأمین مالی: تسهیلات ثابت ${pct(p.debtPct,0)} سرمایه ثابت با نرخ ${pct(p.interestRate,0)}، تنفس ${nf(p.graceYears)} سال و بازپرداخت ${nf(p.debtTenor)} سال؛ تسهیلات سرمایه در گردش ${pct(p.wcDebtPct,0)} از سرمایه در گردش اولیه با نرخ ${pct(p.wcInterestRate,0)}. ساختار بازپرداخت ${p.repayStructure==='sculpted'?'پلکانی و همگام با منحنی بهره‌برداری':'اقساط مساوی'} است${p.interestMoratoriumYears>0?' و '+nf(p.interestMoratoriumYears)+' سال تنفس کامل (سرمایه‌ای‌شدن بهره) برای عبور از دورهٔ راه‌اندازی در نظر گرفته شده':''}، به‌گونه‌ای که نسبت پوشش خدمت بدهی در سال‌های نخست بالای آستانهٔ بانکی بماند. سرمایه در گردش بر اساس فروش، دوره‌های خرید ماده، پیش‌دریافت ${pct(p.advancePct,0)} و وصول ${nf(p.dsoDays)}روزه محاسبه و رشد اسمی آن هر سال از جریان نقدی کسر می‌شود.</p>
 <h2>قابلیت بانکی و پوشش خدمت بدهی</h2>
@@ -830,7 +894,7 @@ function renderTexts(m){const p=m.p; const y3=m.rows[2];
 <h2>مالیات و مشوق‌ها</h2>
 <p>مالیات اشخاص حقوقی ${p.knowledgeBased?'با فرض معافیت دانش‌بنیان صفر':'با نرخ '+pct(p.taxPct,0)+' (ماده ۱۰۵)'} منظور شده و بهره تسهیلات به‌عنوان هزینه قابل قبول کسر می‌شود. اخذ گواهی دانش‌بنیان، علاوه بر معافیت مالیاتی، دسترسی به تسهیلات ترجیحی صندوق نوآوری را فراهم می‌کند و در حال پیگیری است.</p>`;
  document.getElementById('bpText').innerHTML=text;
- document.getElementById('printReport').innerHTML=`<h1>گزارش سرمایه‌گذاری خط کوتینگ شیشه طیف‌گزین کنترل خورشیدی</h1><p class="muted">${s.name} — گزارش قابل ارائه به کارخانه میزبان (سرمایه‌گذار) و بانک — اعداد به ${curLabel()}</p>${text}<h2>جدول جریان نقدی خلاصه</h2>${document.getElementById('cashflowTable').outerHTML.replace('id="cashflowTable"','')}<h2>جمع‌بندی بانکی</h2>${document.getElementById('bankBox').innerHTML}<h2>تحلیل ریسک</h2>${document.getElementById('riskBox').innerHTML}<h2>چک‌لیست حقوقی و مجوزها</h2>${document.getElementById('permitBox')?document.getElementById('permitBox').innerHTML:''}<p class="small">این گزارش خروجی یک مدل شبیه‌سازی است؛ مفروضات کلان (نرخ ارز، تورم، نرخ تسهیلات) باید با استعلام روز به‌روزرسانی و ساختار حقوقی و مالیاتی توسط مشاور معتمد تأیید شود.</p>`;
+ document.getElementById('printReport').innerHTML=`<h1>گزارش سرمایه‌گذاری خط کوتینگ شیشه طیف‌گزین کنترل خورشیدی</h1><p class="muted">${s.name} — گزارش قابل ارائه به کارخانه میزبان (سرمایه‌گذار) و بانک — اعداد به ${curLabel()}</p>${text}${buildReportCharts(m)}<h2>جدول جریان نقدی خلاصه</h2>${document.getElementById('cashflowTable').outerHTML.replace('id="cashflowTable"','')}<h2>جمع‌بندی بانکی</h2>${document.getElementById('bankBox').innerHTML}<h2>تحلیل ریسک</h2>${document.getElementById('riskBox').innerHTML}<h2>چک‌لیست حقوقی و مجوزها</h2>${document.getElementById('permitBox')?document.getElementById('permitBox').innerHTML:''}<p class="small">این گزارش خروجی یک مدل شبیه‌سازی است؛ مفروضات کلان (نرخ ارز، تورم، نرخ تسهیلات) باید با استعلام روز به‌روزرسانی و ساختار حقوقی و مالیاتی توسط مشاور معتمد تأیید شود.</p>`;
 }
 function activateTab(tab){document.querySelectorAll('.section').forEach(e=>e.classList.remove('active'));document.getElementById(tab).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));window.scrollTo({top:0,behavior:'smooth'});}
 document.querySelectorAll('#nav button').forEach(b=>b.addEventListener('click',()=>activateTab(b.dataset.tab)));
@@ -864,12 +928,30 @@ function bindWCSliders(){
 function generateXML(){const keys=Object.keys(defaults); const xml='<?xml version="1.0" encoding="UTF-8"?>\n<scenario version="3" created="'+new Date().toISOString()+'">\n'+keys.map(k=>`  <${k}>${xmlEscape(s[k])}</${k}>`).join('\n')+'\n</scenario>'; document.getElementById('xmlOutput').value=xml; return xml;}
 function downloadXML(){const xml=generateXML(); const blob=new Blob([xml],{type:'application/xml;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='ziggurat-solar-glass-scenario-v3.xml'; document.body.appendChild(a); a.click(); a.remove();}
 function loadXMLFromText(){const txt=document.getElementById('xmlInput').value.trim(); if(!txt){alert('متن پرونده سناریو خالی است.');return} try{const doc=new DOMParser().parseFromString(txt,'application/xml'); const ns={...s}; Object.keys(defaults).forEach(k=>{const el=doc.getElementsByTagName(k)[0]; if(el){ns[k]=typeof defaults[k]==='number'?toNumber(el.textContent):el.textContent;}}); s=ns; buildInputs(); calculateAndRender(); alert('سناریو بازیابی شد.');}catch(e){alert('پرونده قابل خواندن نیست.');}}
+const PRESET_LABELS={base:'پایه بانک‌پذیر',pilot:'پایلوت',growth:'توسعه دو خط',conservative:'محافظه‌کارانه ارزی',optimistic:'فروش قوی',kb:'دانش‌بنیان',glassprocessor:'کارخانه پروسه شیشه'};
+function renderPresetButtons(){
+ const keys=['base',...Object.keys(PRESETS).filter(k=>k!=='base')];
+ const mk=k=>`<button class="btn" onclick="loadPreset('${k}')">${PRESET_LABELS[k]||((PRESETS[k]&&PRESETS[k].name)||k)}</button>`;
+ const sp=document.getElementById('sidebarPresets'); if(sp) sp.innerHTML=keys.map(mk).join('');
+ const pb=document.getElementById('presetButtons'); if(pb) pb.innerHTML=keys.map(mk).join('');
+}
+const LS_KEY='zigguratScenarioV3', LS_THEME='zz-theme';
+function saveLocalScenario(){try{localStorage.setItem(LS_KEY,JSON.stringify(s));alert('سناریوی فعلی در همین مرورگر ذخیره شد و از این پس مبنای نمودارها و گزارش چاپی است.');}catch(e){alert('ذخیره در این مرورگر ممکن نیست.');}}
+function clearLocalScenario(){try{localStorage.removeItem(LS_KEY);}catch(e){} s={...defaults}; buildInputs(); calculateAndRender(); alert('ذخیرهٔ مرورگر حذف شد و پیش‌فرض‌ها بازگشت.');}
+function restoreLocalScenario(){try{const raw=localStorage.getItem(LS_KEY); if(!raw) return false; const saved=JSON.parse(raw); Object.keys(defaults).forEach(k=>{if(saved[k]!==undefined) s[k]=saved[k];}); return true;}catch(e){return false;}}
+function applyTheme(th){document.documentElement.dataset.theme=th==='dark'?'dark':''; const b=document.getElementById('themeToggle'); if(b) b.textContent=th==='dark'?'حالت روشن':'حالت تیره';}
+function toggleTheme(){const next=document.documentElement.dataset.theme==='dark'?'light':'dark'; applyTheme(next); try{localStorage.setItem(LS_THEME,next);}catch(e){}}
 function applyConfig(cfg){
   CONFIG_META = cfg.meta || {};
   defaults = JSON.parse(JSON.stringify(cfg.defaults || {}));
   PRESETS = cfg.presets || {};
   s = {...defaults};
+  const restored=restoreLocalScenario();
+  renderPresetButtons();
   buildInputs(); calculateAndRender(); bindWCSliders();
+  let th='light'; try{th=localStorage.getItem(LS_THEME)||'light';}catch(e){}
+  applyTheme(th);
+  if(restored){const el=document.getElementById('configBanner'); if(el){el.style.display='block'; el.innerHTML='<div class="note" style="margin:0"><b>سناریوی ذخیره‌شدهٔ شما بازیابی شد.</b> <span class="small">برای بازگشت به پیش‌فرض، «حذف ذخیرهٔ مرورگر» را بزنید.</span></div>';}}
 }
 function showConfigBanner(fromFallback){
   const el = document.getElementById("configBanner"); if(!el) return;
@@ -882,8 +964,7 @@ function showConfigBanner(fromFallback){
 }
 async function initConfig(){
   try{
-    // Absolute path so config loads on both /invest and /invest/.
-    const res = await fetch("/invest/ziggurat-config.json", {cache:"no-store"});
+    const res = await fetch("./ziggurat-config.json", {cache:"no-store"});
     if(!res.ok) throw new Error("http "+res.status);
     const cfg = await res.json();
     applyConfig(cfg); showConfigBanner(false);
@@ -903,6 +984,7 @@ initConfig();
       var next = cur === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem('zz-theme', next); } catch (e) {}
+      if (window.applyTheme) { try { window.applyTheme(next); } catch (e) {} }
     });
   })();
 </script>
