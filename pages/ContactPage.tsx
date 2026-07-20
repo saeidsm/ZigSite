@@ -13,12 +13,25 @@ const labelStyle: React.CSSProperties = { display: 'block', fontSize: 13, color:
 const fieldCard: React.CSSProperties = { background: 'var(--surface)', border: '1px solid var(--rule)', borderRadius: 22, padding: 26 };
 
 const ContactPage = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: اتصال به بک‌اند / سرویس ایمیل — این فرم فعلاً فقط UI است و درخواستی ارسال نمی‌کند.
-    setSubmitted(true);
+    // POST به /api/contact — Caddy آن را به FormSubmit پروکسی می‌کند و ایمیل ارسال می‌شود.
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+    setStatus('sending');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ _subject: 'nanoglass', ...data }),
+      });
+      // FormSubmit حتی در خطا HTTP 200 برمی‌گرداند؛ فیلد success ملاک است.
+      const body = await res.json();
+      setStatus(res.ok && String(body.success) !== 'false' ? 'ok' : 'err');
+    } catch {
+      setStatus('err');
+    }
   };
 
   return (
@@ -61,36 +74,43 @@ const ContactPage = () => {
           </div>
         </div>
 
-        {/* Form (UI only) */}
+        {/* Form */}
         <div className="zz-card" style={{ borderRadius: 28, padding: 34 }}>
           <h2 style={{ fontSize: 22, fontWeight: 700, margin: '0 0 22px', color: 'var(--ink)' }}>درخواست مشاورهٔ رایگان</h2>
           <form onSubmit={handleSubmit}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
               <div>
                 <label style={labelStyle}>نام و نام خانوادگی</label>
-                <input type="text" placeholder="نام شما" style={inputStyle} />
+                <input type="text" name="name" required placeholder="نام شما" style={inputStyle} />
               </div>
               <div>
                 <label style={labelStyle}>شمارهٔ تماس</label>
-                <input type="tel" placeholder="۰۹۱۲..." style={inputStyle} />
+                <input type="tel" name="phone" required placeholder="۰۹۱۲..." style={inputStyle} />
               </div>
             </div>
             <div style={{ marginBottom: 16 }}>
               <label style={labelStyle}>ایمیل</label>
-              <input type="email" placeholder="you@email.com" style={inputStyle} />
+              <input type="email" name="email" placeholder="you@email.com" style={inputStyle} />
             </div>
             <div style={{ marginBottom: 16 }}>
               <label style={labelStyle}>نوع پروژه</label>
-              <input type="text" placeholder="مسکونی / اداری / کرتین‌وال ..." style={inputStyle} />
+              <input type="text" name="project_type" placeholder="مسکونی / اداری / کرتین‌وال ..." style={inputStyle} />
             </div>
             <div style={{ marginBottom: 22 }}>
               <label style={labelStyle}>توضیحات</label>
-              <textarea rows={4} placeholder="متراژ تقریبی جداره و توضیح کوتاه پروژه..." style={{ ...inputStyle, resize: 'vertical' }} />
+              <textarea rows={4} name="message" placeholder="متراژ تقریبی جداره و توضیح کوتاه پروژه..." style={{ ...inputStyle, resize: 'vertical' }} />
             </div>
-            <button type="submit" className="zz-btn" style={{ fontSize: 15, padding: '15px 28px', width: '100%' }}>ارسال درخواست</button>
-            {submitted && (
+            <button type="submit" className="zz-btn" disabled={status === 'sending'} style={{ fontSize: 15, padding: '15px 28px', width: '100%' }}>
+              {status === 'sending' ? 'در حال ارسال...' : 'ارسال درخواست'}
+            </button>
+            {status === 'ok' && (
               <p style={{ fontSize: 13.5, color: 'var(--accent)', margin: '14px 0 0', textAlign: 'center' }}>
-                درخواست شما ثبت شد؛ به‌زودی با شما تماس می‌گیریم. (این فرم هنوز به سرویس ایمیل متصل نیست)
+                درخواست شما ثبت شد؛ به‌زودی با شما تماس می‌گیریم.
+              </p>
+            )}
+            {status === 'err' && (
+              <p style={{ fontSize: 13.5, color: '#c0392b', margin: '14px 0 0', textAlign: 'center' }}>
+                ارسال ناموفق بود؛ لطفاً دوباره تلاش کنید یا با شمارهٔ بالا تماس بگیرید.
               </p>
             )}
           </form>
